@@ -1,1 +1,36 @@
 import pandas as pd
+import numpy as np
+from ase.build import bulk
+from ase.eos import EquationOfState
+from ase.units import kJ 
+from ase import Atoms
+from mace.calculators import mace_mp
+
+
+experiment = pd.read_csv("Mace_prelim/exp.csv")
+calc = mace_mp(model="medium",dispersion = False, default_dtype = "float64", device = "cpu")
+lat_values = np.linspace(3.5,4.5,11)
+volumes = []
+energies = []
+for lat in lat_values:
+    atoms = bulk("Al", "fcc", a=lat)
+    atoms.set_calculator(calc)
+    energy = atoms.get_potential_energy()
+    volume = atoms.get_volume()
+    volumes.append(volume)
+    energies.append(energy)
+eos = EquationOfState(volumes, energies, eos="murnaghan")
+v0, e0, B = eos.fit()
+a0 = (4*v0)**(1/3)
+B_GPa = B / kJ * 1e24
+atoms_bulk = bulk("Al", "fcc", a=a0)
+atoms_bulk.set_calculator(calc)
+energy_bulk = atoms_bulk.get_potential_energy()
+atom_individual = Atoms("Al", positions=[[0, 0, 0]],pbc=False)
+atom_individual.set_calculator(calc)
+energy_individual = atom_individual.get_potential_energy()
+cohesive_energy = -(energy_individual - (energy_bulk / len(atoms_bulk)))
+
+print(f"Equilibrium lattice constant: {a0:.4f} Å")
+print(f"Bulk modulus: {B_GPa:.2f} GPa")
+print(f"Cohesive energy: {cohesive_energy:.4f} eV")
