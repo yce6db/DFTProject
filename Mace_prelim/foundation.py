@@ -6,7 +6,6 @@ from ase.units import kJ
 from ase import Atoms
 from mace.calculators import mace_mp
 from collections import Counter
-import matplotlib.pyplot as plt
 
 
 experiment = pd.read_csv("Mace_prelim/exp.csv")
@@ -37,20 +36,7 @@ def calculate_bulk_and_lattice_constant(element,structure,lattice_prediction):
         a0 = (4*v0)**(1/3)      
    
     B_GPa = B / kJ * 1e24
-    # Plot EOS, annotate with element name, and save
-    eos.plot()  # draws on current matplotlib axes
-    ax = plt.gca()
-    ax.text(
-        0.05,
-        0.95,
-        element,
-        transform=ax.transAxes,
-        fontsize=14,
-        verticalalignment="top",
-        bbox=dict(boxstyle="round", facecolor="white", alpha=0.6),
-    )
-    plt.savefig(f"{element}_.png", bbox_inches="tight")
-    plt.close()
+    eos.plot(f"{element}_.png")
     return a0, B_GPa
 
 def calculate_cohesive_energy(element,structure,lattice_constant):
@@ -70,7 +56,7 @@ def calculate_cohesive_energy(element,structure,lattice_constant):
             energy_individual += atom_individual.get_potential_energy()
         cohesive_energy = -(energy_individual - energy_bulk)/ len(atoms_bulk)
     return cohesive_energy
-calculate_bulk_and_lattice_constant("Li", "bcc", 3.477)
+calculate_bulk_and_lattice_constant("Al", "fcc", 4.032)
 #with open("results.txt", "w") as f:
     #f.write(f"{'Element':<10}{'Structure':<12}{'Lattice Å':>12}{'Bulk GPa':>12}{'Cohesive eV':>15}\n")
     #f.write("-" * 61 + "\n")
