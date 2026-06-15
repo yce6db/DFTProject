@@ -30,6 +30,13 @@ def calculate_MAX(experimental, predicted):
     return max_error
 
 summary_rows = []
+def calculate_RMSE(experimental, predicted):
+    mse = 0
+    for row in experimental.index:
+        mse += (experimental[row] - predicted[row]) ** 2
+    mse /= len(experimental)
+    rmse = mse ** 0.5
+    return rmse
 
 for potential_name, data in datasets.items():
     for column_name, property_name in properties.items():
@@ -48,6 +55,10 @@ for potential_name, data in datasets.items():
             experiment[column_name],
             data[column_name]
         )
+        rmse = calculate_RMSE(
+            experiment[column_name],
+            data[column_name]
+        )
 
         summary_rows.append({
             "Potential": potential_name,
@@ -55,6 +66,7 @@ for potential_name, data in datasets.items():
             "MAE": round(mae, 4),
             "MARE (%)": round(mare, 2),
             "MAX (%)": round(maxare, 2),
+            "RMSE": round(rmse, 4)
         })
 
 summary = pd.DataFrame(summary_rows)
