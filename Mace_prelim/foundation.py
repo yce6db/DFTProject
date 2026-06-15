@@ -36,7 +36,7 @@ def calculate_bulk_and_lattice_constant(element,structure,lattice_prediction):
         a0 = (4*v0)**(1/3)      
    
     B_GPa = B / kJ * 1e24
-    eos.plot(f"{element}_.png")
+    eos.plot(f"{element}_mace_test.png", show=False)
     return a0, B_GPa
 
 def calculate_cohesive_energy(element,structure,lattice_constant):
@@ -56,7 +56,13 @@ def calculate_cohesive_energy(element,structure,lattice_constant):
             energy_individual += atom_individual.get_potential_energy()
         cohesive_energy = -(energy_individual - energy_bulk)/ len(atoms_bulk)
     return cohesive_energy
-calculate_bulk_and_lattice_constant("Al", "fcc", 4.032)
+# calculate_bulk_and_lattice_constant("Al", "fcc", 4.032)
+for index, row in experiment.iterrows():
+    element = row["Solid"]
+    structure = row["Structures"]
+    lattice_prediction = row["Lattice Constant (Å)"]
+    calculate_bulk_and_lattice_constant(element, structure, lattice_prediction)
+   
 #with open("results.txt", "w") as f:
     #f.write(f"{'Element':<10}{'Structure':<12}{'Lattice Å':>12}{'Bulk GPa':>12}{'Cohesive eV':>15}\n")
     #f.write("-" * 61 + "\n")
