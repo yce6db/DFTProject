@@ -66,7 +66,7 @@ for potential_name, data in datasets.items():
             "MAE": round(mae, 4),
             "MARE (%)": round(mare, 2),
             "MAX (%)": round(maxare, 2),
-            "RMSE": round(rmse, 4)
+            "RMSD": round(rmse, 4)
         })
 
 summary = pd.DataFrame(summary_rows)
