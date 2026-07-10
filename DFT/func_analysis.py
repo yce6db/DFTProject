@@ -63,7 +63,7 @@ def analyze_file(file_path: Path, property_name: str) -> pd.DataFrame:
 
         summary_rows.append(
             {
-                "Potential": potential_name,
+                "Functional": potential_name,
                 "Property": property_name,
                 "MAE": round(mae, 4),
                 "MARE (%)": round(mare, 2),
@@ -90,7 +90,7 @@ def main() -> None:
     summary.to_csv(BASE_DIR / "analysis_summary.csv", index=False, encoding="utf-8")
 
     print(summary.to_string(index=False))
-    print(f"\nSaved summary to {BASE_DIR / 'analysis_summary.csv'}")
+    print(f"\nSaved summary to {BASE_DIR / 'functional_analysis_summary.csv'}")
 
 
 if __name__ == "__main__":
