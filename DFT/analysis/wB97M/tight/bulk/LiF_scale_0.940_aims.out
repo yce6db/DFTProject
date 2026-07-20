@@ -1,0 +1,2969 @@
+------------------------------------------------------------
+          Invoking FHI-aims ...
+
+          When using FHI-aims, please cite the following reference:
+
+            Volker Blum, Ralf Gehrke, Felix Hanke, Paula Havu,
+            Ville Havu, Xinguo Ren, Karsten Reuter, and Matthias Scheffler,
+            'Ab Initio Molecular Simulations with Numeric Atom-Centered Orbitals',
+            Computer Physics Communications 180, 2175-2196 (2009)
+
+          In addition, many other developments in FHI-aims are likely important for
+          your particular application. If so, please cite them. A partial list of references
+          is written at the end of this file. Thank you for giving credit to the authors
+          of these developments.
+
+          For general information about FHI-aims please find us at
+
+            https://fhi-aims.org
+
+          Online tutorials can be found at
+
+            https://fhi-aims-club.gitlab.io/tutorials/tutorials-overview/
+
+          For any questions about FHI-aims, please visit our slack channel at
+
+            https://fhi-aims.slack.com
+
+          and our main development and support site at
+
+            https://aims-git.rz-berlin.mpg.de .
+
+          The latter site, in particular, has a wiki to collect information, as well
+          as an issue tracker to log discussions, suggest improvements, and report issues
+          or bugs. https://aims-git.rz-berlin.mpg.de is also the main development site
+          of the project and all new and updated code versions can be obtained there.
+          Please send an email to aims-coordinators@ms1p.org and we will add
+          you to these sites. They are for you and everyone is welcome there.
+
+------------------------------------------------------------
+
+
+
+  Date     :  20260720, Time     :  130158.898
+  Time zero on CPU 1             :   0.305378000000000E+00  s.
+  Internal wall clock time zero  :           553784518.898  s.
+
+  FHI-aims created a unique identifier for this run for later identification
+  aims_uuid : 84ABB411-4772-4874-A808-E81774E387EC
+
+  Build configuration of the current instance of FHI-aims
+  -------------------------------------------------------
+  FHI-aims version      : 260331
+  Commit number         : GITDIR-NOTFOUND
+  CMake host system     : Linux-4.18.0-553.97.1.el8_10.x86_64
+  CMake version         : 3.31.6
+  OS Distribution       : Rocky Linux 8.10 (Green Obsidian)
+  Built on              : Intel(R) Xeon(R) w5-3435X
+  Fortran compiler      : /mnt/sw/nix/store/pa59vldasm7gxpr7dkijhk09q5qq63q1-openmpi-4.1.8/bin/mpifort (GNU) version 13.3.0
+  Fortran compiler flags: -O2 -fallow-argument-mismatch -ffree-line-length-none
+  C compiler            : /mnt/sw/nix/store/pa59vldasm7gxpr7dkijhk09q5qq63q1-openmpi-4.1.8/bin/mpicc (GNU) version 13.3.0
+  C compiler flags      : -O2
+  C++ compiler          : /mnt/sw/nix/store/pa59vldasm7gxpr7dkijhk09q5qq63q1-openmpi-4.1.8/bin/mpicxx (GNU) version 13.3.0
+  C++ compiler flags    : -O2
+  HIP compiler          :
+  HIP compiler flags    :
+  HIP GPU arch          :
+  Using MPI
+  Using ScaLAPACK
+  Using LibXC
+  Using i-PI
+  Using RLSY
+  Using GREENX
+  Linking against: /mnt/sw/nix/store/dwd607jzx9m5bdd100br72s3b6g05zrf-intel-oneapi-mkl-2024.2.2/mkl/2024.2/lib/libmkl_intel_lp64.so
+                   /mnt/sw/nix/store/dwd607jzx9m5bdd100br72s3b6g05zrf-intel-oneapi-mkl-2024.2.2/mkl/2024.2/lib/libmkl_sequential.so
+                   /mnt/sw/nix/store/dwd607jzx9m5bdd100br72s3b6g05zrf-intel-oneapi-mkl-2024.2.2/mkl/2024.2/lib/libmkl_core.so
+                   /mnt/sw/nix/store/dwd607jzx9m5bdd100br72s3b6g05zrf-intel-oneapi-mkl-2024.2.2/mkl/2024.2/lib/libmkl_blacs_openmpi_lp64.so
+                   /mnt/sw/nix/store/dwd607jzx9m5bdd100br72s3b6g05zrf-intel-oneapi-mkl-2024.2.2/mkl/2024.2/lib/libmkl_scalapack_lp64.so
+
+  Using       64 parallel tasks.
+  Task        0 on host worker6040 reporting.
+  Task        1 on host worker6040 reporting.
+  Task        2 on host worker6040 reporting.
+  Task        3 on host worker6040 reporting.
+  Task        4 on host worker6040 reporting.
+  Task        5 on host worker6040 reporting.
+  Task        6 on host worker6040 reporting.
+  Task        7 on host worker6040 reporting.
+  Task        8 on host worker6040 reporting.
+  Task        9 on host worker6040 reporting.
+  Task       10 on host worker6040 reporting.
+  Task       11 on host worker6040 reporting.
+  Task       12 on host worker6040 reporting.
+  Task       13 on host worker6040 reporting.
+  Task       14 on host worker6040 reporting.
+  Task       15 on host worker6040 reporting.
+  Task       16 on host worker6040 reporting.
+  Task       17 on host worker6040 reporting.
+  Task       18 on host worker6040 reporting.
+  Task       19 on host worker6040 reporting.
+  Task       20 on host worker6040 reporting.
+  Task       21 on host worker6040 reporting.
+  Task       22 on host worker6040 reporting.
+  Task       23 on host worker6040 reporting.
+  Task       24 on host worker6040 reporting.
+  Task       25 on host worker6040 reporting.
+  Task       26 on host worker6040 reporting.
+  Task       27 on host worker6040 reporting.
+  Task       28 on host worker6040 reporting.
+  Task       29 on host worker6040 reporting.
+  Task       30 on host worker6040 reporting.
+  Task       31 on host worker6040 reporting.
+  Task       32 on host worker6041 reporting.
+  Task       33 on host worker6041 reporting.
+  Task       34 on host worker6041 reporting.
+  Task       35 on host worker6041 reporting.
+  Task       36 on host worker6041 reporting.
+  Task       37 on host worker6041 reporting.
+  Task       38 on host worker6041 reporting.
+  Task       39 on host worker6041 reporting.
+  Task       40 on host worker6041 reporting.
+  Task       41 on host worker6041 reporting.
+  Task       42 on host worker6041 reporting.
+  Task       43 on host worker6041 reporting.
+  Task       44 on host worker6041 reporting.
+  Task       45 on host worker6041 reporting.
+  Task       46 on host worker6041 reporting.
+  Task       47 on host worker6041 reporting.
+  Task       48 on host worker6041 reporting.
+  Task       49 on host worker6041 reporting.
+  Task       50 on host worker6041 reporting.
+  Task       51 on host worker6041 reporting.
+  Task       52 on host worker6041 reporting.
+  Task       53 on host worker6041 reporting.
+  Task       54 on host worker6041 reporting.
+  Task       55 on host worker6041 reporting.
+  Task       56 on host worker6041 reporting.
+  Task       57 on host worker6041 reporting.
+  Task       58 on host worker6041 reporting.
+  Task       59 on host worker6041 reporting.
+  Task       60 on host worker6041 reporting.
+  Task       61 on host worker6041 reporting.
+  Task       62 on host worker6041 reporting.
+  Task       63 on host worker6041 reporting.
+
+  Obtaining array dimensions for all initial allocations:
+  
+  -----------------------------------------------------------------------
+  Parsing control.in (first pass over file, find array dimensions only).
+  The contents of control.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of control.in .
+  -----------------------------------------------------------------------
+  
+  #===============================================================================
+  # Created using the Atomic Simulation Environment (ASE)
+  
+  # Mon Jul 20 11:48:36 2026
+  
+  #===============================================================================
+  override_warning_libxc             .true.
+  xc                                 libxc HYB_MGGA_XC_WB97M_V
+  spin                               none
+  charge                             0
+  relativistic                       atomic_zora scalar
+  atomic_solver_xc                   pbe
+  ionic_solver_xc                    pbe
+  occupation_type                    gaussian 0.1
+  k_grid_density                     5
+  sc_accuracy_rho                    1e-05
+  basis_threshold                    0.0001
+  override_illconditioning           .true.
+  #===============================================================================
+  
+  ################################################################################
+  #
+  #  FHI-aims code project
+  #  Volker Blum, Fritz Haber Institute Berlin, 2009
+  #
+  #  Suggested "tight" defaults for Li atom (to be pasted into control.in file)
+  #
+  #  2016/03/22: Increased cutoff radius to 5.0 AA (Xinguo Ren, Aug 15, 2015)
+  #
+  ################################################################################
+    species        Li
+  #     global species definitions
+      nucleus             3
+      mass                6.941
+  #
+      l_hartree           6
+  #
+      cut_pot             5.0  2.0  1.0
+      basis_dep_cutoff    1e-4
+  #
+      radial_base         29 7.0
+      radial_multiplier   2
+      angular_grids       specified
+        division   0.4484  110
+        division   0.5659  194
+        division   0.6315  302
+        division   0.6662  434
+  #      division   0.8186  590
+  #      division   0.9037  770
+  #      division   6.2760  974
+  #      outer_grid   974
+        outer_grid  434
+  ################################################################################
+  #
+  #  Definition of "minimal" basis
+  #
+  ################################################################################
+  #     valence basis states
+      valence      2  s   1.
+  #     ion occupancy
+      ion_occ      1  s   2.
+  ################################################################################
+  #
+  #  Suggested additional basis functions. For production calculations,
+  #  uncomment them one after another (the most important basis functions are
+  #  listed first).
+  #
+  #  Constructed for dimers: 1.80 A, 2.25 A, 2.75 A, 3.50 A, 4.50 A
+  #
+  ################################################################################
+  #  "First tier" - improvements: -189.23 meV to -6.35 meV
+       hydro 2 p 1.6
+       hydro 2 s 2
+       hydro 3 d 2.6
+  #  "Second tier" - improvements: -4.69 meV to -0.41 meV
+       hydro 3 p 4.6
+       hydro 2 p 1.8
+       hydro 3 s 6.2
+       hydro 4 d 4.7
+       hydro 4 f 4.1
+  #  "Third tier" - improvements: -0.20 meV to -0.15 meV
+  #     hydro 4 d 0.95
+  #     hydro 3 p 6.2
+  #     hydro 3 s 1.7
+  #  Further functions, listed for completeness
+  #     VB: The following functions are only listed for completeness; test very
+  #         carefully before any kind of production use. From the point of view
+  #         of the basis construction, their main role is to fill up space,
+  #         and they are solely determined by the location of the cutoff potential.
+  #     hydro 3 p 0.1  # -0.15 meV
+  #     hydro 4 d 5    # -0.12 meV
+  #     hydro 4 f 0.1  # -0.14 meV
+  #     hydro 5 g 0.1  # -0.06 meV
+  
+  
+  ################################################################################
+  #
+  # For methods that use the localized form of the "resolution of identity" for
+  # the two-electron Coulomb operator (RI_method LVL), particularly Hartree-Fock and
+  # hybrid density functional calculations, the highest accuracy can be obtained by
+  # uncommenting the line beginning with "for_aux"  below, thus adding an extra g radial
+  # function to the construction of the product basis set for the expansion.
+  # See Ref. New J. Phys. 17, 093020 (2015) for more information, particularly Figs. 1 and 6.
+  #
+  ################################################################################
+  #
+  for_aux hydro 5 g 6.0
+  ################################################################################
+  #
+  #  FHI-aims code project
+  #  Volker Blum, Fritz Haber Institute Berlin, 2009
+  #
+  #  Suggested "tight" defaults for F atom (to be pasted into control.in file)
+  #
+  ################################################################################
+    species        F
+  #     global species definitions
+      nucleus             9
+      mass                18.9984032
+  #
+      l_hartree           6
+  #
+      cut_pot             4.0  2.0  1.0
+      basis_dep_cutoff    1e-4
+  #
+      radial_base         37 7.0
+      radial_multiplier   2
+      angular_grids specified
+        division   0.4014  110
+        division   0.5291  194
+        division   0.6019  302
+        division   0.6814  434
+  #      division   0.7989  590
+  #      division   0.8965  770
+  #      division   1.3427  974
+  #      outer_grid   974
+        outer_grid  434
+  ################################################################################
+  #
+  #  Definition of "minimal" basis
+  #
+  ################################################################################
+  #     valence basis states
+      valence      2  s   2.
+      valence      2  p   5.
+  #     ion occupancy
+      ion_occ      2  s   1.
+      ion_occ      2  p   4.
+  ################################################################################
+  #
+  #  Suggested additional basis functions. For production calculations,
+  #  uncomment them one after another (the most important basis functions are
+  #  listed first).
+  #
+  #  Constructed for dimers: 1.2 A, 1.418 A, 1.75 A, 2.25 A, 3.25 A
+  #
+  ################################################################################
+  #  "First tier" - improvements: -149.44 meV to -45.88 meV
+       hydro 2 p 1.7
+       hydro 3 d 7.4
+       hydro 3 s 6.8
+  #  "Second tier" - improvements: -12.96 meV to -1.56 meV
+       hydro 4 f 11.2
+       ionic 2 p auto
+       hydro 1 s 0.75
+       hydro 4 d 8.8
+       hydro 5 g 16.8
+  #  "Third tier" - improvements: -0.58 meV to -0.05 meV
+  #     hydro 3 p 6.2
+  #     hydro 3 s 3.2
+  #     hydro 4 f 9.6
+  #     hydro 3 s 19.6
+  #     hydro 4 d 8.6
+  #     hydro 5 g 14.4
+  # Further basis functions: -0.05 meV and below
+  #     hydro 3 p 4.2
+  ################################################################################
+  #
+  # For methods that use the localized form of the "resolution of identity" for
+  # the two-electron Coulomb operator (RI_method LVL), particularly Hartree-Fock and
+  # hybrid density functional calculations, the highest accuracy can be obtained by
+  # uncommenting the line beginning with "for_aux"  below, thus adding an extra g radial
+  # function to the construction of the product basis set for the expansion.
+  # See Ref. New J. Phys. 17, 093020 (2015) for more information, particularly Figs. 1 and 6.
+  #
+  ################################################################################
+  #
+  for_aux hydro 5 g 6.0
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file control.in .
+  -----------------------------------------------------------------------
+  
+  
+  -----------------------------------------------------------------------
+  Parsing geometry.in (first pass over file, find array dimensions only).
+  The contents of geometry.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of geometry.in .
+  -----------------------------------------------------------------------
+  
+  #===============================================================================
+  # Created using the Atomic Simulation Environment (ASE)
+  
+  # Mon Jul 20 11:48:36 2026
+  
+  #=======================================================
+  lattice_vector 3.7693999999999996 0.0000000000000000 0.0000000000000000
+  lattice_vector 0.0000000000000000 3.7693999999999996 0.0000000000000000
+  lattice_vector 0.0000000000000000 0.0000000000000000 3.7693999999999996
+  atom_frac 0.0000000000000000 0.0000000000000000 0.0000000000000000 Li
+  atom_frac 0.5000000000000000 0.0000000000000000 0.0000000000000000 F
+  atom_frac 0.0000000000000000 0.5000000000000000 0.5000000000000000 Li
+  atom_frac 0.5000000000000000 0.5000000000000000 0.5000000000000000 F
+  atom_frac 0.5000000000000000 0.0000000000000000 0.5000000000000000 Li
+  atom_frac 0.0000000000000000 0.0000000000000000 0.5000000000000000 F
+  atom_frac 0.5000000000000000 0.5000000000000000 0.0000000000000000 Li
+  atom_frac 0.0000000000000000 0.5000000000000000 0.0000000000000000 F
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file geometry.in .
+  -----------------------------------------------------------------------
+  
+
+  Basic array size parameters:
+  | Number of species                 :        2
+  | Number of atoms                   :        8
+  | Number of lattice vectors         :        3
+  | Max. basis fn. angular momentum   :        4
+  | Max. atomic/ionic basis occupied n:        2
+  | Max. number of basis fn. types    :        3
+  | Max. radial fns per species/type  :        9
+  | Max. logarithmic grid size        :     1310
+  | Max. radial integration grid size :       75
+  | Max. angular integration grid size:      434
+  | Max. angular grid division number :        8
+  | Radial grid for Hartree potential :     1310
+  | Number of spin channels           :        1
+
+  Definition of standardized fundamental physical constants in this FHI-aims run:
+  | Using the set of values used in FHI-aims up to 2024, which combines values from
+  | different CODATA sets - see constants.f90.
+  | Use the 'codata' keyword in control.in to change this selection.
+
+  Memory overcommitment is allowed on your operating system.
+
+------------------------------------------------------------
+          Reading file control.in.
+------------------------------------------------------------
+  XC: Using LibXC. Please refer to LibXC output for further details.
+  Using libxc - Initializing
+  Libxc version: 6.1.0
+
+  You have selected libxc functional HYB_MGGA_XC_WB97M_V (531)
+    - Description: wB97M-V exchange-correlation functional
+    - Type: Hybrid MGGA(Exchange-correlation)
+    - Using the following  17 external libxc parameters:
+             _cx00 = 0.850000000000D+00  (u^00 coefficient for exchange)
+             _cx01 = 0.100700000000D+01  (u^01 coefficient for exchange)
+             _cx10 = 0.259000000000D+00  (u^10 coefficient for exchange)
+            _css00 = 0.443000000000D+00  (u^00 coefficient for same-spin correlation)
+            _css04 =-0.143700000000D+01  (u^04 coefficient for same-spin correlation)
+            _css10 =-0.453500000000D+01  (u^10 coefficient for same-spin correlation)
+            _css20 =-0.339000000000D+01  (u^20 coefficient for same-spin correlation)
+            _css43 = 0.427800000000D+01  (u^43 coefficient for same-spin correlation)
+            _cos00 = 0.100000000000D+01  (u^00 coefficient for opposite-spin correlation)
+            _cos10 = 0.135800000000D+01  (u^10 coefficient for opposite-spin correlation)
+            _cos20 = 0.292400000000D+01  (u^20 coefficient for opposite-spin correlation)
+            _cos21 =-0.881200000000D+01  (u^21 coefficient for opposite-spin correlation)
+            _cos60 =-0.139000000000D+01  (u^60 coefficient for opposite-spin correlation)
+            _cos61 = 0.914200000000D+01  (u^61 coefficient for opposite-spin correlation)
+            _alpha = 0.100000000000D+01  (fraction of HF exchange)
+             _beta =-0.850000000000D+00  (fraction of short-range exchange)
+            _omega = 0.300000000000D+00  (range-separation constant)
+    - Reference to Literature:
+      [1] N. Mardirossian and M. Head-Gordon.,  J. Chem. Phys. 144, 214110 (2016)
+
+  Obtaining Hybrid Functional Parameters from Libxc:
+  Fraction of Hartree-Fock exchange ALPHA:      1.00000000
+  Fraction of short-range exchange BETA  :     -0.85000000
+  Range-separation parameter OMEGA       :      0.30000000
+  Detecting a range-separated Hybrid functional
+  This translates into the following internal FHI-aims parameters:
+  hybrid_coeff           =      0.15000000
+  hybrid_coeff_LR        =      1.00000000
+  hse_omega              =      0.30000000
+  hse_omega_hf           =      0.30000000
+  use_hse                =               F
+  use_lc_wpbeh           =               T
+  use_yukawa             =               F
+  Spin treatment: No spin polarisation.
+  Charge =   0.000000E+00: Neutral system requested explicitly.
+  Scalar relativistic treatment of kinetic energy: on-site free-atom approximation to ZORA.
+  Atomic Solver XC: Using user-defined functional for generating the minimal NAO basis functions.
+  Note that only the following functionals are available: kli, pz-lda, pw-lda, vwn, vwn-gauss, pw91_gga, pbe, rpbe, revpbe, pbeint, pbesol, blyp.
+  Ionic Solver XC: Using user-defined functional for generating the minimal NAO basis functions.
+  Note that only the following functionals are available: kli, pz-lda, pw-lda, vwn, vwn-gauss, pw91_gga, pbe, rpbe, revpbe, pbeint, pbesol, blyp.
+  Occupation type: Gaussian broadening, width =   0.100000E+00 eV.
+  Found k-point grid density (nkpts / Angstrom^-1):   5.00000
+  Convergence accuracy of self-consistent charge density:  0.1000E-04
+  Threshold for basis singularities:  0.1000E-03
+  override_illconditioning: Explicitly overriding any built-in checks for an ill-conditioned overlap matrix.
+** WARNING:
+  ***  If you use this flag, you should really know what you are doing.
+** END OF WARNING
+** WARNING:
+  *** DO NOT keep this flag set by default in all your control.in files.
+** END OF WARNING
+
+  Reading configuration options for species Li                  .
+  | Found nuclear charge :   3.0000
+  | Found atomic mass :    6.9409999999999998      amu
+  | Found l_max for Hartree potential  :   6
+  | Found cutoff potl. onset [A], width [A], scale factor :    5.00000    2.00000    1.00000
+  | Threshold for basis-dependent cutoff potential is   0.100000E-03
+  | Found data for basic radial integration grid :    29 points, outermost radius =    7.000 A
+  | Found multiplier for basic radial grid :   2
+  | Found angular grid specification: user-specified.
+  | Specified grid contains     5 separate shells.
+  | Check grid settings after all constraints further below.
+  | Found free-atom valence shell :  2 s   1.000
+  | Found free-ion valence shell :  1 s   2.000
+  | Found hydrogenic basis function :  2 p   1.600
+  | Found hydrogenic basis function :  2 s   2.000
+  | Found hydrogenic basis function :  3 d   2.600
+  | Found hydrogenic basis function :  3 p   4.600
+  | Found hydrogenic basis function :  2 p   1.800
+  | Found hydrogenic basis function :  3 s   6.200
+  | Found hydrogenic basis function :  4 d   4.700
+  | Found hydrogenic basis function :  4 f   4.100
+  | Found hydrogenic extended basis function :  5 g   6.000
+ | Encountered keyword species, ending the description of species Li                  .
+  Species Li                  : Missing cutoff potential type.
+  Defaulting to exp(1/x)/(1-x)^2 type cutoff potential.
+  Species Li: No 'logarithmic' tag. Using default grid for free atom:
+  | Default logarithmic grid data [bohr] : 0.1000E-03 0.1000E+03 0.1012E+01
+  Species Li: On-site basis accuracy parameter (for Gram-Schmidt orthonormalisation) not specified.
+  Using default value basis_acc =  0.1000000E-03.
+  Species Li                  : Using default innermost maximum threshold i_radial=  2 for radial functions.
+  Species Li                  : Default cutoff onset for free atom density etc. : 0.50000000E+01 AA.
+  Species Li                  : Basic radial grid will be enhanced according to radial_multiplier =   2, to contain    59 grid points.
+
+  Reading configuration options for species F                   .
+  | Found nuclear charge :   9.0000
+  | Found atomic mass :    18.998403199999998      amu
+  | Found l_max for Hartree potential  :   6
+  | Found cutoff potl. onset [A], width [A], scale factor :    4.00000    2.00000    1.00000
+  | Threshold for basis-dependent cutoff potential is   0.100000E-03
+  | Found data for basic radial integration grid :    37 points, outermost radius =    7.000 A
+  | Found multiplier for basic radial grid :   2
+  | Found angular grid specification: user-specified.
+  | Specified grid contains     5 separate shells.
+  | Check grid settings after all constraints further below.
+  | Found free-atom valence shell :  2 s   2.000
+  | Found free-atom valence shell :  2 p   5.000
+  | Found free-ion valence shell :  2 s   1.000
+  | Found free-ion valence shell :  2 p   4.000
+  | Found hydrogenic basis function :  2 p   1.700
+  | Found hydrogenic basis function :  3 d   7.400
+  | Found hydrogenic basis function :  3 s   6.800
+  | Found hydrogenic basis function :  4 f  11.200
+  | Found ionic basis function :  2 p , default cutoff radius.
+  | Found hydrogenic basis function :  1 s   0.750
+  | Found hydrogenic basis function :  4 d   8.800
+  | Found hydrogenic basis function :  5 g  16.800
+  | Found hydrogenic extended basis function :  5 g   6.000
+  Species F                   : Missing cutoff potential type.
+  Defaulting to exp(1/x)/(1-x)^2 type cutoff potential.
+  Species F : No 'logarithmic' tag. Using default grid for free atom:
+  | Default logarithmic grid data [bohr] : 0.1000E-03 0.1000E+03 0.1012E+01
+  | Will include ionic basis functions of  2.0-fold positive F                    ion.
+  Species F : On-site basis accuracy parameter (for Gram-Schmidt orthonormalisation) not specified.
+  Using default value basis_acc =  0.1000000E-03.
+  Species F                   : Using default innermost maximum threshold i_radial=  2 for radial functions.
+  Species F                   : Default cutoff onset for free atom density etc. : 0.40000000E+01 AA.
+  Species F                   : Basic radial grid will be enhanced according to radial_multiplier =   2, to contain    75 grid points.
+
+  Finished reading input file 'control.in'.
+
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+          Reading geometry description geometry.in.
+------------------------------------------------------------
+  | The smallest distance between any two atoms is         1.88470000 AA.
+  | The first atom of this pair is atom number                      1 .
+  | The second atom of this pair is atom number                     2 .
+  | Wigner-Seitz cell of the first atom image           0     0     0 .
+  | (The Wigner-Seitz cell of the second atom is 0 0 0  by definition.)
+
+  Symmetry information by spglib:
+  | Precision set to  0.1E-04
+  | Number of Operations  : 192
+  | Space group           : 225
+  | International         : Fm-3m
+  | Schoenflies           : Oh^5
+  Input structure read successfully.
+  The structure contains        8 atoms,  and a total of         48.000 electrons.
+
+  Input geometry:
+  | Unit cell:
+  |        3.76940000        0.00000000        0.00000000
+  |        0.00000000        3.76940000        0.00000000
+  |        0.00000000        0.00000000        3.76940000
+  | Atomic structure:
+  |       Atom                x [A]            y [A]            z [A]
+  |    1: Species Li            0.00000000        0.00000000        0.00000000
+  |    2: Species F             1.88470000        0.00000000        0.00000000
+  |    3: Species Li            0.00000000        1.88470000        1.88470000
+  |    4: Species F             1.88470000        1.88470000        1.88470000
+  |    5: Species Li            1.88470000        0.00000000        1.88470000
+  |    6: Species F             0.00000000        0.00000000        1.88470000
+  |    7: Species Li            1.88470000        1.88470000        0.00000000
+  |    8: Species F             0.00000000        1.88470000        0.00000000
+
+  Lattice parameters for 3D lattice (in Angstroms) :     3.769400    3.769400    3.769400
+  Angle(s) between unit vectors (in degrees)       :    90.000000   90.000000   90.000000
+
+
+  Quantities derived from the lattice vectors (in Angstrom^-1):
+  | Reciprocal lattice vector 1:  1.666893  0.000000  0.000000
+  | Reciprocal lattice vector 2:  0.000000  1.666893  0.000000
+  | Reciprocal lattice vector 3:  0.000000  0.000000  1.666893
+  | Unit cell volume                               :   0.535571E+02  Angstrom^3
+
+  Fractional coordinates:
+                         L1                L2                L3
+       atom_frac         0.00000000        0.00000000        0.00000000  Li
+       atom_frac         0.50000000        0.00000000        0.00000000  F
+       atom_frac         0.00000000        0.50000000        0.50000000  Li
+       atom_frac         0.50000000        0.50000000        0.50000000  F
+       atom_frac         0.50000000        0.00000000        0.50000000  Li
+       atom_frac         0.00000000        0.00000000        0.50000000  F
+       atom_frac         0.50000000        0.50000000        0.00000000  Li
+       atom_frac         0.00000000        0.50000000        0.00000000  F
+
+  Slab Identifier: This seems to be a bulk system.
+
+  Finished reading input file 'geometry.in'.
+
+
+
+  Consistency checks for stacksize environment parameter are next.
+
+  | Maximum stacksize for task 0: unlimited
+  | Maximum stacksize for task 1: unlimited
+  | Maximum stacksize for task 2: unlimited
+  | Maximum stacksize for task 3: unlimited
+  | Maximum stacksize for task 4: unlimited
+  | Maximum stacksize for task 5: unlimited
+  | Maximum stacksize for task 6: unlimited
+  | Maximum stacksize for task 7: unlimited
+  | Maximum stacksize for task 8: unlimited
+  | Maximum stacksize for task 9: unlimited
+  | Maximum stacksize for task 10: unlimited
+  | Maximum stacksize for task 11: unlimited
+  | Maximum stacksize for task 12: unlimited
+  | Maximum stacksize for task 13: unlimited
+  | Maximum stacksize for task 14: unlimited
+  | Maximum stacksize for task 15: unlimited
+  | Maximum stacksize for task 16: unlimited
+  | Maximum stacksize for task 17: unlimited
+  | Maximum stacksize for task 18: unlimited
+  | Maximum stacksize for task 19: unlimited
+  | Maximum stacksize for task 20: unlimited
+  | Maximum stacksize for task 21: unlimited
+  | Maximum stacksize for task 22: unlimited
+  | Maximum stacksize for task 23: unlimited
+  | Maximum stacksize for task 24: unlimited
+  | Maximum stacksize for task 25: unlimited
+  | Maximum stacksize for task 26: unlimited
+  | Maximum stacksize for task 27: unlimited
+  | Maximum stacksize for task 28: unlimited
+  | Maximum stacksize for task 29: unlimited
+  | Maximum stacksize for task 30: unlimited
+  | Maximum stacksize for task 31: unlimited
+  | Maximum stacksize for task 32: unlimited
+  | Maximum stacksize for task 33: unlimited
+  | Maximum stacksize for task 34: unlimited
+  | Maximum stacksize for task 35: unlimited
+  | Maximum stacksize for task 36: unlimited
+  | Maximum stacksize for task 37: unlimited
+  | Maximum stacksize for task 38: unlimited
+  | Maximum stacksize for task 39: unlimited
+  | Maximum stacksize for task 40: unlimited
+  | Maximum stacksize for task 41: unlimited
+  | Maximum stacksize for task 42: unlimited
+  | Maximum stacksize for task 43: unlimited
+  | Maximum stacksize for task 44: unlimited
+  | Maximum stacksize for task 45: unlimited
+  | Maximum stacksize for task 46: unlimited
+  | Maximum stacksize for task 47: unlimited
+  | Maximum stacksize for task 48: unlimited
+  | Maximum stacksize for task 49: unlimited
+  | Maximum stacksize for task 50: unlimited
+  | Maximum stacksize for task 51: unlimited
+  | Maximum stacksize for task 52: unlimited
+  | Maximum stacksize for task 53: unlimited
+  | Maximum stacksize for task 54: unlimited
+  | Maximum stacksize for task 55: unlimited
+  | Maximum stacksize for task 56: unlimited
+  | Maximum stacksize for task 57: unlimited
+  | Maximum stacksize for task 58: unlimited
+  | Maximum stacksize for task 59: unlimited
+  | Maximum stacksize for task 60: unlimited
+  | Maximum stacksize for task 61: unlimited
+  | Maximum stacksize for task 62: unlimited
+  | Maximum stacksize for task 63: unlimited
+  | Current stacksize for task 0: unlimited
+  | Current stacksize for task 1: unlimited
+  | Current stacksize for task 2: unlimited
+  | Current stacksize for task 3: unlimited
+  | Current stacksize for task 4: unlimited
+  | Current stacksize for task 5: unlimited
+  | Current stacksize for task 6: unlimited
+  | Current stacksize for task 7: unlimited
+  | Current stacksize for task 8: unlimited
+  | Current stacksize for task 9: unlimited
+  | Current stacksize for task 10: unlimited
+  | Current stacksize for task 11: unlimited
+  | Current stacksize for task 12: unlimited
+  | Current stacksize for task 13: unlimited
+  | Current stacksize for task 14: unlimited
+  | Current stacksize for task 15: unlimited
+  | Current stacksize for task 16: unlimited
+  | Current stacksize for task 17: unlimited
+  | Current stacksize for task 18: unlimited
+  | Current stacksize for task 19: unlimited
+  | Current stacksize for task 20: unlimited
+  | Current stacksize for task 21: unlimited
+  | Current stacksize for task 22: unlimited
+  | Current stacksize for task 23: unlimited
+  | Current stacksize for task 24: unlimited
+  | Current stacksize for task 25: unlimited
+  | Current stacksize for task 26: unlimited
+  | Current stacksize for task 27: unlimited
+  | Current stacksize for task 28: unlimited
+  | Current stacksize for task 29: unlimited
+  | Current stacksize for task 30: unlimited
+  | Current stacksize for task 31: unlimited
+  | Current stacksize for task 32: unlimited
+  | Current stacksize for task 33: unlimited
+  | Current stacksize for task 34: unlimited
+  | Current stacksize for task 35: unlimited
+  | Current stacksize for task 36: unlimited
+  | Current stacksize for task 37: unlimited
+  | Current stacksize for task 38: unlimited
+  | Current stacksize for task 39: unlimited
+  | Current stacksize for task 40: unlimited
+  | Current stacksize for task 41: unlimited
+  | Current stacksize for task 42: unlimited
+  | Current stacksize for task 43: unlimited
+  | Current stacksize for task 44: unlimited
+  | Current stacksize for task 45: unlimited
+  | Current stacksize for task 46: unlimited
+  | Current stacksize for task 47: unlimited
+  | Current stacksize for task 48: unlimited
+  | Current stacksize for task 49: unlimited
+  | Current stacksize for task 50: unlimited
+  | Current stacksize for task 51: unlimited
+  | Current stacksize for task 52: unlimited
+  | Current stacksize for task 53: unlimited
+  | Current stacksize for task 54: unlimited
+  | Current stacksize for task 55: unlimited
+  | Current stacksize for task 56: unlimited
+  | Current stacksize for task 57: unlimited
+  | Current stacksize for task 58: unlimited
+  | Current stacksize for task 59: unlimited
+  | Current stacksize for task 60: unlimited
+  | Current stacksize for task 61: unlimited
+  | Current stacksize for task 62: unlimited
+  | Current stacksize for task 63: unlimited
+
+  Consistency checks for the contents of control.in are next.
+
+  Using k-point grid density (nkpts / Angstrom^-1):   5.00000
+  The resulting k-point grid is:         9         9         9
+  Coulomb operator: Defaulting to logarithmic spherical Bessel transform integrals (use_logsbt .true.).
+  LC-wPBEh screening parameters: omega  =      0.30000000 bohr^-1, and
+                                 alpha =      0.15000000.
+  MPI_IN_PLACE appears to work with this MPI implementation.
+  | Keeping use_mpi_in_place .true. (see manual).
+  Explicit treatment of the Coulomb operator is needed, but the RI method is not specified.
+  Coulomb operator: Defaulting to 'LVL fast' resolution of identity - RI_type = LVL_fast
+  Species Li: Using default value for prodbas_acc =   1.000000E-04.
+  Species Li: Using default value max_l_prodbas =    20.
+  Species F: Using default value for prodbas_acc =   1.000000E-04.
+  Species F: Using default value max_l_prodbas =    20.
+  Target number of points in a grid batch is not set. Defaulting to  100
+  Method for grid partitioning is not set. Defaulting to parallel hash+maxmin partitioning.
+  Batch size limit is not set. Defaulting to    200
+  By default, will store active basis functions for each batch.
+  If in need of memory, prune_basis_once .false. can be used to disable this option.
+  communication_type for Hartree potential was not specified.
+  Defaulting to calc_hartree .
+  Defaulting to Pulay charge density mixer.
+  Pulay mixer: Number of relevant iterations not set.
+  Defaulting to    8 iterations.
+  Pulay mixer: Number of initial linear mixing iterations not set.
+  Defaulting to    0 iterations.
+  Work space size for distributed Hartree potential not set.
+  Defaulting to   0.200000E+03 MB.
+  Mixing parameter for charge density mixing has not been set.
+  Using default: charge_mix_param =     0.0500.
+  The mixing parameter will be adjusted in iteration number     2 of each s.c.f. cycle (i.e., each geometry step).
+  Algorithm-dependent basis array size parameters:
+  | n_max_pulay                         :        8
+  Maximum number of self-consistency iterations not provided.
+  Presetting  1000 iterations.
+  Presetting      1001 iterations before the initial mixing cycle
+  is restarted anyway using the sc_init_iter criterion / keyword.
+  Presetting a factor      1.000 between actual scf density residual
+  and density convergence criterion sc_accuracy_rho below which sc_init_iter
+  takes no effect.
+  Calculation of forces was not defined in control.in. No forces will be calculated.
+  Geometry relaxation not requested: no relaxation will be performed.
+  No accuracy limit for integral partition fn. given. Defaulting to  0.1000E-14.
+  No threshold value for u(r) in integrations given. Defaulting to  0.1000E-05.
+  No accuracy for occupation numbers given. Defaulting to  0.1000E-12.
+  No threshold value for occupation numbers given. Defaulting to  0.0000E+00.
+  No accuracy for fermi level given. Defaulting to  0.1000E-19.
+  Maximum # of iterations to find E_F not set. Defaulting to  200.
+  Preferred method for the eigenvalue solver ('KS_method') not specified in 'control.in'.
+  Defaulting to serial version, LAPACK (via ELSI), since more k-points than CPUs available.
+  partition_type (choice of integration weights) for integrals was not specified.
+  | Using a version of the partition function of Stratmann and coworkers ('stratmann_sparse').
+  | At each grid point, the set of atoms used to build the partition table is smoothly restricted to
+  | only those atoms whose free-atom density would be non-zero at that grid point.
+  Partitioning for Hartree potential was not defined. Using partition_type for integrals.
+  | Adjusted default value of keyword multip_moments_threshold to:       0.10000000E-11
+  | This value may affect high angular momentum components of the Hartree potential in periodic systems.
+  Using 2025 definition of centers list for evaluation of the Stratmann partition function.
+  Threshold for auxiliary basis singularities not set.
+  Default threshold for auxiliary basis singularities:  0.1000E-04
+  Use default threshold for vanishing multipole moments of auxiliary basis:  0.1000E-07
+  No q(lm)/r^(l+1) cutoff set for long-range Hartree potential.
+  | Using default value of  0.100000E-09 .
+  | Verify using the multipole_threshold keyword.
+  Defaulting to new monopole extrapolation.
+  Density update method: automatic selection selected.
+  Using density matrix based charge density update.
+  Using density matrix based charge density update.
+  Using packed matrix style: index .
+  Threshold of packed matrixes:  0.000000E+00
+** WARNING:
+ * NOTE: You are attempting to run a periodic structure with an exchange treatment
+ * which requires a two-electron Coulomb operator (Hartree-Fock or a hybrid functional).
+ * The present implementation is reliable to our knowledge, but some things
+ * (like band structure output, or perhaps the auxilary basis set for small
+ * orbital basis sets - see the "for_aux" keyword) require extra care.
+ * Please let us know if you encounter any trouble.
+** END OF WARNING
+  Coulomb operator: Defaulting to screening threshold for four-center integrals:   0.100000E-06
+  Coulomb operator: Defaulting to screening threshold for Coulomb matrix:   0.100000E-09
+  Fock matrix calculation: Setting the screening threshold for overlap matrix to coul_mat_threshold:   0.100000E-09
+  Coulomb operator: Defaulting to 'LVL_fast' resolution of identity - RI_type = LVL_fast 
+  No other resolution of identity version is supported for periodic boundary conditions at present.
+  Coulomb operator: Defaulting to logarithmic spherical Bessel transform integrals (use_logsbt .true.).
+  Defaulting to use time-reversal symmetry for k-point grid.
+  Charge integration errors on the 3D integration grid will be compensated
+  by explicit normalization and distribution of residual charges.
+  Use the "compensate_multipole_errors" flag to change this behaviour.
+  LVL not implemented with density matrix yet
+  -> switching to transformed overlap
+  LVL probably works better with logsbt
+  Default to 1D ("use_logsbt") integrations for auxiliary 2-center integrals.
+  Default onset of logarithmic r-grid for SBT is -38.000000000000
+  Default onset of logarithmic k-grid for SBT is -25.000000000000
+  Default range of logarithmic r- and k-grid for SBT is  45.000000000000
+  Default number of logarithmic r- and k-grid for SBT is   4096
+  Set 'collect_eigenvectors' to be '.true.' for all serial calculations. This is mandatory.
+  Set 'collect_eigenvectors' to be '.true.' for KS_method lapack_fast and serial.
+  Found potential conflicts with setting 'use_local_index' for this calculation. Will not set it.
+** WARNING:
+
+  You have specified the use of LibXC.
+
+  ** PLEASE ** be careful using LibXC. Whilst most of the LDA, GGA and MGGA
+  functionals, and hybrid variations therein, should be stable (though we
+  always recommend testing!), there are several fancy functionals with e.g.
+  range-separation, like HSE03/HSE06/LC-PBEh, and also MGGA functionals
+  that depend on the laplacian of the density, like BR89, that are not
+  fully implemented due to the infrastructure for these functionals being
+  incomplete or non-generic.
+  If you want to use these functionals please contact the development team
+  and we will work on them with you!
+
+** END OF WARNING
+
+  Consistency checks for the contents of geometry.in are next.
+
+
+  Range separation radius for Ewald summation (hartree_convergence_parameter):      2.50177197 bohr.
+  Number of empty states per atom not set in control.in - providing a guess from actual geometry.
+  | Total number of empty states used during s.c.f. cycle:       18
+  If you use a very high smearing, use empty_states (per atom!) in control.in to increase this value.
+
+  Structure-dependent array size parameters: 
+  | Maximum number of distinct radial functions  :       23
+  | Maximum number of basis functions            :      348
+  | Number of Kohn-Sham states (occupied + empty):       42
+------------------------------------------------------------
+  Setting Coulomb cut-width to  1.091868692359 * rcut.
+  Setting Coulomb cutting radius rcut to 16.962300000000 A.
+
+  Checking k-grid inconsistencies now:
+  | k-point density for reciprocal lattice vector 1 is    5.40 nkpts / Angstrom^-1
+  | k-point density for reciprocal lattice vector 2 is    5.40 nkpts / Angstrom^-1
+  | k-point density for reciprocal lattice vector 3 is    5.40 nkpts / Angstrom^-1
+
+  | Ratio of k-point densities for reciprocal lattice vectors 1 vs 2 is    1.00
+  | Ratio of k-point densities for reciprocal lattice vectors 1 vs 3 is    1.00
+  | Ratio of k-point densities for reciprocal lattice vectors 2 vs 3 is    1.00
+
+  * The specified k_grid leads to a nearly homogenous k-grid density in non-vacuum directions,
+  * and seems sensible.
+
+  | Checks passed.
+  After read_input_data [GB]:   1006.10
+
+  Performing system and environment tests:
+  | Environment variable OMP_NUM_THREADS correctly set to 1.
+  | Checking for ScaLAPACK...
+  | Testing pdtran()...
+  | All pdtran() tests passed.
+  | Testing CPU compatibility for run-time vs. build-time.
+  | Reading /proc/cpuinfo for CPU information ...
+  | Built for  : Intel(R) Xeon(R) w5-3435X
+  *** WARNING: CPU mismatch detected for Node worker6040 : Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz                                                 
+  *** WARNING: CPU mismatch detected for Node worker6041 : Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz                                                 
+** WARNING:
+  | WARNING: This FHI-aims executable was built on a different
+  CPU type than the CPUs used in this run.
+
+  | Running on different hardware than that on which a code was compiled
+  | can produce incorrect results (wrong numbers) due to architecture-specific
+  | optimizations made by the compiler. Those wrong numbers may occur only spuriously.
+  | They are therefore very difficult to rule out even by tests ahead of time.
+
+** END OF WARNING
+  | Running on : Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz
+  | Runtime CPU compatibility verified.
+  
+  After prepare_system [GB]:   1006.10
+
+------------------------------------------------------------
+          Preparing all fixed parts of the calculation.
+------------------------------------------------------------
+  Determining machine precision:
+     2.2250738585072014E-308
+  Setting up grids for atomic and cluster calculations.
+
+  Creating wave function, potential, and density for free atoms.
+  Runtime choices for atomic solver:
+  | atomic solver xc        : PBE
+  | compute density gradient: 1
+  | compute kinetic density : T
+
+  Species: Li
+
+  List of occupied orbitals and eigenvalues:
+    n    l              occ      energy [Ha]    energy [eV]
+    1    0           2.0000        -1.901753       -51.7493
+    2    0           1.0000        -0.103140        -2.8066
+
+
+  Species: F
+
+  List of occupied orbitals and eigenvalues:
+    n    l              occ      energy [Ha]    energy [eV]
+    1    0           2.0000       -24.399755      -663.9511
+    2    0           2.0000        -1.098813       -29.9002
+    2    1           5.0000        -0.408322       -11.1110
+
+
+  Adding cutoff potential to free-atom effective potential.
+  Creating fixed part of basis set: Ionic, confined, hydrogenic.
+
+  Li                   hydrogenic:
+
+  List of hydrogenic basis orbitals: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    2    1         1.600000        -8.7048           1.319365           1.319365           6.386418
+    2    0         2.000000       -13.6052           0.203259           1.385485           6.232164
+    3    2         2.600000       -10.2084           1.835332           1.835332           6.386418
+    3    1         4.600000       -31.9883           0.343834           1.385485           5.381805
+    2    1         1.800000       -11.0199           1.181903           1.181903           6.386418
+    3    0         6.200000       -58.1113           0.062858           1.111823           4.371906
+    4    2         4.700000       -18.7772           0.761113           2.401695           6.386418
+    4    3         4.100000       -14.2833           2.073992           2.073992           6.386418
+
+  List of extra hydrogenic orbitals for auxiliary basis: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    5    4         6.000000       -19.5834           2.204719           2.204719           6.386418
+
+
+  F                    ion:
+  Runtime choices for ionic solver:
+  | ionic solver xc        : PBE
+
+  List of free ionic orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]
+    1    0       -26.097677      -710.1539
+    2    0        -2.490996       -67.7834
+    2    1        -1.790314       -48.7169
+
+
+  List of ionic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    2    1        -1.790310       -48.7168       3.346402
+
+
+  F                    hydrogenic:
+
+  List of hydrogenic basis orbitals: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    2    1         1.700000        -9.8152           1.243167           1.243167           5.456923
+    3    2         7.400000       -82.7830           0.642437           0.642437           3.645380
+    3    0         6.800000       -69.9029           0.057798           1.022307           4.119412
+    4    3        11.200000      -106.6685           0.753096           0.753096           3.645380
+    1    0         0.750000        -7.6499           0.708442           0.708442           5.390618
+    4    2         8.800000       -65.8514           0.408685           1.273937           4.598524
+    5    4        16.800000      -153.6028           0.790838           0.790838           3.471409
+
+  List of extra hydrogenic orbitals for auxiliary basis: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    5    4         6.000000       -19.4884           2.181497           2.181497           5.456923
+
+  Creating atomic-like basis functions for current effective potential.
+
+  Species Li                  :
+
+  List of atomic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    1    0        -1.901753       -51.7493       4.318785
+    2    0        -0.103140        -2.8066       6.464971
+
+
+  Species F                   :
+
+  List of atomic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    1    0       -24.399755      -663.9511       1.258458
+    2    0        -1.098813       -29.9002       4.948503
+    2    1        -0.408322       -11.1110       5.260416
+
+  Assembling full basis from fixed parts.
+  | Species Li :   atomic orbital   1 s accepted.
+  | Species Li :    hydro orbital   3 s accepted.
+  | Species Li :    hydro orbital   2 s accepted.
+  | Species Li :   atomic orbital   2 s accepted.
+  | Species Li :    hydro orbital   3 p accepted.
+  | Species Li :    hydro orbital   2 p accepted.
+  | Species Li :    hydro orbital   2 p accepted.
+  | Species Li :    hydro orbital   3 d accepted.
+  | Species Li :    hydro orbital   4 d accepted.
+  | Species Li :    hydro orbital   4 f accepted.
+  | Species F :   atomic orbital   1 s accepted.
+  | Species F :    hydro orbital   3 s accepted.
+  | Species F :   atomic orbital   2 s accepted.
+  | Species F :    hydro orbital   1 s accepted.
+  | Species F :    ionic orbital   2 p accepted.
+  | Species F :   atomic orbital   2 p accepted.
+  | Species F :    hydro orbital   2 p accepted.
+  | Species F :    hydro orbital   3 d accepted.
+  | Species F :    hydro orbital   4 d accepted.
+  | Species F :    hydro orbital   4 f accepted.
+  | Species F :    hydro orbital   5 g accepted.
+
+  Basis size parameters after reduction:
+  | Total number of radial functions:       21
+  | Total number of basis functions :      276
+
+  Assembling extended basis for auxiliary basis.
+  | Species Li :   atomic orbital   1 s accepted.
+  | Species Li :    hydro orbital   3 s accepted.
+  | Species Li :    hydro orbital   2 s accepted.
+  | Species Li :   atomic orbital   2 s accepted.
+  | Species Li :    hydro orbital   3 p accepted.
+  | Species Li :    hydro orbital   2 p accepted.
+  | Species Li :    hydro orbital   2 p accepted.
+  | Species Li :    hydro orbital   3 d accepted.
+  | Species Li :    hydro orbital   4 d accepted.
+  | Species Li :    hydro orbital   4 f accepted.
+  | Species Li :    hydro orbital   5 g accepted.
+  | Species F :   atomic orbital   1 s accepted.
+  | Species F :    hydro orbital   3 s accepted.
+  | Species F :   atomic orbital   2 s accepted.
+  | Species F :    hydro orbital   1 s accepted.
+  | Species F :    ionic orbital   2 p accepted.
+  | Species F :   atomic orbital   2 p accepted.
+  | Species F :    hydro orbital   2 p accepted.
+  | Species F :    hydro orbital   3 d accepted.
+  | Species F :    hydro orbital   4 d accepted.
+  | Species F :    hydro orbital   4 f accepted.
+  | Species F :    hydro orbital   5 g accepted.
+  | Species F :    hydro orbital   5 g accepted.
+  Per-task memory consumption for arrays in subroutine allocate_ext:
+  |           7.722384MB.
+
+  Extended basis size parameters after reduction:
+  | Total number of radial functions:       23
+  | Total number of basis functions :      348
+
+  Testing on-site integration grid accuracy.
+  |  Species  Function  <phi|h_atom|phi> (log., in eV)  <phi|h_atom|phi> (rad., in eV)
+           1        1                -51.7493370875                -51.7493370062
+           1        2                 33.5814648546                 33.5814345605
+           1        3                 69.1011804320                 69.1017190473
+           1        4                 48.7671467971                 48.8147339808 ***
+           1        5                 17.1734104344                 17.1733709208
+           1        6                 32.1165195028                 32.1181844876
+           1        7                  6.0168788990                  6.0252250166
+           1        8                  4.9176878118                  4.9196387534
+           1        9                 28.8009286889                 28.8009739672
+           1       10                  9.9332770136                  9.9354803649
+           2       11               -663.9511035846               -663.9510965316
+           2       12                 16.8473103021                 16.8472935260
+           2       13                -28.4523406728                -28.4523493206
+           2       14                 12.4014432575                 12.4011752071
+           2       15                -10.1252218056                -10.1252217178
+           2       16                 14.2804925363                 14.2804879439
+           2       17                 15.1514072140                 15.1506889872
+           2       18                 44.8493934189                 44.8493934499
+           2       19                 56.5646912165                 56.5646920962
+           2       20                 81.3482028079                 81.3482028367
+           2       21                131.3295409824                131.3295409053
+ * Note: Onsite integrals marked "***" above are less accurate than
+ * onsite_accuracy_threshold =    0.03000 eV. Usually, this is harmless.
+ * When in doubt, tighten the "radial" and/or "radial_multiplier" flags to check.
+
+  Preparing densities etc. for the partition functions (integrals / Hartree potential).
+
+  Preparations completed.
+  max(cpu_time)          :      0.138 s.
+  Wall clock time (cpu1) :      0.139 s.
+------------------------------------------------------------
+  After prepare_scf [GB]:   1005.24
+
+  Initializing index lists of integration centers etc. from given atomic structure:
+  Mapping all atomic coordinates to central unit cell.
+
+  Initializing the k-points
+  Using symmetry for reducing the k-points
+  | k-points reduced from:      729 to      365
+  | Number of k-points                             :       365
+  The eigenvectors in the calculations are COMPLEX.
+  | K-points in task   0:         5
+  | K-points in task   1:         6
+  | K-points in task   2:         6
+  | K-points in task   3:         6
+  | K-points in task   4:         6
+  | K-points in task   5:         6
+  | K-points in task   6:         6
+  | K-points in task   7:         6
+  | K-points in task   8:         6
+  | K-points in task   9:         6
+  | K-points in task  10:         6
+  | K-points in task  11:         6
+  | K-points in task  12:         6
+  | K-points in task  13:         6
+  | K-points in task  14:         6
+  | K-points in task  15:         6
+  | K-points in task  16:         6
+  | K-points in task  17:         6
+  | K-points in task  18:         6
+  | K-points in task  19:         6
+  | K-points in task  20:         6
+  | K-points in task  21:         6
+  | K-points in task  22:         6
+  | K-points in task  23:         6
+  | K-points in task  24:         6
+  | K-points in task  25:         6
+  | K-points in task  26:         6
+  | K-points in task  27:         6
+  | K-points in task  28:         6
+  | K-points in task  29:         6
+  | K-points in task  30:         6
+  | K-points in task  31:         6
+  | K-points in task  32:         6
+  | K-points in task  33:         6
+  | K-points in task  34:         6
+  | K-points in task  35:         6
+  | K-points in task  36:         6
+  | K-points in task  37:         6
+  | K-points in task  38:         6
+  | K-points in task  39:         6
+  | K-points in task  40:         6
+  | K-points in task  41:         6
+  | K-points in task  42:         6
+  | K-points in task  43:         6
+  | K-points in task  44:         6
+  | K-points in task  45:         6
+  | K-points in task  46:         5
+  | K-points in task  47:         5
+  | K-points in task  48:         5
+  | K-points in task  49:         5
+  | K-points in task  50:         5
+  | K-points in task  51:         5
+  | K-points in task  52:         5
+  | K-points in task  53:         5
+  | K-points in task  54:         5
+  | K-points in task  55:         5
+  | K-points in task  56:         5
+  | K-points in task  57:         5
+  | K-points in task  58:         5
+  | K-points in task  59:         5
+  | K-points in task  60:         5
+  | K-points in task  61:         5
+  | K-points in task  62:         5
+  | K-points in task  63:         5
+  | Consuming       4157 KiB for k_phase_exx.
+  | Number of basis functions in the Hamiltonian integrals       :     11502
+  | Number of basis functions in a single unit cell              :       276
+  | Number of centers in hartree potential                       :      2431
+  | Number of centers in hartree multipole                       :      2340
+  | Number of centers in electron density summation              :      1746
+  | Number of centers in basis integrals                         :      1887
+  | Number of centers in integrals                               :       533
+  | Number of centers in hamiltonian                             :      1912
+  | Number of centers in partition table from touching 0-cell    :       967
+  | Number of centers in partition table total                   :      2926
+  | Consuming       1608 KiB for k_phase.
+  | Number of super-cells (origin) [n_cells]                     :        1331
+  | Number of super-cells (after PM_index) [n_cells]             :         282
+  | Number of super-cells in hamiltonian [n_cells_in_hamiltonian]:         282
+  | Size of matrix packed + index [n_hamiltonian_matrix_size]    :     3575757
+  After initialize_bc_dependent_lists [GB]:   1004.34
+
+------------------------------------------------------------
+          Begin self-consistency loop: Initialization.
+
+          Date     :  20260720, Time     :  130159.378
+------------------------------------------------------------
+  Available memory per node after initialize_hartree_non_periodic_ewald [GB]:   1004.34
+  | Estimated reciprocal-space cutoff momentum G_max:         4.04700653 bohr^-1 .
+  | Reciprocal lattice points for long-range Hartree potential:     436
+  Available memory per node after initialize_recip_hartree_potential [GB]:   1004.34
+  Available memory per node after initialize_scalapack [GB]:   1004.34
+  Available memory per node after aims_elsi_init_scf [GB]:   1004.34
+  Available memory per node after initialize_fixed_grids [GB]:   1004.34
+  Partitioning the integration grid into batches with parallel hashing+maxmin method.
+  | Number of batches:     2048
+  | Maximal batch size:      98
+  | Minimal batch size:      57
+  | Average batch size:      75.570
+  | Standard deviation of batch sizes:       9.310
+
+  Integration load balanced across    64 MPI tasks.
+  Work distribution over tasks is as follows:
+  Task     0 has       2372 integration points.
+  Task     1 has       2467 integration points.
+  Task     2 has       2371 integration points.
+  Task     3 has       2460 integration points.
+  Task     4 has       2371 integration points.
+  Task     5 has       2372 integration points.
+  Task     6 has       2459 integration points.
+  Task     7 has       2371 integration points.
+  Task     8 has       2463 integration points.
+  Task     9 has       2374 integration points.
+  Task    10 has       2374 integration points.
+  Task    11 has       2373 integration points.
+  Task    12 has       2376 integration points.
+  Task    13 has       2373 integration points.
+  Task    14 has       2375 integration points.
+  Task    15 has       2466 integration points.
+  Task    16 has       2466 integration points.
+  Task    17 has       2372 integration points.
+  Task    18 has       2461 integration points.
+  Task    19 has       2463 integration points.
+  Task    20 has       2372 integration points.
+  Task    21 has       2462 integration points.
+  Task    22 has       2377 integration points.
+  Task    23 has       2452 integration points.
+  Task    24 has       2467 integration points.
+  Task    25 has       2462 integration points.
+  Task    26 has       2465 integration points.
+  Task    27 has       2372 integration points.
+  Task    28 has       2465 integration points.
+  Task    29 has       2459 integration points.
+  Task    30 has       2462 integration points.
+  Task    31 has       2468 integration points.
+  Task    32 has       2462 integration points.
+  Task    33 has       2371 integration points.
+  Task    34 has       2372 integration points.
+  Task    35 has       2465 integration points.
+  Task    36 has       2374 integration points.
+  Task    37 has       2373 integration points.
+  Task    38 has       2467 integration points.
+  Task    39 has       2465 integration points.
+  Task    40 has       2462 integration points.
+  Task    41 has       2373 integration points.
+  Task    42 has       2374 integration points.
+  Task    43 has       2464 integration points.
+  Task    44 has       2467 integration points.
+  Task    45 has       2464 integration points.
+  Task    46 has       2463 integration points.
+  Task    47 has       2375 integration points.
+  Task    48 has       2373 integration points.
+  Task    49 has       2466 integration points.
+  Task    50 has       2383 integration points.
+  Task    51 has       2468 integration points.
+  Task    52 has       2371 integration points.
+  Task    53 has       2370 integration points.
+  Task    54 has       2463 integration points.
+  Task    55 has       2377 integration points.
+  Task    56 has       2372 integration points.
+  Task    57 has       2463 integration points.
+  Task    58 has       2461 integration points.
+  Task    59 has       2370 integration points.
+  Task    60 has       2464 integration points.
+  Task    61 has       2371 integration points.
+  Task    62 has       2373 integration points.
+  Task    63 has       2370 integration points.
+  Available memory per node after partition_grid [GB]:   1004.34
+  Initializing partition tables, free-atom densities, potentials, etc. across the integration grid (initialize_grid_storage).
+  | initialize_grid_storage: Actual outermost partition radius vs. multipole_radius_free
+  | (-- VB: in principle, multipole_radius_free should be larger, hence this output)
+  | Species        1: Confinement radius =              7.000000000000000 AA, multipole_radius_free =              7.042572113910259 AA.
+  | Species        1: outer_partition_radius set to              7.042572113910259 AA .
+  | Species        2: Confinement radius =              6.000000000000000 AA, multipole_radius_free =              6.017578497268912 AA.
+  | Species        2: outer_partition_radius set to              6.017578497268912 AA .
+  | The sparse table of interatomic distances needs      53128.24 kbyte instead of     68491.80 kbyte of memory.
+  | Net number of integration points:   154768
+  | of which are non-zero points    :   102592
+  | Numerical average free-atom electrostatic potential    :    -18.11060543 eV
+  Available memory per node after initialize_grid_storage_p1 [GB]:   1004.30
+  Renormalizing the initial density to the exact electron count on the 3D integration grid.
+  | Initial density: Formal number of electrons (from input files) :      48.0000000000
+  | Integrated number of electrons on 3D grid     :      48.0029978832
+  | Charge integration error                      :       0.0029978832
+  | Normalization factor for density and gradient :       0.9999375480
+  Renormalizing the free-atom superposition density to the exact electron count on the 3D integration grid.
+  | Formal number of electrons (from input files) :      48.0000000000
+  | Integrated number of electrons on 3D grid     :      48.0029978832
+  | Charge integration error                      :       0.0029978832
+  | Normalization factor for density and gradient :       0.9999375480
+  Obtaining max. number of non-zero basis functions in each batch (get_n_compute_maxes).
+  | Maximal number of non-zero basis functions:     3982 in task     0
+  | Maximal number of non-zero basis functions:     3944 in task     1
+  | Maximal number of non-zero basis functions:     4016 in task     2
+  | Maximal number of non-zero basis functions:     4014 in task     3
+  | Maximal number of non-zero basis functions:     4009 in task     4
+  | Maximal number of non-zero basis functions:     3997 in task     5
+  | Maximal number of non-zero basis functions:     3977 in task     6
+  | Maximal number of non-zero basis functions:     3998 in task     7
+  | Maximal number of non-zero basis functions:     4001 in task     8
+  | Maximal number of non-zero basis functions:     3986 in task     9
+  | Maximal number of non-zero basis functions:     3982 in task    10
+  | Maximal number of non-zero basis functions:     3982 in task    11
+  | Maximal number of non-zero basis functions:     4013 in task    12
+  | Maximal number of non-zero basis functions:     4005 in task    13
+  | Maximal number of non-zero basis functions:     3980 in task    14
+  | Maximal number of non-zero basis functions:     4007 in task    15
+  | Maximal number of non-zero basis functions:     4002 in task    16
+  | Maximal number of non-zero basis functions:     4000 in task    17
+  | Maximal number of non-zero basis functions:     4047 in task    18
+  | Maximal number of non-zero basis functions:     3948 in task    19
+  | Maximal number of non-zero basis functions:     4032 in task    20
+  | Maximal number of non-zero basis functions:     4001 in task    21
+  | Maximal number of non-zero basis functions:     3956 in task    22
+  | Maximal number of non-zero basis functions:     3984 in task    23
+  | Maximal number of non-zero basis functions:     3970 in task    24
+  | Maximal number of non-zero basis functions:     3981 in task    25
+  | Maximal number of non-zero basis functions:     3963 in task    26
+  | Maximal number of non-zero basis functions:     3987 in task    27
+  | Maximal number of non-zero basis functions:     4016 in task    28
+  | Maximal number of non-zero basis functions:     3989 in task    29
+  | Maximal number of non-zero basis functions:     4002 in task    30
+  | Maximal number of non-zero basis functions:     3982 in task    31
+  | Maximal number of non-zero basis functions:     3996 in task    32
+  | Maximal number of non-zero basis functions:     3986 in task    33
+  | Maximal number of non-zero basis functions:     4008 in task    34
+  | Maximal number of non-zero basis functions:     4025 in task    35
+  | Maximal number of non-zero basis functions:     3977 in task    36
+  | Maximal number of non-zero basis functions:     4030 in task    37
+  | Maximal number of non-zero basis functions:     3981 in task    38
+  | Maximal number of non-zero basis functions:     3993 in task    39
+  | Maximal number of non-zero basis functions:     4016 in task    40
+  | Maximal number of non-zero basis functions:     3981 in task    41
+  | Maximal number of non-zero basis functions:     4001 in task    42
+  | Maximal number of non-zero basis functions:     4017 in task    43
+  | Maximal number of non-zero basis functions:     3998 in task    44
+  | Maximal number of non-zero basis functions:     4010 in task    45
+  | Maximal number of non-zero basis functions:     3952 in task    46
+  | Maximal number of non-zero basis functions:     3998 in task    47
+  | Maximal number of non-zero basis functions:     3982 in task    48
+  | Maximal number of non-zero basis functions:     3993 in task    49
+  | Maximal number of non-zero basis functions:     4008 in task    50
+  | Maximal number of non-zero basis functions:     3957 in task    51
+  | Maximal number of non-zero basis functions:     3976 in task    52
+  | Maximal number of non-zero basis functions:     4029 in task    53
+  | Maximal number of non-zero basis functions:     3986 in task    54
+  | Maximal number of non-zero basis functions:     4006 in task    55
+  | Maximal number of non-zero basis functions:     4013 in task    56
+  | Maximal number of non-zero basis functions:     3997 in task    57
+  | Maximal number of non-zero basis functions:     4011 in task    58
+  | Maximal number of non-zero basis functions:     4032 in task    59
+  | Maximal number of non-zero basis functions:     3998 in task    60
+  | Maximal number of non-zero basis functions:     3968 in task    61
+  | Maximal number of non-zero basis functions:     4015 in task    62
+  | Maximal number of non-zero basis functions:     4019 in task    63
+  Available memory per node after get_n_compute_maxes_p1 [GB]:   1004.28
+  Allocating        0.884 MB for KS_eigenvector_complex
+  Available memory per node after allocate_matrices [GB]:   1004.28
+  Available memory per node after init_comm_sparse_local_matrix_scalapack [GB]:   1004.28
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work      229.757 s, elapsed      241.488 s
+  Available memory per node after integrate hamiltonian matrix [GB]:   1001.19
+  Integrating overlap matrix.
+  Time summed over all CPUs for integration: real work      184.582 s, elapsed      193.811 s
+  Available memory per node after integrate ovlp matrix [GB]:    997.44
+  Available memory per node after save_overlap_scalapack [GB]:   1000.34
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the (modified) LAPACK eigensolver.
+  Singularity check in k-point 64, task 0 (analysis for other k-points/tasks may follow below):
+  Overlap matrix is singular
+  | Lowest and highest eigenvalues :  0.3360E-05,  0.2534E+02
+  | Number of basis functions reduced to :       260
+  Finished singularity check of overlap matrix
+  | Time :     0.012 s
+  Starting LAPACK eigensolver
+  Finished transformation to standard eigenproblem
+  | Time :     0.003 s
+  Finished solving standard eigenproblem
+  | Time :     0.008 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.001 s
+
+  The overlap matrix is singular on 365 out of 365 k-points
+  k-points on which the lowest eigenvalue of the overlap matrix is below the prescribed threshold  0.1000E-03 include:
+
+  k-point    Lowest eigenvalue    Highest eigenvalue    Reduced number of basis functions
+        1           0.4479E-05            0.4947E+02                                  258
+        2           0.2233E-05            0.4298E+02                                  258
+        3           0.1205E-05            0.3735E+02                                  260
+        4           0.1245E-05            0.3164E+02                                  260
+        5           0.4200E-05            0.4761E+02                                  258
+        6           0.2252E-05            0.4169E+02                                  258
+        7           0.1424E-05            0.3641E+02                                  260
+        8           0.1301E-05            0.3094E+02                                  260
+        9           0.1424E-05            0.3641E+02                                  260
+       10           0.2252E-05            0.4169E+02                                  258
+       11           0.3761E-05            0.4593E+02                                  258
+       12           0.2233E-05            0.4298E+02                                  258
+       13           0.2252E-05            0.4169E+02                                  258
+       14           0.2315E-05            0.3832E+02                                  261
+       15           0.2143E-05            0.3388E+02                                  261
+       16           0.2060E-05            0.2894E+02                                  260
+       17           0.2143E-05            0.3388E+02                                  261
+       18           0.2315E-05            0.3832E+02                                  261
+       19           0.1205E-05            0.3735E+02                                  260
+       20           0.1424E-05            0.3641E+02                                  260
+       21           0.2143E-05            0.3388E+02                                  261
+       22           0.3386E-05            0.2591E+02                                  260
+       23           0.3386E-05            0.2591E+02                                  260
+       24           0.3098E-05            0.3026E+02                                  260
+       25           0.1424E-05            0.3641E+02                                  260
+       26           0.1245E-05            0.3164E+02                                  260
+       27           0.1301E-05            0.3094E+02                                  260
+       28           0.3386E-05            0.2591E+02                                  260
+       29           0.4148E-05            0.2218E+02                                  260
+       30           0.4148E-05            0.2218E+02                                  260
+       31           0.2060E-05            0.2894E+02                                  260
+       32           0.1301E-05            0.3094E+02                                  260
+       33           0.3386E-05            0.2591E+02                                  260
+       34           0.2060E-05            0.2894E+02                                  260
+       35           0.2143E-05            0.3388E+02                                  261
+       36           0.3098E-05            0.3026E+02                                  260
+       37           0.2252E-05            0.4169E+02                                  258
+       38           0.2060E-05            0.2894E+02                                  260
+       39           0.4200E-05            0.4761E+02                                  258
+       40           0.1301E-05            0.3094E+02                                  260
+       41           0.3761E-05            0.4593E+02                                  258
+       42           0.2252E-05            0.4169E+02                                  258
+       43           0.1424E-05            0.3641E+02                                  260
+       44           0.1301E-05            0.3094E+02                                  260
+       45           0.1424E-05            0.3641E+02                                  260
+       46           0.2252E-05            0.4169E+02                                  258
+       47           0.3761E-05            0.4593E+02                                  258
+       48           0.2382E-05            0.4048E+02                                  258
+       49           0.1620E-05            0.3553E+02                                  260
+       50           0.1441E-05            0.3025E+02                                  260
+       51           0.1620E-05            0.3553E+02                                  260
+       52           0.2382E-05            0.4048E+02                                  258
+       53           0.3724E-05            0.4439E+02                                  258
+       54           0.2252E-05            0.4169E+02                                  258
+       55           0.2382E-05            0.4048E+02                                  258
+       56           0.2380E-05            0.3734E+02                                  259
+       57           0.2235E-05            0.3311E+02                                  261
+       58           0.2209E-05            0.2831E+02                                  260
+       59           0.2235E-05            0.3311E+02                                  261
+       60           0.2380E-05            0.3734E+02                                  259
+       61           0.1424E-05            0.3641E+02                                  260
+       62           0.1620E-05            0.3553E+02                                  260
+       63           0.2235E-05            0.3311E+02                                  261
+       64           0.3360E-05            0.2534E+02                                  260
+       65           0.3360E-05            0.2534E+02                                  260
+       66           0.3015E-05            0.2959E+02                                  260
+       67           0.1620E-05            0.3553E+02                                  260
+       68           0.1301E-05            0.3094E+02                                  260
+       69           0.1441E-05            0.3025E+02                                  260
+       70           0.3360E-05            0.2534E+02                                  260
+       71           0.3901E-05            0.2168E+02                                  260
+       72           0.3901E-05            0.2168E+02                                  260
+       73           0.2209E-05            0.2831E+02                                  260
+       74           0.1441E-05            0.3025E+02                                  260
+       75           0.2209E-05            0.2831E+02                                  260
+       76           0.3360E-05            0.2534E+02                                  260
+       77           0.3901E-05            0.2168E+02                                  260
+       78           0.3360E-05            0.2534E+02                                  260
+       79           0.2209E-05            0.2831E+02                                  260
+       80           0.1441E-05            0.3025E+02                                  260
+       81           0.1424E-05            0.3641E+02                                  260
+       82           0.1620E-05            0.3553E+02                                  260
+       83           0.2235E-05            0.3311E+02                                  261
+       84           0.3015E-05            0.2959E+02                                  260
+       85           0.3360E-05            0.2534E+02                                  260
+       86           0.3015E-05            0.2959E+02                                  260
+       87           0.2235E-05            0.3311E+02                                  261
+       88           0.2252E-05            0.4169E+02                                  258
+       89           0.2382E-05            0.4048E+02                                  258
+       90           0.2380E-05            0.3734E+02                                  259
+       91           0.2209E-05            0.2831E+02                                  260
+       92           0.2209E-05            0.2831E+02                                  260
+       93           0.2235E-05            0.3311E+02                                  261
+       94           0.2382E-05            0.4048E+02                                  258
+       95           0.3761E-05            0.4593E+02                                  258
+       96           0.3724E-05            0.4439E+02                                  258
+       97           0.1620E-05            0.3553E+02                                  260
+       98           0.1441E-05            0.3025E+02                                  260
+       99           0.1441E-05            0.3025E+02                                  260
+      100           0.2382E-05            0.4048E+02                                  258
+      101           0.3724E-05            0.4439E+02                                  258
+      102           0.2233E-05            0.4298E+02                                  258
+      103           0.2252E-05            0.4169E+02                                  258
+      104           0.2315E-05            0.3832E+02                                  261
+      105           0.2143E-05            0.3388E+02                                  261
+      106           0.2060E-05            0.2894E+02                                  260
+      107           0.2143E-05            0.3388E+02                                  261
+      108           0.2315E-05            0.3832E+02                                  261
+      109           0.2252E-05            0.4169E+02                                  258
+      110           0.2382E-05            0.4048E+02                                  258
+      111           0.2380E-05            0.3734E+02                                  259
+      112           0.2235E-05            0.3311E+02                                  261
+      113           0.2209E-05            0.2831E+02                                  260
+      114           0.2235E-05            0.3311E+02                                  261
+      115           0.2380E-05            0.3734E+02                                  259
+      116           0.2315E-05            0.3832E+02                                  261
+      117           0.2380E-05            0.3734E+02                                  259
+      118           0.2624E-05            0.3468E+02                                  261
+      119           0.3025E-05            0.2649E+02                                  261
+      120           0.3025E-05            0.2649E+02                                  261
+      121           0.2797E-05            0.3094E+02                                  261
+      122           0.2380E-05            0.3734E+02                                  259
+      123           0.2143E-05            0.3388E+02                                  261
+      124           0.2235E-05            0.3311E+02                                  261
+      125           0.3336E-05            0.2770E+02                                  261
+      126           0.3536E-05            0.2371E+02                                  260
+      127           0.3536E-05            0.2371E+02                                  260
+      128           0.2797E-05            0.3094E+02                                  261
+      129           0.2235E-05            0.3311E+02                                  261
+      130           0.3025E-05            0.2649E+02                                  261
+      131           0.3536E-05            0.2371E+02                                  260
+      132           0.3770E-05            0.2028E+02                                  260
+      133           0.3536E-05            0.2371E+02                                  260
+      134           0.3025E-05            0.2649E+02                                  261
+      135           0.2209E-05            0.2831E+02                                  260
+      136           0.2060E-05            0.2894E+02                                  260
+      137           0.2209E-05            0.2831E+02                                  260
+      138           0.3025E-05            0.2649E+02                                  261
+      139           0.3536E-05            0.2371E+02                                  260
+      140           0.3770E-05            0.2028E+02                                  260
+      141           0.3536E-05            0.2371E+02                                  260
+      142           0.3025E-05            0.2649E+02                                  261
+      143           0.2143E-05            0.3388E+02                                  261
+      144           0.2235E-05            0.3311E+02                                  261
+      145           0.2797E-05            0.3094E+02                                  261
+      146           0.3536E-05            0.2371E+02                                  260
+      147           0.3536E-05            0.2371E+02                                  260
+      148           0.3336E-05            0.2770E+02                                  261
+      149           0.2235E-05            0.3311E+02                                  261
+      150           0.2315E-05            0.3832E+02                                  261
+      151           0.2380E-05            0.3734E+02                                  259
+      152           0.2797E-05            0.3094E+02                                  261
+      153           0.3025E-05            0.2649E+02                                  261
+      154           0.3025E-05            0.2649E+02                                  261
+      155           0.2624E-05            0.3468E+02                                  261
+      156           0.2380E-05            0.3734E+02                                  259
+      157           0.2380E-05            0.3734E+02                                  259
+      158           0.2235E-05            0.3311E+02                                  261
+      159           0.2209E-05            0.2831E+02                                  260
+      160           0.2235E-05            0.3311E+02                                  261
+      161           0.2380E-05            0.3734E+02                                  259
+      162           0.2382E-05            0.4048E+02                                  258
+      163           0.1205E-05            0.3735E+02                                  260
+      164           0.1424E-05            0.3641E+02                                  260
+      165           0.2143E-05            0.3388E+02                                  261
+      166           0.3386E-05            0.2591E+02                                  260
+      167           0.3386E-05            0.2591E+02                                  260
+      168           0.3098E-05            0.3026E+02                                  260
+      169           0.1424E-05            0.3641E+02                                  260
+      170           0.1424E-05            0.3641E+02                                  260
+      171           0.1620E-05            0.3553E+02                                  260
+      172           0.2235E-05            0.3311E+02                                  261
+      173           0.3360E-05            0.2534E+02                                  260
+      174           0.3360E-05            0.2534E+02                                  260
+      175           0.3015E-05            0.2959E+02                                  260
+      176           0.1620E-05            0.3553E+02                                  260
+      177           0.2143E-05            0.3388E+02                                  261
+      178           0.2235E-05            0.3311E+02                                  261
+      179           0.3336E-05            0.2770E+02                                  261
+      180           0.3536E-05            0.2371E+02                                  260
+      181           0.3536E-05            0.2371E+02                                  260
+      182           0.2797E-05            0.3094E+02                                  261
+      183           0.2235E-05            0.3311E+02                                  261
+      184           0.3336E-05            0.2770E+02                                  261
+      185           0.3632E-05            0.2482E+02                                  261
+      186           0.3693E-05            0.2124E+02                                  261
+      187           0.3632E-05            0.2482E+02                                  261
+      188           0.3336E-05            0.2770E+02                                  261
+      189           0.3015E-05            0.2959E+02                                  260
+      190           0.3386E-05            0.2591E+02                                  260
+      191           0.3360E-05            0.2534E+02                                  260
+      192           0.3536E-05            0.2371E+02                                  260
+      193           0.3693E-05            0.2124E+02                                  261
+      194           0.3953E-05            0.1823E+02                                  261
+      195           0.3693E-05            0.2124E+02                                  261
+      196           0.3536E-05            0.2371E+02                                  260
+      197           0.3386E-05            0.2591E+02                                  260
+      198           0.3360E-05            0.2534E+02                                  260
+      199           0.3536E-05            0.2371E+02                                  260
+      200           0.3953E-05            0.1823E+02                                  261
+      201           0.3953E-05            0.1823E+02                                  261
+      202           0.3693E-05            0.2124E+02                                  261
+      203           0.3360E-05            0.2534E+02                                  260
+      204           0.3098E-05            0.3026E+02                                  260
+      205           0.3015E-05            0.2959E+02                                  260
+      206           0.3632E-05            0.2482E+02                                  261
+      207           0.3693E-05            0.2124E+02                                  261
+      208           0.3693E-05            0.2124E+02                                  261
+      209           0.3336E-05            0.2770E+02                                  261
+      210           0.3015E-05            0.2959E+02                                  260
+      211           0.2797E-05            0.3094E+02                                  261
+      212           0.3336E-05            0.2770E+02                                  261
+      213           0.3536E-05            0.2371E+02                                  260
+      214           0.3336E-05            0.2770E+02                                  261
+      215           0.2797E-05            0.3094E+02                                  261
+      216           0.2235E-05            0.3311E+02                                  261
+      217           0.1424E-05            0.3641E+02                                  260
+      218           0.1620E-05            0.3553E+02                                  260
+      219           0.2235E-05            0.3311E+02                                  261
+      220           0.3015E-05            0.2959E+02                                  260
+      221           0.3360E-05            0.2534E+02                                  260
+      222           0.3015E-05            0.2959E+02                                  260
+      223           0.2235E-05            0.3311E+02                                  261
+      224           0.1245E-05            0.3164E+02                                  260
+      225           0.1301E-05            0.3094E+02                                  260
+      226           0.3386E-05            0.2591E+02                                  260
+      227           0.4148E-05            0.2218E+02                                  260
+      228           0.4148E-05            0.2218E+02                                  260
+      229           0.2060E-05            0.2894E+02                                  260
+      230           0.1301E-05            0.3094E+02                                  260
+      231           0.1301E-05            0.3094E+02                                  260
+      232           0.1441E-05            0.3025E+02                                  260
+      233           0.3360E-05            0.2534E+02                                  260
+      234           0.3901E-05            0.2168E+02                                  260
+      235           0.3901E-05            0.2168E+02                                  260
+      236           0.2209E-05            0.2831E+02                                  260
+      237           0.1441E-05            0.3025E+02                                  260
+      238           0.3025E-05            0.2649E+02                                  261
+      239           0.3536E-05            0.2371E+02                                  260
+      240           0.3770E-05            0.2028E+02                                  260
+      241           0.3536E-05            0.2371E+02                                  260
+      242           0.3025E-05            0.2649E+02                                  261
+      243           0.2209E-05            0.2831E+02                                  260
+      244           0.3386E-05            0.2591E+02                                  260
+      245           0.3360E-05            0.2534E+02                                  260
+      246           0.3536E-05            0.2371E+02                                  260
+      247           0.3693E-05            0.2124E+02                                  261
+      248           0.3953E-05            0.1823E+02                                  261
+      249           0.3693E-05            0.2124E+02                                  261
+      250           0.3536E-05            0.2371E+02                                  260
+      251           0.4148E-05            0.2218E+02                                  260
+      252           0.3901E-05            0.2168E+02                                  260
+      253           0.3770E-05            0.2028E+02                                  260
+      254           0.4209E-05            0.1582E+02                                  264
+      255           0.4209E-05            0.1582E+02                                  264
+      256           0.3953E-05            0.1823E+02                                  261
+      257           0.3901E-05            0.2168E+02                                  260
+      258           0.4148E-05            0.2218E+02                                  260
+      259           0.3901E-05            0.2168E+02                                  260
+      260           0.3953E-05            0.1823E+02                                  261
+      261           0.4209E-05            0.1582E+02                                  264
+      262           0.4209E-05            0.1582E+02                                  264
+      263           0.3770E-05            0.2028E+02                                  260
+      264           0.3901E-05            0.2168E+02                                  260
+      265           0.3536E-05            0.2371E+02                                  260
+      266           0.3693E-05            0.2124E+02                                  261
+      267           0.3953E-05            0.1823E+02                                  261
+      268           0.3693E-05            0.2124E+02                                  261
+      269           0.3536E-05            0.2371E+02                                  260
+      270           0.3360E-05            0.2534E+02                                  260
+      271           0.2060E-05            0.2894E+02                                  260
+      272           0.2209E-05            0.2831E+02                                  260
+      273           0.3025E-05            0.2649E+02                                  261
+      274           0.3536E-05            0.2371E+02                                  260
+      275           0.3770E-05            0.2028E+02                                  260
+      276           0.3536E-05            0.2371E+02                                  260
+      277           0.3025E-05            0.2649E+02                                  261
+      278           0.1301E-05            0.3094E+02                                  260
+      279           0.1441E-05            0.3025E+02                                  260
+      280           0.2209E-05            0.2831E+02                                  260
+      281           0.3901E-05            0.2168E+02                                  260
+      282           0.3901E-05            0.2168E+02                                  260
+      283           0.3360E-05            0.2534E+02                                  260
+      284           0.1441E-05            0.3025E+02                                  260
+      285           0.3386E-05            0.2591E+02                                  260
+      286           0.2060E-05            0.2894E+02                                  260
+      287           0.2209E-05            0.2831E+02                                  260
+      288           0.3360E-05            0.2534E+02                                  260
+      289           0.2209E-05            0.2831E+02                                  260
+      290           0.3770E-05            0.2028E+02                                  260
+      291           0.3386E-05            0.2591E+02                                  260
+      292           0.3953E-05            0.1823E+02                                  261
+      293           0.3360E-05            0.2534E+02                                  260
+      294           0.3953E-05            0.1823E+02                                  261
+      295           0.3770E-05            0.2028E+02                                  260
+      296           0.3770E-05            0.2028E+02                                  260
+      297           0.3953E-05            0.1823E+02                                  261
+      298           0.3360E-05            0.2534E+02                                  260
+      299           0.3953E-05            0.1823E+02                                  261
+      300           0.2060E-05            0.2894E+02                                  260
+      301           0.3770E-05            0.2028E+02                                  260
+      302           0.2209E-05            0.2831E+02                                  260
+      303           0.3360E-05            0.2534E+02                                  260
+      304           0.2209E-05            0.2831E+02                                  260
+      305           0.2143E-05            0.3388E+02                                  261
+      306           0.3098E-05            0.3026E+02                                  260
+      307           0.1620E-05            0.3553E+02                                  260
+      308           0.3360E-05            0.2534E+02                                  260
+      309           0.2143E-05            0.3388E+02                                  261
+      310           0.3536E-05            0.2371E+02                                  260
+      311           0.2235E-05            0.3311E+02                                  261
+      312           0.3632E-05            0.2482E+02                                  261
+      313           0.3336E-05            0.2770E+02                                  261
+      314           0.3536E-05            0.2371E+02                                  260
+      315           0.3693E-05            0.2124E+02                                  261
+      316           0.3360E-05            0.2534E+02                                  260
+      317           0.3953E-05            0.1823E+02                                  261
+      318           0.3098E-05            0.3026E+02                                  260
+      319           0.3693E-05            0.2124E+02                                  261
+      320           0.3015E-05            0.2959E+02                                  260
+      321           0.3336E-05            0.2770E+02                                  261
+      322           0.2797E-05            0.3094E+02                                  261
+      323           0.2235E-05            0.3311E+02                                  261
+      324           0.3015E-05            0.2959E+02                                  260
+      325           0.2252E-05            0.4169E+02                                  258
+      326           0.2060E-05            0.2894E+02                                  260
+      327           0.2252E-05            0.4169E+02                                  258
+      328           0.2209E-05            0.2831E+02                                  260
+      329           0.2382E-05            0.4048E+02                                  258
+      330           0.2797E-05            0.3094E+02                                  261
+      331           0.2624E-05            0.3468E+02                                  261
+      332           0.2797E-05            0.3094E+02                                  261
+      333           0.3336E-05            0.2770E+02                                  261
+      334           0.2209E-05            0.2831E+02                                  260
+      335           0.3770E-05            0.2028E+02                                  260
+      336           0.2060E-05            0.2894E+02                                  260
+      337           0.3770E-05            0.2028E+02                                  260
+      338           0.2209E-05            0.2831E+02                                  260
+      339           0.3336E-05            0.2770E+02                                  261
+      340           0.2797E-05            0.3094E+02                                  261
+      341           0.2624E-05            0.3468E+02                                  261
+      342           0.2797E-05            0.3094E+02                                  261
+      343           0.2382E-05            0.4048E+02                                  258
+      344           0.2209E-05            0.2831E+02                                  260
+      345           0.4200E-05            0.4761E+02                                  258
+      346           0.1301E-05            0.3094E+02                                  260
+      347           0.3761E-05            0.4593E+02                                  258
+      348           0.1620E-05            0.3553E+02                                  260
+      349           0.2382E-05            0.4048E+02                                  258
+      350           0.2380E-05            0.3734E+02                                  259
+      351           0.2235E-05            0.3311E+02                                  261
+      352           0.1620E-05            0.3553E+02                                  260
+      353           0.3360E-05            0.2534E+02                                  260
+      354           0.1301E-05            0.3094E+02                                  260
+      355           0.3901E-05            0.2168E+02                                  260
+      356           0.1441E-05            0.3025E+02                                  260
+      357           0.3360E-05            0.2534E+02                                  260
+      358           0.2209E-05            0.2831E+02                                  260
+      359           0.2235E-05            0.3311E+02                                  261
+      360           0.3015E-05            0.2959E+02                                  260
+      361           0.2382E-05            0.4048E+02                                  258
+      362           0.2209E-05            0.2831E+02                                  260
+      363           0.3761E-05            0.4593E+02                                  258
+      364           0.1441E-05            0.3025E+02                                  260
+      365           0.3724E-05            0.4439E+02                                  258
+
+  Obtaining occupation numbers and electronic chemical potential using ELSI.
+  | Note that, for insulating systems, the printed 'chemical potential' value is not uniquely defined.
+  | It can be anywhere in the energy gap, as long as it correctly separates occupied and unoccupied states.
+  | In systems with a gap, the physically relevant chemical potential is the VBM or HOMO.
+
+  | Chemical potential (Fermi level):    -5.47261918 eV
+  Available memory per node after advance_KS_solution [GB]:   1000.34
+  Writing Kohn-Sham eigenvalues.
+  K-point:       1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000         -24.371161         -663.17303
+      2       2.00000         -24.371153         -663.17281
+      3       2.00000         -24.371153         -663.17281
+      4       2.00000         -24.371153         -663.17281
+      5       2.00000          -1.778466          -48.39452
+      6       2.00000          -1.769920          -48.16196
+      7       2.00000          -1.769920          -48.16196
+      8       2.00000          -1.769920          -48.16196
+      9       2.00000          -1.154761          -31.42265
+     10       2.00000          -1.119301          -30.45774
+     11       2.00000          -1.119301          -30.45774
+     12       2.00000          -1.119301          -30.45774
+     13       2.00000          -0.542526          -14.76288
+     14       2.00000          -0.542526          -14.76288
+     15       2.00000          -0.542526          -14.76288
+     16       2.00000          -0.440069          -11.97490
+     17       2.00000          -0.440069          -11.97490
+     18       2.00000          -0.440069          -11.97490
+     19       2.00000          -0.440069          -11.97490
+     20       2.00000          -0.440069          -11.97490
+     21       2.00000          -0.440069          -11.97490
+     22       2.00000          -0.389227          -10.59141
+     23       2.00000          -0.389227          -10.59141
+     24       2.00000          -0.389227          -10.59141
+     25       0.00000          -0.013048           -0.35507
+     26       0.00000           0.207279            5.64035
+     27       0.00000           0.207279            5.64035
+     28       0.00000           0.207279            5.64035
+     29       0.00000           0.215553            5.86550
+     30       0.00000           0.215553            5.86550
+     31       0.00000           0.215553            5.86550
+     32       0.00000           0.333752            9.08185
+     33       0.00000           0.333752            9.08185
+     34       0.00000           0.333752            9.08185
+     35       0.00000           0.434194           11.81503
+     36       0.00000           0.434194           11.81503
+     37       0.00000           0.434194           11.81503
+     38       0.00000           0.434194           11.81503
+     39       0.00000           0.434194           11.81503
+     40       0.00000           0.434194           11.81503
+     41       0.00000           0.553564           15.06323
+     42       0.00000           0.553564           15.06323
+
+  What follows are estimated values for band gap, HOMO, LUMO, etc.
+  | They are estimated on a discrete k-point grid and not necessarily exact.
+  | For converged numbers, create a DOS and/or band structure plot on a denser k-grid.
+
+  Highest occupied state (VBM) at    -10.59017211 eV (relative to internal zero)
+  | Occupation number:      2.00000000
+  | K-point:     363 at    0.888889    0.888889    0.000000 (in units of recip. lattice)
+
+  Lowest unoccupied state (CBM) at    -0.35506626 eV (relative to internal zero)
+  | Occupation number:      0.00000000
+  | K-point:       1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+
+  The gap value is above 0.2 eV. Unless you are using a very sparse k-point grid,
+  this system is most likely an insulator or a semiconductor.
+  ESTIMATED overall HOMO-LUMO gap:     10.23510584 eV between HOMO at k-point 363 and LUMO at k-point 1
+  | This appears to be an indirect band gap.
+  | Smallest direct gap :     10.23634316 eV for k_point 1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+  Calculating total energy contributions from superposition of free atom densities.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -228.95921848 Ha       -6230.29732893 eV
+  | XC energy correction          :         -36.05504174 Ha        -981.10760382 eV
+  | XC potential correction       :          51.57254530 Ha        1403.36035971 eV
+  | Free-atom electrostatic energy:        -203.70601730 Ha       -5543.12276175 eV
+  | Hartree energy correction     :          -0.00000000 Ha          -0.00000000 eV
+  | Entropy correction            :          -0.00000000 Ha          -0.00000000 eV
+  | ---------------------------
+  | Total energy                  :        -417.14773222 Ha      -11351.16733479 eV
+  | Total energy, T -> 0          :        -417.14773222 Ha      -11351.16733479 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :        -417.14773222 Ha      -11351.16733479 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :         429.88397033 Ha       11697.73800708 eV
+  | Electrostatic energy          :        -810.97666082 Ha      -22067.79773806 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00000000 Ha           0.00000000 eV
+  | Sum of eigenvalues per atom                           :        -778.78716612 eV
+  | Total energy (T->0) per atom                          :       -1418.89591685 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :       -1418.89591685 eV
+  
+  --------------------------------------------
+  Constructing auxiliary basis (full product) ...
+  
+  Product basis:
+  | charge radius: extent of product basis function
+  | field radius: extent of its Coulomb potential
+  | Species   l  charge radius    field radius  multipol momen
+  |    Li     0     4.318785 A      4.318785 A       -6.873585E-18 a.u.
+  |    Li     0     4.266309 A      4.266309 A        2.560817E-16 a.u.
+  |    Li     0     5.651516 A      5.651516 A       -8.170474E-17 a.u.
+  |    Li     0     5.651516 A      5.651516 A        2.627327E-16 a.u.
+  |    Li     0     6.232164 A      6.308820 A       -2.563571E-17 a.u.
+  |    Li     0     6.232164 A      6.308820 A        2.749290E-16 a.u.
+  |    Li     0     6.386418 A      6.464971 A        3.222120E-16 a.u.
+  |    Li     0     6.464971 A      6.544491 A       -4.940715E-16 a.u.
+  |    Li     0     6.464971 A  5.272973E+12 A            0.792948 a.u.
+  |    Li     1     5.001180 A      5.001180 A       -2.806838E-17 a.u.
+  |    Li     1     5.582846 A      5.582846 A        1.533671E-16 a.u.
+  |    Li     1     5.721029 A      5.721029 A       -2.972751E-17 a.u.
+  |    Li     1     5.651516 A      5.651516 A        2.037866E-17 a.u.
+  |    Li     1     5.651516 A      5.721029 A        5.073770E-17 a.u.
+  |    Li     1     5.721029 A      5.791398 A        7.862661E-16 a.u.
+  |    Li     1     6.464971 A      6.544491 A        1.409550E-15 a.u.
+  |    Li     1     6.464971 A      6.544491 A        1.386951E-15 a.u.
+  |    Li     1     6.464971 A  3.655485E+06 A            3.797326 a.u.
+  |    Li     2     5.651516 A      5.651516 A        1.910269E-15 a.u.
+  |    Li     2     6.386418 A      6.386418 A        1.024727E-15 a.u.
+  |    Li     2     6.386418 A      6.386418 A       -1.369683E-15 a.u.
+  |    Li     2     6.386418 A      6.464971 A       -1.094197E-15 a.u.
+  |    Li     2     6.464971 A      6.464971 A       -4.337437E-15 a.u.
+  |    Li     2     6.464971 A      6.464971 A        3.395718E-15 a.u.
+  |    Li     2     6.464971 A      6.544491 A       -8.525859E-15 a.u.
+  |    Li     2     6.464971 A  3.754836E+04 A           28.428869 a.u.
+  |    Li     3     6.386418 A      6.386418 A        1.625154E-15 a.u.
+  |    Li     3     6.386418 A      6.386418 A       -3.815375E-16 a.u.
+  |    Li     3     6.386418 A      6.386418 A        4.060676E-15 a.u.
+  |    Li     3     6.464971 A      6.464971 A        1.431257E-14 a.u.
+  |    Li     3     6.464971 A      6.544491 A       -2.425780E-14 a.u.
+  |    Li     3     6.464971 A      6.544491 A       -4.076282E-14 a.u.
+  |    Li     3     6.464971 A  3.720561E+03 A          194.455018 a.u.
+  |    Li     4     6.386418 A      6.386418 A        5.350117E-14 a.u.
+  |    Li     4     6.386418 A      6.386418 A       -6.729038E-14 a.u.
+  |    Li     4     6.464971 A      6.464971 A       -1.838841E-13 a.u.
+  |    Li     4     6.386418 A      6.464971 A       -1.565859E-13 a.u.
+  |    Li     4     6.464971 A      6.464971 A        1.572591E-13 a.u.
+  |    Li     4     6.464971 A  8.919850E+02 A         1082.859898 a.u.
+  |    Li     5     6.386418 A      6.386418 A        6.636435E-14 a.u.
+  |    Li     5     6.308820 A      6.308820 A        6.789858E-13 a.u.
+  |    Li     5     6.464971 A      6.464971 A       -2.779098E-13 a.u.
+  |    Li     5     6.464971 A      6.464971 A       -6.827941E-13 a.u.
+  |    Li     5     6.464971 A  3.748538E+02 A        10054.364029 a.u.
+  |    Li     6     6.386418 A  6.386418E+00 A           -0.000000 a.u.
+  |    Li     6     6.386418 A  6.386418E+00 A           -0.000000 a.u.
+  |    Li     6     6.464971 A  6.464971E+00 A            0.000000 a.u.
+  |    Li     6     6.464971 A  1.894267E+02 A        59933.568306 a.u.
+  |    Li     7     6.386418 A  6.386418E+00 A            0.000000 a.u.
+  |    Li     7     6.386418 A  9.155511E+01 A        63891.306210 a.u.
+  |    Li     8     6.386418 A  6.360160E+01 A       416478.172862 a.u.
+  |    F      0     1.793935 A      1.793935 A       -1.116339E-16 a.u.
+  |    F      0     4.019914 A      4.019914 A       -2.715502E-17 a.u.
+  |    F      0     3.828069 A      3.828069 A        3.603253E-17 a.u.
+  |    F      0     4.221373 A      4.221373 A        1.353773E-16 a.u.
+  |    F      0     4.828980 A      4.828980 A       -1.897863E-16 a.u.
+  |    F      0     4.828980 A      4.828980 A        1.613345E-16 a.u.
+  |    F      0     4.828980 A      4.828980 A        2.300775E-16 a.u.
+  |    F      0     5.325119 A      5.390618 A       -8.691039E-17 a.u.
+  |    F      0     5.390618 A      5.456923 A       -2.305979E-16 a.u.
+  |    F      0     5.456923 A      5.524043 A       -6.066468E-16 a.u.
+  |    F      0     5.456923 A  4.669846E+12 A            0.702250 a.u.
+  |    F      1     3.514108 A      3.514108 A       -3.579155E-17 a.u.
+  |    F      1     3.514108 A      3.514108 A        5.388849E-17 a.u.
+  |    F      1     3.735608 A      3.735608 A        3.539971E-16 a.u.
+  |    F      1     3.735608 A      3.735608 A       -1.799995E-17 a.u.
+  |    F      1     4.432928 A      4.432928 A       -2.662301E-16 a.u.
+  |    F      1     5.390618 A      5.390618 A        2.259079E-16 a.u.
+  |    F      1     5.390618 A      5.456923 A        7.257988E-16 a.u.
+  |    F      1     5.456923 A      5.524043 A        2.383226E-16 a.u.
+  |    F      1     5.456923 A      5.524043 A        3.503255E-16 a.u.
+  |    F      1     5.456923 A  3.080535E+06 A            2.696746 a.u.
+  |    F      2     3.645380 A      3.645380 A        1.663746E-17 a.u.
+  |    F      2     5.260416 A      5.260416 A        1.055654E-17 a.u.
+  |    F      2     5.325119 A      5.325119 A        1.890099E-16 a.u.
+  |    F      2     5.390618 A      5.390618 A        1.036279E-16 a.u.
+  |    F      2     5.456923 A      5.456923 A       -3.543076E-16 a.u.
+  |    F      2     5.456923 A      5.456923 A        6.186592E-16 a.u.
+  |    F      2     5.456923 A      5.456923 A        1.464954E-15 a.u.
+  |    F      2     5.456923 A      5.456923 A       -1.084030E-16 a.u.
+  |    F      2     5.456923 A      5.524043 A        1.253366E-15 a.u.
+  |    F      2     5.456923 A  3.037443E+04 A           15.049126 a.u.
+  |    F      3     3.922819 A      3.922819 A        2.915842E-16 a.u.
+  |    F      3     4.019914 A      4.019914 A        1.512618E-15 a.u.
+  |    F      3     4.019914 A      4.019914 A       -3.108652E-15 a.u.
+  |    F      3     4.888376 A      4.888376 A       -6.157219E-15 a.u.
+  |    F      3     4.888376 A      4.888376 A       -3.327316E-15 a.u.
+  |    F      3     4.888376 A      4.888376 A       -1.400585E-15 a.u.
+  |    F      3     5.456923 A      5.456923 A       -1.062664E-14 a.u.
+  |    F      3     5.456923 A      5.524043 A        1.460412E-14 a.u.
+  |    F      3     5.524043 A  3.119145E+03 A           96.056742 a.u.
+  |    F      4     3.875154 A      3.875154 A       -1.374117E-15 a.u.
+  |    F      4     4.542649 A      4.542649 A        4.917546E-15 a.u.
+  |    F      4     4.542649 A      4.542649 A        1.167208E-15 a.u.
+  |    F      4     4.598524 A      4.598524 A        1.291650E-14 a.u.
+  |    F      4     4.655085 A      4.655085 A       -9.921028E-15 a.u.
+  |    F      4     4.598524 A      4.598524 A       -2.234959E-15 a.u.
+  |    F      4     4.655085 A      4.655085 A       -2.699029E-15 a.u.
+  |    F      4     5.456923 A      5.456923 A        3.704303E-14 a.u.
+  |    F      4     5.456923 A      5.456923 A        1.075943E-13 a.u.
+  |    F      4     5.524043 A  7.829391E+02 A          564.188556 a.u.
+  |    F      5     3.875154 A      3.875154 A        2.277252E-15 a.u.
+  |    F      5     3.922819 A      3.922819 A       -7.747233E-15 a.u.
+  |    F      5     3.875154 A      3.875154 A       -4.431586E-17 a.u.
+  |    F      5     3.971070 A      3.971070 A        1.211273E-14 a.u.
+  |    F      5     3.971070 A      3.971070 A       -6.570961E-14 a.u.
+  |    F      5     5.390618 A      5.390618 A        1.112337E-13 a.u.
+  |    F      5     5.456923 A      5.456923 A        1.642430E-13 a.u.
+  |    F      5     5.524043 A  3.118218E+02 A         3331.367198 a.u.
+  |    F      6     3.645380 A      3.645380 A       -8.405753E-17 a.u.
+  |    F      6     3.828069 A      3.828069 A        4.324935E-14 a.u.
+  |    F      6     4.069359 A      4.069359 A       -1.984742E-14 a.u.
+  |    F      6     4.888376 A      4.888376 A        3.191556E-13 a.u.
+  |    F      6     5.456923 A  5.456923E+00 A            0.000000 a.u.
+  |    F      6     5.456923 A  1.544682E+02 A        14369.981148 a.u.
+  |    F      7     3.601087 A      3.601087 A       -1.921778E-14 a.u.
+  |    F      7     4.019914 A      4.019914 A        2.629339E-15 a.u.
+  |    F      7     4.119412 A      4.119412 A       -5.626442E-13 a.u.
+  |    F      7     5.390618 A  5.390618E+00 A            0.000000 a.u.
+  |    F      7     5.456923 A  9.156325E+01 A        63936.769807 a.u.
+  |    F      8     3.875154 A      3.875154 A       -3.876241E-14 a.u.
+  |    F      8     5.325119 A  5.325119E+00 A            0.000000 a.u.
+  |    F      8     5.456923 A  6.081328E+01 A       278205.450712 a.u.
+
+  | Shrink_full_auxil_basis : there are      123  radial auxiliary wave functions
+                            accepted and     225 rejected.
+  | Shrink_full_auxil_basis : there are totally              708164 partial auxiliary wave functions.
+  prodbas_tasks_distribution_pbc not up to date - distributing tasks.
+
+  | Number of product basis functions per thread : 11066
+  Parallel distribution of product basis not up to date - distributing tasks.
+
+  | Number of product basis functions per thread :    55
+  | Minimal requirement for computer memory :           1.094 Gbs
+  Minimal free memory per node on init_fm entry [GB]:   1000.33
+  -----------------------------------------
+  --- Initializing Fock matrix calculations
+  -----------------------------------------
+  screening_threshold (crit_val) =  0.000000100000
+  coul_mat_threshold =  0.000000000100
+  No atoms are split internally
+  Number of super-cells in X Y Z:       5       5       5
+  Number of atoms pairs total:         9256
+  Atom pair distribution:
+  Cell:       -3      -2      -1 atom pairs:        4
+  Cell:       -3      -2       0 atom pairs:       12
+  Cell:       -3      -2       1 atom pairs:        4
+  Cell:       -3      -1      -2 atom pairs:        4
+  Cell:       -3      -1      -1 atom pairs:       28
+  Cell:       -3      -1       0 atom pairs:       36
+  Cell:       -3      -1       1 atom pairs:       28
+  Cell:       -3      -1       2 atom pairs:        4
+  Cell:       -3       0      -2 atom pairs:       12
+  Cell:       -3       0      -1 atom pairs:       36
+  Cell:       -3       0       0 atom pairs:       44
+  Cell:       -3       0       1 atom pairs:       36
+  Cell:       -3       0       2 atom pairs:       12
+  Cell:       -3       1      -2 atom pairs:        4
+  Cell:       -3       1      -1 atom pairs:       28
+  Cell:       -3       1       0 atom pairs:       36
+  Cell:       -3       1       1 atom pairs:       28
+  Cell:       -3       1       2 atom pairs:        4
+  Cell:       -3       2      -1 atom pairs:        4
+  Cell:       -3       2       0 atom pairs:       12
+  Cell:       -3       2       1 atom pairs:        4
+  Cell:       -2      -3      -1 atom pairs:        4
+  Cell:       -2      -3       0 atom pairs:       12
+  Cell:       -2      -3       1 atom pairs:        4
+  Cell:       -2      -2      -2 atom pairs:       23
+  Cell:       -2      -2      -1 atom pairs:       42
+  Cell:       -2      -2       0 atom pairs:       56
+  Cell:       -2      -2       1 atom pairs:       42
+  Cell:       -2      -2       2 atom pairs:       23
+  Cell:       -2      -1      -3 atom pairs:        4
+  Cell:       -2      -1      -2 atom pairs:       42
+  Cell:       -2      -1      -1 atom pairs:       61
+  Cell:       -2      -1       0 atom pairs:       64
+  Cell:       -2      -1       1 atom pairs:       61
+  Cell:       -2      -1       2 atom pairs:       42
+  Cell:       -2      -1       3 atom pairs:        4
+  Cell:       -2       0      -3 atom pairs:       12
+  Cell:       -2       0      -2 atom pairs:       56
+  Cell:       -2       0      -1 atom pairs:       64
+  Cell:       -2       0       0 atom pairs:       64
+  Cell:       -2       0       1 atom pairs:       64
+  Cell:       -2       0       2 atom pairs:       56
+  Cell:       -2       0       3 atom pairs:       12
+  Cell:       -2       1      -3 atom pairs:        4
+  Cell:       -2       1      -2 atom pairs:       42
+  Cell:       -2       1      -1 atom pairs:       61
+  Cell:       -2       1       0 atom pairs:       64
+  Cell:       -2       1       1 atom pairs:       61
+  Cell:       -2       1       2 atom pairs:       42
+  Cell:       -2       1       3 atom pairs:        4
+  Cell:       -2       2      -2 atom pairs:       23
+  Cell:       -2       2      -1 atom pairs:       42
+  Cell:       -2       2       0 atom pairs:       56
+  Cell:       -2       2       1 atom pairs:       42
+  Cell:       -2       2       2 atom pairs:       23
+  Cell:       -2       3      -1 atom pairs:        4
+  Cell:       -2       3       0 atom pairs:       12
+  Cell:       -2       3       1 atom pairs:        4
+  Cell:       -1      -3      -2 atom pairs:        4
+  Cell:       -1      -3      -1 atom pairs:       28
+  Cell:       -1      -3       0 atom pairs:       36
+  Cell:       -1      -3       1 atom pairs:       28
+  Cell:       -1      -3       2 atom pairs:        4
+  Cell:       -1      -2      -3 atom pairs:        4
+  Cell:       -1      -2      -2 atom pairs:       42
+  Cell:       -1      -2      -1 atom pairs:       61
+  Cell:       -1      -2       0 atom pairs:       64
+  Cell:       -1      -2       1 atom pairs:       61
+  Cell:       -1      -2       2 atom pairs:       42
+  Cell:       -1      -2       3 atom pairs:        4
+  Cell:       -1      -1      -3 atom pairs:       28
+  Cell:       -1      -1      -2 atom pairs:       61
+  Cell:       -1      -1      -1 atom pairs:       64
+  Cell:       -1      -1       0 atom pairs:       64
+  Cell:       -1      -1       1 atom pairs:       64
+  Cell:       -1      -1       2 atom pairs:       61
+  Cell:       -1      -1       3 atom pairs:       28
+  Cell:       -1       0      -3 atom pairs:       36
+  Cell:       -1       0      -2 atom pairs:       64
+  Cell:       -1       0      -1 atom pairs:       64
+  Cell:       -1       0       0 atom pairs:       64
+  Cell:       -1       0       1 atom pairs:       64
+  Cell:       -1       0       2 atom pairs:       64
+  Cell:       -1       0       3 atom pairs:       36
+  Cell:       -1       1      -3 atom pairs:       28
+  Cell:       -1       1      -2 atom pairs:       61
+  Cell:       -1       1      -1 atom pairs:       64
+  Cell:       -1       1       0 atom pairs:       64
+  Cell:       -1       1       1 atom pairs:       64
+  Cell:       -1       1       2 atom pairs:       61
+  Cell:       -1       1       3 atom pairs:       28
+  Cell:       -1       2      -3 atom pairs:        4
+  Cell:       -1       2      -2 atom pairs:       42
+  Cell:       -1       2      -1 atom pairs:       61
+  Cell:       -1       2       0 atom pairs:       64
+  Cell:       -1       2       1 atom pairs:       61
+  Cell:       -1       2       2 atom pairs:       42
+  Cell:       -1       2       3 atom pairs:        4
+  Cell:       -1       3      -2 atom pairs:        4
+  Cell:       -1       3      -1 atom pairs:       28
+  Cell:       -1       3       0 atom pairs:       36
+  Cell:       -1       3       1 atom pairs:       28
+  Cell:       -1       3       2 atom pairs:        4
+  Cell:        0      -3      -2 atom pairs:       12
+  Cell:        0      -3      -1 atom pairs:       36
+  Cell:        0      -3       0 atom pairs:       44
+  Cell:        0      -3       1 atom pairs:       36
+  Cell:        0      -3       2 atom pairs:       12
+  Cell:        0      -2      -3 atom pairs:       12
+  Cell:        0      -2      -2 atom pairs:       56
+  Cell:        0      -2      -1 atom pairs:       64
+  Cell:        0      -2       0 atom pairs:       64
+  Cell:        0      -2       1 atom pairs:       64
+  Cell:        0      -2       2 atom pairs:       56
+  Cell:        0      -2       3 atom pairs:       12
+  Cell:        0      -1      -3 atom pairs:       36
+  Cell:        0      -1      -2 atom pairs:       64
+  Cell:        0      -1      -1 atom pairs:       64
+  Cell:        0      -1       0 atom pairs:       64
+  Cell:        0      -1       1 atom pairs:       64
+  Cell:        0      -1       2 atom pairs:       64
+  Cell:        0      -1       3 atom pairs:       36
+  Cell:        0       0      -3 atom pairs:       44
+  Cell:        0       0      -2 atom pairs:       64
+  Cell:        0       0      -1 atom pairs:       64
+  Cell:        0       0       0 atom pairs:       64
+  Cell:        0       0       1 atom pairs:       64
+  Cell:        0       0       2 atom pairs:       64
+  Cell:        0       0       3 atom pairs:       44
+  Cell:        0       1      -3 atom pairs:       36
+  Cell:        0       1      -2 atom pairs:       64
+  Cell:        0       1      -1 atom pairs:       64
+  Cell:        0       1       0 atom pairs:       64
+  Cell:        0       1       1 atom pairs:       64
+  Cell:        0       1       2 atom pairs:       64
+  Cell:        0       1       3 atom pairs:       36
+  Cell:        0       2      -3 atom pairs:       12
+  Cell:        0       2      -2 atom pairs:       56
+  Cell:        0       2      -1 atom pairs:       64
+  Cell:        0       2       0 atom pairs:       64
+  Cell:        0       2       1 atom pairs:       64
+  Cell:        0       2       2 atom pairs:       56
+  Cell:        0       2       3 atom pairs:       12
+  Cell:        0       3      -2 atom pairs:       12
+  Cell:        0       3      -1 atom pairs:       36
+  Cell:        0       3       0 atom pairs:       44
+  Cell:        0       3       1 atom pairs:       36
+  Cell:        0       3       2 atom pairs:       12
+  Cell:        1      -3      -2 atom pairs:        4
+  Cell:        1      -3      -1 atom pairs:       28
+  Cell:        1      -3       0 atom pairs:       36
+  Cell:        1      -3       1 atom pairs:       28
+  Cell:        1      -3       2 atom pairs:        4
+  Cell:        1      -2      -3 atom pairs:        4
+  Cell:        1      -2      -2 atom pairs:       42
+  Cell:        1      -2      -1 atom pairs:       61
+  Cell:        1      -2       0 atom pairs:       64
+  Cell:        1      -2       1 atom pairs:       61
+  Cell:        1      -2       2 atom pairs:       42
+  Cell:        1      -2       3 atom pairs:        4
+  Cell:        1      -1      -3 atom pairs:       28
+  Cell:        1      -1      -2 atom pairs:       61
+  Cell:        1      -1      -1 atom pairs:       64
+  Cell:        1      -1       0 atom pairs:       64
+  Cell:        1      -1       1 atom pairs:       64
+  Cell:        1      -1       2 atom pairs:       61
+  Cell:        1      -1       3 atom pairs:       28
+  Cell:        1       0      -3 atom pairs:       36
+  Cell:        1       0      -2 atom pairs:       64
+  Cell:        1       0      -1 atom pairs:       64
+  Cell:        1       0       0 atom pairs:       64
+  Cell:        1       0       1 atom pairs:       64
+  Cell:        1       0       2 atom pairs:       64
+  Cell:        1       0       3 atom pairs:       36
+  Cell:        1       1      -3 atom pairs:       28
+  Cell:        1       1      -2 atom pairs:       61
+  Cell:        1       1      -1 atom pairs:       64
+  Cell:        1       1       0 atom pairs:       64
+  Cell:        1       1       1 atom pairs:       64
+  Cell:        1       1       2 atom pairs:       61
+  Cell:        1       1       3 atom pairs:       28
+  Cell:        1       2      -3 atom pairs:        4
+  Cell:        1       2      -2 atom pairs:       42
+  Cell:        1       2      -1 atom pairs:       61
+  Cell:        1       2       0 atom pairs:       64
+  Cell:        1       2       1 atom pairs:       61
+  Cell:        1       2       2 atom pairs:       42
+  Cell:        1       2       3 atom pairs:        4
+  Cell:        1       3      -2 atom pairs:        4
+  Cell:        1       3      -1 atom pairs:       28
+  Cell:        1       3       0 atom pairs:       36
+  Cell:        1       3       1 atom pairs:       28
+  Cell:        1       3       2 atom pairs:        4
+  Cell:        2      -3      -1 atom pairs:        4
+  Cell:        2      -3       0 atom pairs:       12
+  Cell:        2      -3       1 atom pairs:        4
+  Cell:        2      -2      -2 atom pairs:       23
+  Cell:        2      -2      -1 atom pairs:       42
+  Cell:        2      -2       0 atom pairs:       56
+  Cell:        2      -2       1 atom pairs:       42
+  Cell:        2      -2       2 atom pairs:       23
+  Cell:        2      -1      -3 atom pairs:        4
+  Cell:        2      -1      -2 atom pairs:       42
+  Cell:        2      -1      -1 atom pairs:       61
+  Cell:        2      -1       0 atom pairs:       64
+  Cell:        2      -1       1 atom pairs:       61
+  Cell:        2      -1       2 atom pairs:       42
+  Cell:        2      -1       3 atom pairs:        4
+  Cell:        2       0      -3 atom pairs:       12
+  Cell:        2       0      -2 atom pairs:       56
+  Cell:        2       0      -1 atom pairs:       64
+  Cell:        2       0       0 atom pairs:       64
+  Cell:        2       0       1 atom pairs:       64
+  Cell:        2       0       2 atom pairs:       56
+  Cell:        2       0       3 atom pairs:       12
+  Cell:        2       1      -3 atom pairs:        4
+  Cell:        2       1      -2 atom pairs:       42
+  Cell:        2       1      -1 atom pairs:       61
+  Cell:        2       1       0 atom pairs:       64
+  Cell:        2       1       1 atom pairs:       61
+  Cell:        2       1       2 atom pairs:       42
+  Cell:        2       1       3 atom pairs:        4
+  Cell:        2       2      -2 atom pairs:       23
+  Cell:        2       2      -1 atom pairs:       42
+  Cell:        2       2       0 atom pairs:       56
+  Cell:        2       2       1 atom pairs:       42
+  Cell:        2       2       2 atom pairs:       23
+  Cell:        2       3      -1 atom pairs:        4
+  Cell:        2       3       0 atom pairs:       12
+  Cell:        2       3       1 atom pairs:        4
+  Cell:        3      -2      -1 atom pairs:        4
+  Cell:        3      -2       0 atom pairs:       12
+  Cell:        3      -2       1 atom pairs:        4
+  Cell:        3      -1      -2 atom pairs:        4
+  Cell:        3      -1      -1 atom pairs:       28
+  Cell:        3      -1       0 atom pairs:       36
+  Cell:        3      -1       1 atom pairs:       28
+  Cell:        3      -1       2 atom pairs:        4
+  Cell:        3       0      -2 atom pairs:       12
+  Cell:        3       0      -1 atom pairs:       36
+  Cell:        3       0       0 atom pairs:       44
+  Cell:        3       0       1 atom pairs:       36
+  Cell:        3       0       2 atom pairs:       12
+  Cell:        3       1      -2 atom pairs:        4
+  Cell:        3       1      -1 atom pairs:       28
+  Cell:        3       1       0 atom pairs:       36
+  Cell:        3       1       1 atom pairs:       28
+  Cell:        3       1       2 atom pairs:        4
+  Cell:        3       2      -1 atom pairs:        4
+  Cell:        3       2       0 atom pairs:       12
+  Cell:        3       2       1 atom pairs:        4
+  sparsity of pfbvk:   1.00000000
+  Number of atoms pairs in BvK cells:         9256
+  Max. memory consumption per node for Pulay mixing [GB]:      2.97
+  Minimal total memory per node [GB]:   1056.49
+  Minimal free memory per node [GB]:    997.53
+  --- Initializing LVL triples, type COULOMB
+  | Storage requirements for basis-basbas products (processor-local):
+  |   Species Li: n_prodsfn:   886; storage:       27.69 MiB.
+  |   Species F: n_prodsfn:  1537; storage:       48.03 MiB.
+
+  --- Initializing Coulomb matrix calculations, type CUT
+  Preparing TB like auxiliary 2-center cutCoul matrix
+  SBT integration errors (all should be 'small'):
+  large logFT aliasing -> increase N/lnrange
+  large SBT aliasing -> decrease lnk0 & increase lnk0+lnrange
+  large SBT ringing -> decrease lnr0 & increase lnr0+lnrange
+  |            El't  L: logFT-al.   small-k   large-k   small-r   large-r
+  Initializing cut Coulomb operator.
+  | Cut [erfc(-/+1)/2] from   15.5351 A to   18.5206 A within   15 sbt_grid points.
+
+  | Need to store 20940 splines of   286 points taking      47120 KiB.
+  | Spline reduction from  4096 to   286 points by (cutting and)     1 x coarsening gives error:  0.00E+00
+  | Maximum value outside interaction range:  3.41E-15
+  Finished with initialize_tb_auxmat/lvl_triples, time:        0.242
+  --- Calculating Coulomb matrices
+  Upper limit for memory consumption per node [GB] for Coulomb matrices if no compression occurs:       0.409
+  Upper limit for temporary arrays in Coulomb matrix initalization [GB]:      9.60
+  Min./max. time for Coulomb matrix computation [s]:     73.35    104.39
+  Max. memory consumption per node for global Coulomb matrix [GB]:     35.19
+  Time to calculate Coulomb Matrices   :      105.023
+  After init_coulomb_tuned [GB]:    928.58
+  Atomic logSBT for LVL-triples                :  max(cpu_time)    wall_clock(cpu1)
+  | Multiplication with kernel                  :        0.000 s           0.000 s
+  | Main matrix multiplication                  :        0.000 s           0.000 s
+  | Analytic angular integration                :        0.000 s           0.000 s
+  | Kernel construction                         :        0.000 s           0.000 s
+  | Overall 2-center overlap time               :        0.000 s           0.000 s
+  | LVL initialization                          :        0.069 s           0.069 s
+  | Whole LVL-triples                           :        0.069 s           0.069 s
+
+  --- Initializing LVL triples, type COULOMB
+  | Storage requirements for basis-basbas products (processor-local):
+  |   Species Li: n_prodsfn:   886; storage:       27.69 MiB.
+  |   Species F: n_prodsfn:  1537; storage:       48.03 MiB.
+
+  Atomic logSBT for 2-center cutCoul matrix    :  max(cpu_time)    wall_clock(cpu1)
+  | TB initialization                           :        0.168 s           0.168 s
+  | TB usage                                    :       64.248 s          64.254 s
+
+  --- Initializing Coulomb matrix calculations, type COULOMB
+  Preparing TB like auxiliary 2-center Coulomb matrix
+  SBT integration errors (all should be 'small'):
+  large logFT aliasing -> increase N/lnrange
+  large SBT aliasing -> decrease lnk0 & increase lnk0+lnrange
+  large SBT ringing -> decrease lnr0 & increase lnr0+lnrange
+  |            El't  L: logFT-al.   small-k   large-k   small-r   large-r
+  | Need to store 20940 splines of   179 points taking      29616 KiB.
+  | Spline reduction from  4096 to   179 points by (cutting and)     1 x coarsening gives error:  0.00E+00
+  Finished with initialize_tb_auxmat/lvl_triples, time:        0.187
+  Max. memory consumption per node for uncompressed ovlp3fn matrix [GB]:      18.795
+  --- Calculating OVLP3FN
+  --- Done calculating OVLP3FN, time:       56.182
+  After init_ovlp3fn_tuned2 [GB]:    921.18
+  Max. memory consumption per node for compressed global ovlp3fn matrix [GB]:      26.926
+  Atomic logSBT for 2-center Coulomb matrix    :  max(cpu_time)    wall_clock(cpu1)
+  | TB initialization                           :        0.133 s           0.134 s
+  | TB usage                                    :        0.287 s           0.287 s
+
+  Atomic logSBT for LVL-triples                :  max(cpu_time)    wall_clock(cpu1)
+  | Multiplication with kernel                  :        0.336 s           0.299 s
+  | Main matrix multiplication                  :       27.762 s          26.126 s
+  | Analytic angular integration                :        0.368 s           0.366 s
+  | Kernel construction                         :        0.278 s           0.258 s
+  | Overall 2-center overlap time               :       30.342 s          28.548 s
+  | 3-center preparation multiplications        :        0.132 s           0.039 s
+  | 3-center preparation SBTs                   :        2.766 s           1.017 s
+  | 3-center combinations                       :       34.021 s          32.087 s
+  | Overal 3-center time                        :       36.135 s          33.144 s
+  | LVL initialization                          :        0.035 s           0.035 s
+  | Whole LVL-triples                           :        0.035 s           0.035 s
+
+  Assumed free memory per node for Fock matrix prefactors [GB]    893.50
+  Memory per instance for Coulomb / ovlp matrix [GB]     70.38     53.85
+  Number of nodes, tasks per node     2    32
+  Number of instances:    4
+  -----------------------------------------------------
+  Dividing atoms among tasks for exact exchange energy:
+  Atom:     1 Weight:  0.43301E+09
+  Atom:     2 Weight:  0.74169E+09
+  Atom:     3 Weight:  0.43301E+09
+  Atom:     4 Weight:  0.74169E+09
+  Atom:     5 Weight:  0.43301E+09
+  Atom:     6 Weight:  0.74169E+09
+  Atom:     7 Weight:  0.43301E+09
+  Atom:     8 Weight:  0.74169E+09
+
+  Average weight per task:  0.29368E+09
+
+  Number of "big" (above average) atoms  :     8
+  Number of "small" (below average) atoms:     0
+  All atoms have above average work per task
+  Atoms will be divided among tasks to get best load distribution
+
+  Atom division among tasks:
+  Atom     1: (initial) task:     0, # of tasks:     2
+  Atom     2: (initial) task:     2, # of tasks:     2
+  Atom     3: (initial) task:     4, # of tasks:     2
+  Atom     4: (initial) task:     6, # of tasks:     2
+  Atom     5: (initial) task:     8, # of tasks:     2
+  Atom     6: (initial) task:    10, # of tasks:     2
+  Atom     7: (initial) task:    12, # of tasks:     2
+  Atom     8: (initial) task:    14, # of tasks:     2
+
+  -----------------------------------------------------
+  Task      0: my_n_atoms2:      1 my_atom_list:      1
+  Task      1: my_n_atoms2:      1 my_atom_list:      1
+  Task      2: my_n_atoms2:      1 my_atom_list:      2
+  Task      3: my_n_atoms2:      1 my_atom_list:      2
+  Task      4: my_n_atoms2:      1 my_atom_list:      3
+  Task      5: my_n_atoms2:      1 my_atom_list:      3
+  Task      6: my_n_atoms2:      1 my_atom_list:      4
+  Task      7: my_n_atoms2:      1 my_atom_list:      4
+  Task      8: my_n_atoms2:      1 my_atom_list:      5
+  Task      9: my_n_atoms2:      1 my_atom_list:      5
+  Task     10: my_n_atoms2:      1 my_atom_list:      6
+  Task     11: my_n_atoms2:      1 my_atom_list:      6
+  Task     12: my_n_atoms2:      1 my_atom_list:      7
+  Task     13: my_n_atoms2:      1 my_atom_list:      7
+  Task     14: my_n_atoms2:      1 my_atom_list:      8
+  Task     15: my_n_atoms2:      1 my_atom_list:      8
+  Task      0: my_n_atoms2:      1 my_atom_list:      1
+  Task      1: my_n_atoms2:      1 my_atom_list:      1
+  Task      2: my_n_atoms2:      1 my_atom_list:      2
+  Task      3: my_n_atoms2:      1 my_atom_list:      2
+  Task      4: my_n_atoms2:      1 my_atom_list:      3
+  Task      5: my_n_atoms2:      1 my_atom_list:      3
+  Task      6: my_n_atoms2:      1 my_atom_list:      4
+  Task      7: my_n_atoms2:      1 my_atom_list:      4
+  Task      8: my_n_atoms2:      1 my_atom_list:      5
+  Task      9: my_n_atoms2:      1 my_atom_list:      5
+  Task     10: my_n_atoms2:      1 my_atom_list:      6
+  Task     11: my_n_atoms2:      1 my_atom_list:      6
+  Task     12: my_n_atoms2:      1 my_atom_list:      7
+  Task     13: my_n_atoms2:      1 my_atom_list:      7
+  Task     14: my_n_atoms2:      1 my_atom_list:      8
+  Task     15: my_n_atoms2:      1 my_atom_list:      8
+  Task      0: my_n_atoms2:      1 my_atom_list:      1
+  Task      1: my_n_atoms2:      1 my_atom_list:      1
+  Task      2: my_n_atoms2:      1 my_atom_list:      2
+  Task      3: my_n_atoms2:      1 my_atom_list:      2
+  Task      4: my_n_atoms2:      1 my_atom_list:      3
+  Task      5: my_n_atoms2:      1 my_atom_list:      3
+  Task      6: my_n_atoms2:      1 my_atom_list:      4
+  Task      7: my_n_atoms2:      1 my_atom_list:      4
+  Task      8: my_n_atoms2:      1 my_atom_list:      5
+  Task      9: my_n_atoms2:      1 my_atom_list:      5
+  Task     10: my_n_atoms2:      1 my_atom_list:      6
+  Task     11: my_n_atoms2:      1 my_atom_list:      6
+  Task     12: my_n_atoms2:      1 my_atom_list:      7
+  Task     13: my_n_atoms2:      1 my_atom_list:      7
+  Task     14: my_n_atoms2:      1 my_atom_list:      8
+  Task     15: my_n_atoms2:      1 my_atom_list:      8
+  Task      0: my_n_atoms2:      1 my_atom_list:      1
+  Task      1: my_n_atoms2:      1 my_atom_list:      1
+  Task      2: my_n_atoms2:      1 my_atom_list:      2
+  Task      3: my_n_atoms2:      1 my_atom_list:      2
+  Task      4: my_n_atoms2:      1 my_atom_list:      3
+  Task      5: my_n_atoms2:      1 my_atom_list:      3
+  Task      6: my_n_atoms2:      1 my_atom_list:      4
+  Task      7: my_n_atoms2:      1 my_atom_list:      4
+  Task      8: my_n_atoms2:      1 my_atom_list:      5
+  Task      9: my_n_atoms2:      1 my_atom_list:      5
+  Task     10: my_n_atoms2:      1 my_atom_list:      6
+  Task     11: my_n_atoms2:      1 my_atom_list:      6
+  Task     12: my_n_atoms2:      1 my_atom_list:      7
+  Task     13: my_n_atoms2:      1 my_atom_list:      7
+  Task     14: my_n_atoms2:      1 my_atom_list:      8
+  Task     15: my_n_atoms2:      1 my_atom_list:      8
+  Task      0: my_n_atom_pairs:    635
+  Task      1: my_n_atom_pairs:    634
+  Task      2: my_n_atom_pairs:    523
+  Task      3: my_n_atom_pairs:    522
+  Task      4: my_n_atom_pairs:    635
+  Task      5: my_n_atom_pairs:    634
+  Task      6: my_n_atom_pairs:    523
+  Task      7: my_n_atom_pairs:    522
+  Task      8: my_n_atom_pairs:    635
+  Task      9: my_n_atom_pairs:    634
+  Task     10: my_n_atom_pairs:    523
+  Task     11: my_n_atom_pairs:    522
+  Task     12: my_n_atom_pairs:    635
+  Task     13: my_n_atom_pairs:    634
+  Task     14: my_n_atom_pairs:    523
+  Task     15: my_n_atom_pairs:    522
+  Task      0: my_n_atom_pairs:    635
+  Task      1: my_n_atom_pairs:    634
+  Task      2: my_n_atom_pairs:    523
+  Task      3: my_n_atom_pairs:    522
+  Task      4: my_n_atom_pairs:    635
+  Task      5: my_n_atom_pairs:    634
+  Task      6: my_n_atom_pairs:    523
+  Task      7: my_n_atom_pairs:    522
+  Task      8: my_n_atom_pairs:    635
+  Task      9: my_n_atom_pairs:    634
+  Task     10: my_n_atom_pairs:    523
+  Task     11: my_n_atom_pairs:    522
+  Task     12: my_n_atom_pairs:    635
+  Task     13: my_n_atom_pairs:    634
+  Task     14: my_n_atom_pairs:    523
+  Task     15: my_n_atom_pairs:    522
+  Task      0: my_n_atom_pairs:    635
+  Task      1: my_n_atom_pairs:    634
+  Task      2: my_n_atom_pairs:    523
+  Task      3: my_n_atom_pairs:    522
+  Task      4: my_n_atom_pairs:    635
+  Task      5: my_n_atom_pairs:    634
+  Task      6: my_n_atom_pairs:    523
+  Task      7: my_n_atom_pairs:    522
+  Task      8: my_n_atom_pairs:    635
+  Task      9: my_n_atom_pairs:    634
+  Task     10: my_n_atom_pairs:    523
+  Task     11: my_n_atom_pairs:    522
+  Task     12: my_n_atom_pairs:    635
+  Task     13: my_n_atom_pairs:    634
+  Task     14: my_n_atom_pairs:    523
+  Task     15: my_n_atom_pairs:    522
+  Task      0: my_n_atom_pairs:    635
+  Task      1: my_n_atom_pairs:    634
+  Task      2: my_n_atom_pairs:    523
+  Task      3: my_n_atom_pairs:    522
+  Task      4: my_n_atom_pairs:    635
+  Task      5: my_n_atom_pairs:    634
+  Task      6: my_n_atom_pairs:    523
+  Task      7: my_n_atom_pairs:    522
+  Task      8: my_n_atom_pairs:    635
+  Task      9: my_n_atom_pairs:    634
+  Task     10: my_n_atom_pairs:    523
+  Task     11: my_n_atom_pairs:    522
+  Task     12: my_n_atom_pairs:    635
+  Task     13: my_n_atom_pairs:    634
+  Task     14: my_n_atom_pairs:    523
+  Task     15: my_n_atom_pairs:    522
+  Transferring Coulomb matrix to final data layout
+  Coulomb matrix communicaton time [s]   14.49
+  Max. memory per node for ovlp3fn matrices:       32.627 GB
+  Total memory for ovlp3fn matrices:       16.314 GB
+  --- Done getting norm of OVLP3FN, time:        0.052
+  Total memory for ovlp3fn matrices:       16.314 GB
+  --- time for get_ovlp3fn:        3.431
+  Max. memory consumption per node for Hartree Fock matrix [GB]      2.97
+  Blocksize for Fock matrix computation:     4
+  Minimal free memory per node after Fock matrix initialization [GB]:    784.42
+  Initialize hartree_potential_storage
+  Max. number of atoms included in rho_multipole:            8
+
+  End scf initialization - timings             :  max(cpu_time)    wall_clock(cpu1)
+  | Time for scf. initialization                :      184.647 s         188.377 s
+  | Boundary condition initialization           :        0.105 s           0.105 s
+  | Integration                                 :        6.944 s           6.944 s
+  | Solution of K.-S. eqns.                     :        0.239 s           0.239 s
+  | Grid partitioning                           :        0.090 s           0.088 s
+  | Preloading free-atom quantities on grid     :        1.105 s           1.107 s
+  | Free-atom superposition energy              :        0.066 s           0.066 s
+  | Total energy evaluation                     :        0.000 s           0.001 s
+  | Product basis setup: Total time             :      176.223 s         179.924 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage:
+  |   Minimum:      932.920 MB (on task 60)
+  |   Maximum:     1167.815 MB (on task  6)
+  |   Average:     1047.374 MB
+  | Peak value for overall tracked memory usage:
+  |   Minimum:     1347.191 MB (on task 52 after allocating ovlp3fn2%n)
+  |   Maximum:     1871.269 MB (on task 14 after allocating ovlp3fn2%n)
+  |   Average:     1607.782 MB
+  | Largest tracked array allocation so far:
+  |   Minimum:      858.190 MB (ovlp3fn2%dat on task 12)
+  |   Maximum:     1092.581 MB (ovlp3fn2%dat on task  6)
+  |   Average:      972.362 MB
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+  Available memory after initialize_scf [GB]:    784.42
+  Available memory after allocating mixing [GB]:    784.42
+  Evaluating new KS density using the density matrix
+  Evaluating density matrix
+  Time summed over all CPUs for getting density from density matrix: real work      540.505 s, elapsed      568.731 s
+  Integration grid: deviation in total charge (<rho> - N_e) =   2.131628E-14
+
+  Time for density update prior                :  max(cpu_time)    wall_clock(cpu1)
+  | self-consistency iterative process          :        9.017 s           9.019 s
+  Available memory before start of SCF loop [GB]:    784.46
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    1
+
+  Date     :  20260720, Time     :  130516.775
+------------------------------------------------------------
+  Pulay mixing of updated and previous charge densities.
+  Available memory per node after mixing [GB]:    784.46
+  Renormalizing the density to the exact electron count on the 3D integration grid.
+  | Formal number of electrons (from input files) :      48.0000000000
+  | Integrated number of electrons on 3D grid     :      48.0000000000
+  | Charge integration error                      :       0.0000000000
+  | Normalization factor for density and gradient :       1.0000000000
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Original multipole sum: apparent total charge =   0.574034E-13
+  | Sum of charges compensated after spline to logarithmic grids =   0.598240E-07
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.573327E-13
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.129 s, elapsed        0.140 s
+  | RMS charge density error from multipole expansion :   0.674258E-03
+  | Average real-space part of the electrostatic potential :      0.01817425 eV
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work      353.696 s, elapsed      371.987 s
+  Max. memory consumption per node for dm_cols [GB]:      1.78
+  Max. memory consumption per node for fock_matrix [GB]:      1.00
+  Calculating non-local Hartree-Fock exchange by two-center RI (RI-LVL).
+  screening_threshold (crit_val) =  0.000000100000
+  Max. allocated memory per node for ovlp3fn_rcv [GB]:      1.07
+  Max. allocated memory per node for fock_matrix_row [GB]:      0.21
+  Max. memory consumption per node for m_ovlp_fact11 [GB]:      0.00
+  Max. memory consumption per node for d_aux_mem [GB]:      0.03
+  Max. memory consumption per node for dm_x_o3fn_aux [GB]:      0.32
+  Max. allocated memory per node for tmp1/tmp2 [GB]:     23.06
+   final impselect vector           6           3           6           1
+   Time for autotuning:    536.89787367500003
+  Exact exchange progress report - outermost block loop i_block: 1 ..      18
+  |        1         2         3         4         5         6         7         8         9        10
+  |       11        12        13        14        15        16        17        18  
+ Total ovlp3fn data transfer [GB]   8.8470566868782043
+  Average sparsity of tmp1/2 0.50000000
+  Average sparsity of fock_matrix_row 0.99438488
+  Full exact exchange energy: weighted long- and short-range EXX    375.247921368366 eV.
+  Detailed communication and barrier times:
+  | Comm    0:        0.000       0.000       0.000       2.105       0.166       0.001       0.000       0.000       0.000       1.999
+  | Comm    1:        0.000       0.000       0.000       2.105       0.166       0.001       0.000       0.000       0.000       1.999
+  | Comm    2:        0.000       0.000       0.000       4.135       0.167       0.001       0.000       0.000       0.000       3.769
+  | Comm    3:        0.000       0.000       0.000       4.135       0.166       0.001       0.000       0.000       0.000       3.770
+  | Comm    4:        0.000       0.000       0.000       2.156       0.166       0.001       0.000       0.000       0.000       2.425
+  | Comm    5:        0.000       0.000       0.000       2.156       0.166       0.001       0.000       0.000       0.000       2.425
+  | Comm    6:        0.000       0.000       0.000       4.198       0.166       0.001       0.000       0.000       0.000       3.861
+  | Comm    7:        0.000       0.000       0.000       4.198       0.166       0.001       0.000       0.000       0.000       3.861
+  | Comm    8:        0.000       0.000       0.000       2.202       0.166       0.001       0.000       0.000       0.000       2.150
+  | Comm    9:        0.000       0.000       0.000       2.202       0.166       0.001       0.000       0.000       0.000       2.150
+  | Comm   10:        0.000       0.000       0.000       4.167       0.167       0.001       0.000       0.000       0.000       4.128
+  | Comm   11:        0.000       0.000       0.000       4.167       0.166       0.001       0.000       0.000       0.000       4.128
+  | Comm   12:        0.000       0.000       0.000       2.158       0.166       0.001       0.000       0.000       0.000       2.018
+  | Comm   13:        0.000       0.000       0.000       2.158       0.166       0.001       0.000       0.000       0.000       2.018
+  | Comm   14:        0.000       0.000       0.000       4.075       0.167       0.001       0.000       0.000       0.000       3.918
+  | Comm   15:        0.000       0.000       0.000       4.075       0.166       0.001       0.000       0.000       0.000       3.918
+  | Comm   16:        0.000       0.000       0.000       2.027       0.158       0.001       0.000       0.000       0.000       2.093
+  | Comm   17:        0.000       0.000       0.000       2.027       0.158       0.001       0.000       0.000       0.000       2.093
+  | Comm   18:        0.000       0.000       0.000       4.081       0.158       0.001       0.000       0.000       0.000       3.766
+  | Comm   19:        0.000       0.000       0.000       4.081       0.158       0.001       0.000       0.000       0.000       3.767
+  | Comm   20:        0.000       0.000       0.000       2.031       0.158       0.001       0.000       0.000       0.000       2.136
+  | Comm   21:        0.000       0.000       0.000       2.031       0.158       0.001       0.000       0.000       0.000       2.136
+  | Comm   22:        0.000       0.000       0.000       4.141       0.158       0.001       0.000       0.000       0.000       3.940
+  | Comm   23:        0.000       0.000       0.000       4.141       0.158       0.001       0.000       0.000       0.000       3.940
+  | Comm   24:        0.000       0.000       0.000       2.054       0.158       0.001       0.000       0.000       0.000       2.469
+  | Comm   25:        0.000       0.000       0.000       2.054       0.158       0.001       0.000       0.000       0.000       2.469
+  | Comm   26:        0.000       0.000       0.000       4.132       0.158       0.001       0.000       0.000       0.000       3.848
+  | Comm   27:        0.000       0.000       0.000       4.132       0.158       0.001       0.000       0.000       0.000       3.848
+  | Comm   28:        0.000       0.000       0.000       2.063       0.158       0.001       0.000       0.000       0.000       2.170
+  | Comm   29:        0.000       0.000       0.000       2.063       0.158       0.001       0.000       0.000       0.000       2.170
+  | Comm   30:        0.000       0.000       0.000       4.160       0.158       0.001       0.000       0.000       0.000       4.050
+  | Comm   31:        0.000       0.000       0.000       4.160       0.158       0.001       0.000       0.000       0.000       4.050
+  | Comm   32:        0.000       0.001       0.000       1.646       0.147       0.001       0.000       0.000       0.000       1.788
+  | Comm   33:        0.000       0.001       0.000       1.646       0.147       0.001       0.000       0.000       0.000       1.788
+  | Comm   34:        0.000       0.001       0.000       3.702       0.147       0.001       0.000       0.000       0.000       3.661
+  | Comm   35:        0.000       0.001       0.000       3.702       0.148       0.001       0.000       0.000       0.000       3.661
+  | Comm   36:        0.000       0.001       0.000       1.698       0.147       0.001       0.000       0.000       0.000       1.833
+  | Comm   37:        0.000       0.001       0.000       1.698       0.147       0.001       0.000       0.000       0.000       1.833
+  | Comm   38:        0.000       0.001       0.000       3.710       0.147       0.001       0.000       0.000       0.000       3.647
+  | Comm   39:        0.000       0.001       0.000       3.710       0.148       0.001       0.000       0.000       0.000       3.647
+  | Comm   40:        0.000       0.001       0.000       1.615       0.147       0.001       0.000       0.000       0.000       1.781
+  | Comm   41:        0.000       0.001       0.000       1.615       0.147       0.001       0.000       0.000       0.000       1.781
+  | Comm   42:        0.000       0.001       0.000       3.691       0.147       0.001       0.000       0.000       0.000       3.736
+  | Comm   43:        0.000       0.001       0.000       3.691       0.148       0.001       0.000       0.000       0.000       3.736
+  | Comm   44:        0.000       0.001       0.000       1.707       0.147       0.001       0.000       0.000       0.000       1.825
+  | Comm   45:        0.000       0.001       0.000       1.707       0.147       0.001       0.000       0.000       0.000       1.825
+  | Comm   46:        0.000       0.001       0.000       3.680       0.147       0.001       0.000       0.000       0.000       3.737
+  | Comm   47:        0.000       0.001       0.000       3.680       0.148       0.001       0.000       0.000       0.000       3.737
+  | Comm   48:        0.000       0.001       0.000       0.812       0.145       0.001       0.000       0.000       0.000       2.050
+  | Comm   49:        0.000       0.001       0.000       0.812       0.145       0.001       0.000       0.000       0.000       2.050
+  | Comm   50:        0.000       0.001       0.000       2.791       0.145       0.001       0.000       0.000       0.000       4.079
+  | Comm   51:        0.000       0.001       0.000       2.791       0.145       0.001       0.000       0.000       0.000       4.079
+  | Comm   52:        0.000       0.001       0.000       0.820       0.145       0.001       0.000       0.000       0.000       2.025
+  | Comm   53:        0.000       0.001       0.000       0.820       0.145       0.001       0.000       0.000       0.000       2.025
+  | Comm   54:        0.000       0.001       0.000       2.815       0.145       0.001       0.000       0.000       0.000       4.266
+  | Comm   55:        0.000       0.001       0.000       2.815       0.145       0.001       0.000       0.000       0.000       4.266
+  | Comm   56:        0.000       0.001       0.000       0.787       0.145       0.001       0.000       0.000       0.000       1.964
+  | Comm   57:        0.000       0.001       0.000       0.787       0.145       0.001       0.000       0.000       0.000       1.964
+  | Comm   58:        0.000       0.001       0.000       2.561       0.145       0.001       0.000       0.000       0.000       4.096
+  | Comm   59:        0.000       0.001       0.000       2.561       0.145       0.001       0.000       0.000       0.000       4.096
+  | Comm   60:        0.000       0.001       0.000       0.818       0.145       0.001       0.000       0.000       0.000       1.982
+  | Comm   61:        0.000       0.001       0.000       0.818       0.145       0.001       0.000       0.000       0.000       1.982
+  | Comm   62:        0.000       0.001       0.000       2.775       0.145       0.001       0.000       0.000       0.000       4.074
+  | Comm   63:        0.000       0.001       0.000       2.775       0.145       0.001       0.000       0.000       0.000       4.074
+  | Imbalance    0:        0.018       0.000       0.000       0.001     573.024       0.000       0.073       0.000       0.000       0.001
+  | Imbalance    1:        0.156       0.000       0.001      10.521     574.470       0.000       0.070       0.000       0.000      20.164
+  | Imbalance    2:        0.146       0.000       0.001       0.000      61.587       0.000       0.259       0.000       0.000       0.001
+  | Imbalance    3:        0.150       0.000       0.002      12.287      65.488       0.000       0.252       0.000       0.000      15.090
+  | Imbalance    4:        0.018       0.000       0.002       0.001     523.160       0.000       0.058       0.000       0.000       0.742
+  | Imbalance    5:        0.155       0.000       0.002      20.242     534.629       0.000       0.063       0.000       0.000       7.282
+  | Imbalance    6:        0.103       0.000       0.002      12.250      39.407       0.000       0.255       0.000       0.000       5.710
+  | Imbalance    7:        0.158       0.000       0.002       0.000      37.337       0.000       0.253       0.000       0.000       0.448
+  | Imbalance    8:        0.043       0.000       0.000       0.001     544.191       0.000       0.040       0.000       0.000       0.063
+  | Imbalance    9:        0.155       0.000       0.001       8.392     553.586       0.000       0.027       0.000       0.000      14.283
+  | Imbalance   10:        0.080       0.000       0.002       3.173      10.461       0.000       0.230       0.000       0.000       0.462
+  | Imbalance   11:        0.150       0.000       0.001       0.308       0.025       0.000       0.219       0.000       0.000       7.263
+  | Imbalance   12:        0.054       0.000       0.001       0.384     595.074       0.000       0.021       0.000       0.000       0.001
+  | Imbalance   13:        0.156       0.000       0.001       1.753     599.585       0.000       0.012       0.000       0.000      12.377
+  | Imbalance   14:        0.091       0.000       0.000       0.135      29.621       0.000       0.216       0.000       0.000      41.271
+  | Imbalance   15:        0.152       0.000       0.001       3.139      29.525       0.000       0.218       0.000       0.000       0.001
+  | Imbalance   16:        0.054       0.000       0.000       0.000     432.499       0.000       0.059       0.000       0.000       6.843
+  | Imbalance   17:        0.156       0.000       0.001       9.096     431.955       0.000       0.057       0.000       0.000       0.429
+  | Imbalance   18:        0.093       0.000       0.001       0.000      22.414       0.000       0.143       0.000       0.000       0.001
+  | Imbalance   19:        0.149       0.000       0.002       6.207      25.190       0.000       0.138       0.000       0.000       9.180
+  | Imbalance   20:        0.053       0.000       0.001       0.016     443.199       0.000       0.056       0.000       0.000       3.042
+  | Imbalance   21:        0.154       0.000       0.001       4.699     442.032       0.000       0.053       0.000       0.000       0.487
+  | Imbalance   22:        0.098       0.000       0.000       0.000      14.749       0.000       0.136       0.000       0.000       0.115
+  | Imbalance   23:        0.154       0.000       0.002       9.470      14.258       0.000       0.134       0.000       0.000       6.909
+  | Imbalance   24:        0.084       0.000       0.000       0.151     431.931       0.000       0.054       0.000       0.000       0.001
+  | Imbalance   25:        0.160       0.000       0.002       3.252     441.972       0.000       0.054       0.000       0.000      38.955
+  | Imbalance   26:        0.093       0.000       0.001       0.000      15.642       0.000       0.130       0.000       0.000       9.917
+  | Imbalance   27:        0.151       0.000       0.000      13.384      23.193       0.000       0.133       0.000       0.000       0.001
+  | Imbalance   28:        0.067       0.000       0.001       8.122     449.983       0.000       0.053       0.000       0.000       6.891
+  | Imbalance   29:        0.153       0.000       0.001       0.000     437.888       0.000       0.052       0.000       0.000       0.212
+  | Imbalance   30:        0.082       0.000       0.001       4.756       3.741       0.000       0.134       0.000       0.000       1.944
+  | Imbalance   31:        0.154       0.000       0.001       0.676       0.136       0.000       0.133       0.000       0.000       4.013
+  | Imbalance   32:        0.140       0.000       0.000       6.534     254.975       0.000       0.216       0.000       0.000       7.720
+  | Imbalance   33:        0.140       0.000       0.000       0.146     254.833       0.000       0.214       0.000       0.000       0.523
+  | Imbalance   34:        0.003       0.000       0.000       7.559      14.753       0.000       0.061       0.000       0.000       1.026
+  | Imbalance   35:        0.133       0.000       0.001       1.003      13.965       0.000       0.062       0.000       0.000       5.396
+  | Imbalance   36:        0.120       0.000       0.000       0.016     222.872       0.000       0.213       0.000       0.000       0.011
+  | Imbalance   37:        0.140       0.000       0.001       1.876     225.633       0.000       0.212       0.000       0.000      14.093
+  | Imbalance   38:        0.062       0.000       0.000       0.000      11.589       0.000       0.057       0.000       0.000       9.251
+  | Imbalance   39:        0.135       0.000       0.000      14.904      16.647       0.000       0.059       0.000       0.000       0.080
+  | Imbalance   40:        0.100       0.000       0.001       4.307     258.876       0.000       0.198       0.000       0.000       0.294
+  | Imbalance   41:        0.141       0.000       0.000       0.267     265.486       0.000       0.197       0.000       0.000      12.177
+  | Imbalance   42:        0.062       0.000       0.000       0.000       1.489       0.000       0.021       0.000       0.000       0.001
+  | Imbalance   43:        0.135       0.000       0.001       3.554       2.895       0.000       0.026       0.000       0.000      37.254
+  | Imbalance   44:        0.091       0.000       0.000       0.000     250.746       0.000       0.197       0.000       0.000       6.319
+  | Imbalance   45:        0.139       0.000       0.001      10.449     253.272       0.000       0.196       0.000       0.000       2.070
+  | Imbalance   46:        0.082       0.000       0.000       6.647       6.009       0.000       0.009       0.000       0.000       0.000
+  | Imbalance   47:        0.136       0.000       0.001       1.031       6.783       0.000       0.011       0.000       0.000      20.739
+  | Imbalance   48:        0.122       0.000       0.001       0.395      79.823       0.000       0.135       0.000       0.000       0.000
+  | Imbalance   49:        0.123       0.000       0.001       0.306      81.505       0.000       0.133       0.000       0.000       9.359
+  | Imbalance   50:        0.040       0.000       0.000       0.000      10.538       0.000       0.008       0.000       0.000       6.913
+  | Imbalance   51:        0.117       0.000       0.000       3.601      13.302       0.000       0.009       0.000       0.000       0.000
+  | Imbalance   52:        0.108       0.000       0.000       0.397      81.573       0.000       0.132       0.000       0.000       0.000
+  | Imbalance   53:        0.123       0.000       0.001       0.112      81.514       0.000       0.134       0.000       0.000      16.809
+  | Imbalance   54:        0.042       0.000       0.000       0.000       0.311       0.000       0.004       0.000       0.000       0.000
+  | Imbalance   55:        0.117       0.000       0.001       2.253       0.465       0.000       0.007       0.000       0.000       8.934
+  | Imbalance   56:        0.093       0.000       0.000       0.345      95.330       0.000       0.135       0.000       0.000       1.892
+  | Imbalance   57:        0.122       0.000       0.000       0.130      96.080       0.000       0.130       0.000       0.000       1.979
+  | Imbalance   58:        0.058       0.000       0.000       0.693       8.940       0.000       0.003       0.000       0.000      14.267
+  | Imbalance   59:        0.118       0.000       0.000       2.281       9.242       0.000       0.013       0.000       0.000       0.000
+  | Imbalance   60:        0.080       0.000       0.000       0.027      84.131       0.000       0.133       0.000       0.000       0.000
+  | Imbalance   61:        0.122       0.000       0.001       0.228      86.246       0.000       0.132       0.000       0.000      17.347
+  | Imbalance   62:        0.073       0.000       0.000       0.000       9.257       0.000       0.006       0.000       0.000       0.000
+  | Imbalance   63:        0.120       0.000       0.000       2.899      13.109       0.000       0.011       0.000       0.000      10.592
+  Times            DM_x_o3fn   CM_prod_1   CM_prod_2   tmp2_prod        Sync   Imbalance       Other  Total calc
+  | Times    0:      432.861    1143.272     100.810     458.441       4.272     573.117       2.653    2715.426
+  | Times    1:      422.343    1125.671      98.291     456.979       4.272     605.381       2.488    2715.425
+  | Times    2:      489.204    1598.946     120.687     433.298       8.072      61.994       3.224    2715.425
+  | Times    3:      476.918    1576.362     128.125     429.376       8.073      93.268       3.305    2715.425
+  | Times    4:      455.252    1151.920     105.737     471.083       4.749     523.981       2.703    2715.425
+  | Times    5:      435.005    1146.050     105.081     459.645       4.749     562.373       2.523    2715.425
+  | Times    6:      485.874    1608.027     122.160     430.116       8.227      57.728       3.295    2715.427
+  | Times    7:      498.125    1613.977     121.451     432.176       8.227      38.199       3.272    2715.427
+  | Times    8:      449.204    1140.629     101.749     472.329       4.520     544.338       2.657    2715.426
+  | Times    9:      440.812    1126.341     101.837     462.927       4.520     576.443       2.544    2715.425
+  | Times   10:      511.171    1626.099     127.777     424.132       8.463      14.408       3.379    2715.428
+  | Times   11:      514.037    1624.530     122.508     434.539       8.463       7.966       3.384    2715.426
+  | Times   12:      426.010    1121.660     105.138     460.089       4.343     595.533       2.651    2715.424
+  | Times   13:      424.642    1112.054     102.403     455.589       4.343     613.884       2.511    2715.425
+  | Times   14:      507.900    1577.890     120.509     426.299       8.161      71.335       3.332    2715.426
+  | Times   15:      504.896    1620.887     118.756     426.379       8.161      33.035       3.312    2715.426
+  | Times   16:      283.430     937.293      83.981     448.543       4.280     439.456     518.443    2715.425
+  | Times   17:      274.336     939.381      88.327     449.079       4.280     441.694     518.329    2715.426
+  | Times   18:      328.447    1315.601     112.071     409.410       8.007      22.652     519.239    2715.427
+  | Times   19:      322.236    1303.718     114.790     406.644       8.007      40.866     519.163    2715.425
+  | Times   20:      284.002     930.140      81.609     450.573       4.326     446.367     518.409    2715.426
+  | Times   21:      279.319     930.461      83.841     451.739       4.326     447.426     518.312    2715.425
+  | Times   22:      328.670    1323.022     112.414     408.710       8.241      15.100     519.270    2715.427
+  | Times   23:      319.201    1317.967     110.687     409.207       8.241      30.926     519.198    2715.426
+  | Times   24:      284.787     935.620      85.318     454.434       4.682     432.221     518.364    2715.426
+  | Times   25:      281.686     883.871      98.122     444.389       4.682     484.394     518.281    2715.425
+  | Times   26:      335.679    1291.413     120.739     414.401       8.140      25.783     519.269    2715.426
+  | Times   27:      322.295    1311.015     111.051     406.866       8.140      36.863     519.197    2715.427
+  | Times   28:      279.928     913.124      90.072     444.420       4.392     465.116     518.375    2715.427
+  | Times   29:      288.051     925.456      84.418     456.503       4.392     438.306     518.299    2715.425
+  | Times   30:      328.132    1329.733     116.459     402.752       8.370      10.656     519.321    2715.424
+  | Times   31:      332.208    1328.955     115.150     406.385       8.370       5.112     519.247    2715.427
+  | Times   32:      162.817     430.346      70.593     323.910       3.583     269.586    1454.589    2715.425
+  | Times   33:      169.206     438.810      69.349     324.055       3.584     255.856    1454.565    2715.425
+  | Times   34:      197.580     633.730     101.903     295.458       7.512      23.401    1455.842    2715.425
+  | Times   35:      204.136     631.686      99.589     296.249       7.512      20.558    1455.694    2715.425
+  | Times   36:      171.527     454.188      80.507     327.662       3.680     223.232    1454.629    2715.425
+  | Times   37:      169.668     445.053      75.575     324.903       3.680     241.955    1454.591    2715.424
+  | Times   38:      208.094     619.227     104.808     299.048       7.506      20.959    1455.784    2715.425
+  | Times   39:      193.191     632.667     100.558     294.029       7.506      31.826    1455.647    2715.425
+  | Times   40:      163.775     432.505      70.156     327.045       3.545     263.776    1454.622    2715.424
+  | Times   41:      167.816     411.797      78.995     320.445       3.546     278.268    1454.558    2715.425
+  | Times   42:      206.837     646.131     102.965     294.485       7.576       1.573    1455.857    2715.425
+  | Times   43:      203.283     606.013     105.842     293.093       7.576      43.865    1455.754    2715.425
+  | Times   44:      173.429     435.813      61.552     328.935       3.682     257.355    1454.659    2715.425
+  | Times   45:      162.980     430.825      70.814     326.395       3.682     266.127    1454.603    2715.425
+  | Times   46:      198.013     653.886      91.489     295.850       7.566      12.747    1455.873    2715.425
+  | Times   47:      203.630     625.102      99.562     295.080       7.567      28.701    1455.783    2715.425
+  | Times   48:       15.500     214.621      54.291     189.947       3.009      80.477    2157.580    2715.425
+  | Times   49:       15.590     211.386      48.170     188.276       3.009      91.427    2157.568    2715.426
+  | Times   50:       21.764     289.548      82.322     138.483       7.017      17.499    2158.791    2715.425
+  | Times   51:       18.163     299.455      79.324     135.735       7.017      17.031    2158.700    2715.425
+  | Times   52:       15.277     213.914      53.590     189.836       2.991      82.211    2157.606    2715.426
+  | Times   53:       15.562     196.210      54.482     189.900       2.991      98.693    2157.586    2715.425
+  | Times   54:       21.204     307.712      84.882     135.251       7.228       0.357    2158.793    2715.425
+  | Times   55:       18.951     303.086      80.565     135.074       7.228      11.777    2158.745    2715.425
+  | Times   56:       15.382     193.033      60.185     188.582       2.897      97.795    2157.552    2715.426
+  | Times   57:       15.598     204.704      48.429     187.837       2.897      98.442    2157.518    2715.425
+  | Times   58:       20.799     283.248      85.538     136.314       6.803      23.961    2158.762    2715.425
+  | Times   59:       19.211     310.372      72.665     136.041       6.804      11.656    2158.677    2715.426
+  | Times   60:       15.332     211.722      54.179     189.270       2.946      84.372    2157.603    2715.425
+  | Times   61:       15.131     192.295      56.253     187.165       2.946     104.077    2157.558    2715.426
+  | Times   62:       21.618     300.128      81.611     136.980       6.996       9.337    2158.755    2715.425
+  | Times   63:       18.720     286.449      84.695     133.161       6.996      26.732    2158.671    2715.424
+  | Times  sum:    15586.443   52376.748    5877.506   21561.947     371.570   11851.550   66161.465  173787.230
+
+  Decomposition of Other based on code block (only on MPI task 0):
+  Times             Block #1    Block #2    Block #3    Block #4    Block #5    Block #6    Block #7    Block #8
+  | Times    0:        0.250       0.001       0.070       0.005       0.021       0.003       0.335       0.001
+
+  Times             Block #9   Block #10   Block #11   Block #12   Block #13   Block #14   Block #15   Block #16
+  | Times    0:        0.078       0.000       0.627       0.035       0.000       0.160       0.045       0.071
+
+  Times            Block Sum    Expected
+  | Times    0:        1.703       2.653
+  Time for Fock matrix mixing     0.119
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the (modified) LAPACK eigensolver.
+  Singularity check in k-point 64, task 0:
+  Overlap matrix is singular
+  | Lowest and highest eigenvalues :  0.3360E-05,  0.2534E+02
+  | Number of basis functions reduced to :       260
+  Finished singularity check of overlap matrix
+  | Time :     0.011 s
+  Starting LAPACK eigensolver
+  Finished transformation to standard eigenproblem
+  | Time :     0.004 s
+  Finished solving standard eigenproblem
+  | Time :     0.006 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.001 s
+
+  Obtaining occupation numbers and electronic chemical potential using ELSI.
+  | Note that, for insulating systems, the printed 'chemical potential' value is not uniquely defined.
+  | It can be anywhere in the energy gap, as long as it correctly separates occupied and unoccupied states.
+  | In systems with a gap, the physically relevant chemical potential is the VBM or HOMO.
+
+  | Chemical potential (Fermi level):   -12.01815478 eV
+  Writing Kohn-Sham eigenvalues.
+  K-point:       1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000         -25.285401         -688.05078
+      2       2.00000         -25.285401         -688.05078
+      3       2.00000         -25.285401         -688.05076
+      4       2.00000         -25.285366         -688.04983
+      5       2.00000          -2.281876          -62.09300
+      6       2.00000          -2.274600          -61.89502
+      7       2.00000          -2.274600          -61.89501
+      8       2.00000          -2.274592          -61.89481
+      9       2.00000          -1.636518          -44.53192
+     10       2.00000          -1.604030          -43.64787
+     11       2.00000          -1.604029          -43.64786
+     12       2.00000          -1.604024          -43.64771
+     13       2.00000          -0.958263          -26.07567
+     14       2.00000          -0.958262          -26.07564
+     15       2.00000          -0.958260          -26.07559
+     16       2.00000          -0.862225          -23.46234
+     17       2.00000          -0.862224          -23.46232
+     18       2.00000          -0.862223          -23.46227
+     19       2.00000          -0.862222          -23.46226
+     20       2.00000          -0.862220          -23.46219
+     21       2.00000          -0.862219          -23.46217
+     22       2.00000          -0.812981          -22.12235
+     23       2.00000          -0.812978          -22.12225
+     24       2.00000          -0.812977          -22.12224
+     25       0.00000          -0.070463           -1.91738
+     26       0.00000           0.156781            4.26623
+     27       0.00000           0.156783            4.26627
+     28       0.00000           0.156789            4.26646
+     29       0.00000           0.173671            4.72582
+     30       0.00000           0.173671            4.72582
+     31       0.00000           0.173675            4.72593
+     32       0.00000           0.287757            7.83027
+     33       0.00000           0.287797            7.83137
+     34       0.00000           0.287815            7.83185
+     35       0.00000           0.394806           10.74323
+     36       0.00000           0.394807           10.74324
+     37       0.00000           0.394809           10.74329
+     38       0.00000           0.394809           10.74331
+     39       0.00000           0.394811           10.74335
+     40       0.00000           0.394813           10.74341
+     41       0.00000           0.511327           13.91392
+     42       0.00000           0.511361           13.91484
+
+  What follows are estimated values for band gap, HOMO, LUMO, etc.
+  | They are estimated on a discrete k-point grid and not necessarily exact.
+  | For converged numbers, create a DOS and/or band structure plot on a denser k-grid.
+
+  Highest occupied state (VBM) at    -22.11892737 eV (relative to internal zero)
+  | Occupation number:      2.00000000
+  | K-point:     347 at    0.888889    0.000000    0.888889 (in units of recip. lattice)
+
+  Lowest unoccupied state (CBM) at    -1.91738219 eV (relative to internal zero)
+  | Occupation number:      0.00000000
+  | K-point:       1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+
+  The gap value is above 0.2 eV. Unless you are using a very sparse k-point grid,
+  this system is most likely an insulator or a semiconductor.
+  ESTIMATED overall HOMO-LUMO gap:     20.20154518 eV between HOMO at k-point 347 and LUMO at k-point 1
+  | This appears to be an indirect band gap.
+  | Smallest direct gap :     20.20485365 eV for k_point 1 at    0.000000    0.000000    0.000000 (in units of recip. lattice)
+
+  Total energy components:
+  | Sum of eigenvalues            :        -254.27658959 Ha       -6919.21804877 eV
+  | XC energy correction          :         -22.22018172 Ha        -604.64190832 eV
+  | XC potential correction       :          49.38859648 Ha        1343.93208880 eV
+  | Free-atom electrostatic energy:        -203.70601730 Ha       -5543.12276175 eV
+  | Hartree energy correction     :          -0.12498643 Ha          -3.40105367 eV
+  | Entropy correction            :          -0.00000000 Ha          -0.00000000 eV
+  | ---------------------------
+  | Total energy                  :        -430.93917855 Ha      -11726.45168372 eV
+  | Total energy, T -> 0          :        -430.93917855 Ha      -11726.45168372 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :        -430.93917855 Ha      -11726.45168372 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :         430.02578164 Ha       11701.59688925 eV
+  | Electrostatic energy          :        -811.04724568 Ha      -22069.71844986 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00012770 Ha           0.00347502 eV
+  | Sum of eigenvalues per atom                           :        -864.90225610 eV
+  | Total energy (T->0) per atom                          :       -1465.80646047 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :       -1465.80646047 eV
+  Evaluating new KS density using the density matrix
+  Evaluating density matrix
+  Time summed over all CPUs for getting density from density matrix: real work      542.255 s, elapsed      572.016 s
+  Integration grid: deviation in total charge (<rho> - N_e) =   2.842171E-14
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1551E+00
+  | Change of unmixed KS density  :  0.2233E+02
+  | Change of sum of eigenvalues  : -0.6889E+03 eV
+  | Change of total energy        : -0.3753E+03 eV
+
+
+------------------------------------------------------------
+  End self-consistency iteration #     1       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                     :     3267.797 s        3267.824 s
+  | Charge density update                       :        9.068 s           9.068 s
+  | Density mixing                              :        0.002 s           0.001 s
+  | Hartree multipole update                    :        0.013 s           0.013 s
+  | Hartree multipole summation                 :        0.149 s           0.149 s
+  | Integration                                 :        5.887 s           5.889 s
+  | Fock matrix evaluation                      :     3252.422 s        3252.447 s
+  | Solution of K.-S. eqns.                     :        0.253 s           0.253 s
+  | Total energy evaluation                     :        0.000 s           0.000 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage:
+  |   Minimum:      934.631 MB (on task 60)
+  |   Maximum:     1169.528 MB (on task 38)
+  |   Average:     1049.053 MB
+  | Peak value for overall tracked memory usage:
+  |   Minimum:     1347.191 MB (on task 52 after allocating ovlp3fn2%n)
+  |   Maximum:     1871.269 MB (on task 14 after allocating ovlp3fn2%n)
+  |   Average:     1644.251 MB
+  | Largest tracked array allocation so far:
+  |   Minimum:      858.190 MB (ovlp3fn2%dat on task 12)
+  |   Maximum:     1092.581 MB (ovlp3fn2%dat on task  6)
+  |   Average:      972.362 MB
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    2
+
+  Date     :  20260720, Time     :  135944.704
+------------------------------------------------------------
+  Pulay mixing of updated and previous charge densities.
+  Available memory per node after mixing [GB]:    792.60
+  Renormalizing the density to the exact electron count on the 3D integration grid.
+  | Formal number of electrons (from input files) :      48.0000000000
+  | Integrated number of electrons on 3D grid     :      48.0000000000
+  | Charge integration error                      :      -0.0000000000
+  | Normalization factor for density and gradient :       1.0000000000
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Original multipole sum: apparent total charge =  -0.163890E-13
+  | Sum of charges compensated after spline to logarithmic grids =   0.450656E-07
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =  -0.163498E-13
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.129 s, elapsed        0.141 s
+  | RMS charge density error from multipole expansion :   0.535248E-03
+  | Average real-space part of the electrostatic potential :      0.01208335 eV
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work      354.363 s, elapsed      373.741 s
+  Calculating non-local Hartree-Fock exchange by two-center RI (RI-LVL).
+  screening_threshold (crit_val) =  0.000000100000
+  Exact exchange progress report - outermost block loop i_block: 1 ..      12
+  |        1         2         3
