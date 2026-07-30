@@ -1,27 +1,9 @@
 """
-Create a three-column structural figure containing:
+Create a compact 2x4 grid figure with:
 
-Column 1: Dimers
-    - III-V semiconductors
-    - Diamond-type covalent solids
-    - Rock-salt ionic solids
-
-Column 2: Bulk solids
-    - III-V semiconductors
-    - Diamond-type covalent solids
-    - Rock-salt ionic solids
-
-Column 3: ROY polymorphs
-    - Y
-    - YT04
-    - R
-    - OP
-    - YN
-    - ON
-    - ORP
-
-Each subtitle occupies its own grid row so that it does not overlap
-the main title of the column.
+    Row 1: One dimer from each category (III-V, diamond-type, rock-salt)
+    Row 2: One bulk solid from each category (III-V, diamond-type, rock-salt)
+    Right column (both rows): One ROY polymorph
 
 Required packages:
     pip install ase matplotlib
@@ -31,7 +13,6 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from matplotlib.patches import FancyBboxPatch
 
 from ase.io import read
 from ase.visualize.plot import plot_atoms
@@ -43,83 +24,33 @@ from ase.visualize.plot import plot_atoms
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-# Existing FHI-aims directories and the molecular .xyz files are located
-# beneath /mnt/ceph/users/cwoodson/dft_calc.
 DFT_CALC_DIR = Path("/mnt/ceph/users/cwoodson/dft_calc")
 XYZ_ROOT = DFT_CALC_DIR
-
-# The ROY .extxyz files are located in the same DFT directory as this script:
-# /mnt/ceph/users/cwoodson/DFTProject/DFT.
 EXTXYZ_ROOT = SCRIPT_DIR
 
 DIMER_DIR = DFT_CALC_DIR / "diatomics" / "dimer_jobs"
 BULK_DIR = DFT_CALC_DIR / "latbulk" / "eos_jobs"
 
-OUTPUT_FILE = SCRIPT_DIR / "dimers_bulk_and_roy_structures.png"
+OUTPUT_FILE = SCRIPT_DIR / "representative_structures.png"
 
 DPI = 200
 
-
-# =============================================================================
-# Structure groups
-# =============================================================================
-
-DIMER_GROUPS = {
-    "III-V molecular analogues": [
-        ("AlH$_3$PH$_3$", "AlH3PH3"),
-        ("BH$_3$PH$_3$", "BH3PH3"),
-        ("BH$_3$NH$_3$", "BH3NH3"),
-    ],
-    "Diamond-type molecular analogues": [
-        ("CH$_3$SiH$_3$", "CH3SiH3"),
-        ("Ethane", "C2H6"),
-        ("Disilane", "Si2H6"),
-    ],
-    "Rock-salt ionic solids": [
-        ("LiCl dimer", "LiCl"),
-        ("LiF dimer", "LiF"),
-        ("NaCl dimer", "NaCl"),
-        ("NaF dimer", "NaF"),
-        ("MgO dimer", "MgO"),
-        ("MgS dimer", "MgS"),
-    ],
-}
-
-BULK_GROUPS = {
-    "III-V semiconductors": [
-        ("AlP", "AlP"),
-        ("BP", "BP"),
-        ("BN", "BN"),
-    ],
-    "Diamond-type covalent solids": [
-        ("SiC", "SiC"),
-        ("C", "C"),
-        ("Si", "Si"),
-    ],
-    "Rock-salt ionic solids": [
-        ("LiCl", "LiCl"),
-        ("LiF", "LiF"),
-        ("NaCl", "NaCl"),
-        ("NaF", "NaF"),
-        ("MgO", "MgO"),
-        ("MgS", "MgS"),
-    ],
-}
-
-ROY_POLYMORPHS = [
-    ("Y", "Y"),
-    ("YT04", "YT04"),
-    ("R", "R"),
-    ("OP", "OP"),
-    ("YN", "YN"),
-    ("ON", "ON"),
-    ("ORP", "ORP"),
+# Top row: one dimer per category.
+DIMER_STRUCTURES = [
+    ("III–V dimer", "BH$_3$NH$_3$", "BH3NH3"),
+    ("Diamond-type dimer", "Ethane", "C2H6"),
+    ("Rock-salt dimer", "NaCl dimer", "NaCl"),
 ]
 
+# Bottom row: one bulk solid per category.
+BULK_STRUCTURES = [
+    ("III–V solid", "BN", "BN"),
+    ("Diamond-type solid", "Si", "Si"),
+    ("Rock-salt solid", "NaCl", "NaCl"),
+]
 
-# =============================================================================
-# Plot settings
-# =============================================================================
+# Right column: one ROY polymorph, spanning both rows.
+ROY_STRUCTURE = ("ROY polymorph", "Y", "Y")
 
 DIMER_ROTATION = "10x,20y,0z"
 BULK_ROTATION = "10x,20y,0z"
@@ -134,9 +65,8 @@ BULK_SCALE = 0.90
 ROY_SCALE = 0.82
 
 # Sized for direct placement on a 48 x 36 inch poster.
-STRUCTURE_TITLE_FONT_SIZE = 24
-GROUP_FONT_SIZE = 30
-SECTION_FONT_SIZE = 40
+TITLE_FONT_SIZE = 30
+LABEL_FONT_SIZE = 24
 MISSING_FONT_SIZE = 20
 
 
@@ -159,12 +89,6 @@ def first_existing_path(candidates):
 def find_structure_by_name(root, structure_name, suffixes):
     """
     Find a structure file whose filename contains the requested name.
-
-    Matching is case-insensitive and only files with one of the requested
-    extensions are considered. An exact filename stem is preferred, followed
-    by filenames that begin with the structure name, and then any filename
-    containing the structure name. Shallower paths are preferred when matches
-    have the same filename quality.
     """
 
     if not root.is_dir():
@@ -219,13 +143,6 @@ XYZ_ONLY_DIMER_NAMES = {
 def find_dimer_structure(system_name):
     """
     Locate the requested molecular or ionic-dimer geometry.
-
-    The molecular analogues, ethane, and disilane must come from a matching
-    .xyz file beneath /mnt/ceph/users/cwoodson/DFTProject/DFT. For those six
-    systems, geometry.in is deliberately never used as a fallback.
-
-    The ionic dimers may still fall back to their existing geometry.in files
-    when no matching XYZ/EXTXYZ file is available.
     """
 
     xyz_file = find_structure_by_name(
@@ -244,7 +161,6 @@ def find_dimer_structure(system_name):
         )
         return None
 
-    # Only ionic dimers are allowed to use geometry.in as a fallback.
     system_dir = DIMER_DIR / system_name
 
     candidates = [
@@ -337,8 +253,6 @@ def find_roy_structure(polymorph_name):
 def read_structure(structure_file):
     """
     Read an ASE-supported structure file.
-
-    For an FHI-aims output file, the final available structure is read.
     """
 
     if structure_file is None:
@@ -365,8 +279,6 @@ def read_structure(structure_file):
 def prepare_dimer_for_plotting(atoms, vacuum=7.0):
     """
     Place a nonperiodic dimer or molecule inside a cubic plotting cell.
-
-    This cell is only used for visualization.
     """
 
     atoms = atoms.copy()
@@ -433,7 +345,7 @@ def clear_axis(axis):
         spine.set_visible(False)
 
 
-def show_missing_structure(axis, label):
+def show_missing_structure(axis, title, label):
     """
     Display a warning when a structure file cannot be found or read.
     """
@@ -448,33 +360,38 @@ def show_missing_structure(axis, label):
         va="center",
         transform=axis.transAxes,
         fontsize=MISSING_FONT_SIZE,
+        fontweight="bold",
         color="crimson",
     )
 
     axis.set_title(
+        title,
+        fontsize=TITLE_FONT_SIZE,
+        fontweight="bold",
+        pad=10,
+    )
+
+    axis.text(
+        0.5,
+        -0.05,
         label,
-        fontsize=STRUCTURE_TITLE_FONT_SIZE,
-        pad=3,
+        ha="center",
+        va="top",
+        transform=axis.transAxes,
+        fontsize=LABEL_FONT_SIZE,
+        fontweight="bold",
     )
 
 
-def plot_structure(
-    axis,
-    atoms,
-    label,
-    rotation,
-    radii,
-    scale,
-    show_cell,
-):
+def plot_structure(axis, atoms, title, label, rotation, radii, scale):
     """
-    Plot one ASE Atoms object.
+    Plot one ASE Atoms object with a bold title and a bold label below it.
     """
 
     clear_axis(axis)
 
     if atoms is None:
-        show_missing_structure(axis, label)
+        show_missing_structure(axis, title, label)
         return
 
     try:
@@ -484,539 +401,78 @@ def plot_structure(
             rotation=rotation,
             radii=radii,
             scale=scale,
-            show_unit_cell=show_cell,
+            show_unit_cell=2,
         )
 
         axis.set_title(
+            title,
+            fontsize=TITLE_FONT_SIZE,
+            fontweight="bold",
+            pad=10,
+        )
+
+        axis.text(
+            0.5,
+            -0.05,
             label,
-            fontsize=STRUCTURE_TITLE_FONT_SIZE,
-            pad=3,
+            ha="center",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=LABEL_FONT_SIZE,
+            fontweight="bold",
         )
 
         axis.set_aspect("equal")
         clear_axis(axis)
 
     except Exception as error:
-        print(f"[WARN] Could not plot {label}: {error}")
-        show_missing_structure(axis, label)
+        print(f"[WARN] Could not plot {title}: {error}")
+        show_missing_structure(axis, title, label)
 
 
-def format_subtitle_axis(axis, title):
+def load_and_plot(axis, title, label, system_name, kind):
     """
-    Format a dedicated grid row as a gray category subtitle.
-
-    Using a real grid row prevents the subtitle from overlapping
-    the main panel title.
+    Locate, read, and plot one structure of the requested kind.
     """
 
-    axis.set_facecolor("0.96")
-
-    axis.text(
-        0.5,
-        0.5,
-        title,
-        ha="center",
-        va="center",
-        transform=axis.transAxes,
-        fontsize=GROUP_FONT_SIZE,
-        fontweight="bold",
-    )
-
-    axis.set_xticks([])
-    axis.set_yticks([])
-
-    for spine in axis.spines.values():
-        spine.set_visible(True)
-        spine.set_linewidth(0.5)
-        spine.set_edgecolor("0.65")
-
-
-def add_panel_border(
-    figure,
-    structure_axes,
-    subtitle_axes,
-    title,
-    title_height=0.026,
-    title_gap=0.007,
-    padding=0.006,
-):
-    """
-    Add a rounded border and main title around a complete column.
-
-    The subtitle axes are included when calculating the panel bounds.
-    Extra vertical space is reserved above the highest subtitle for
-    the main panel title.
-    """
-
-    all_axes = list(structure_axes) + list(subtitle_axes)
-    positions = [axis.get_position() for axis in all_axes]
-
-    left = min(position.x0 for position in positions) - padding
-    right = max(position.x1 for position in positions) + padding
-    bottom = min(position.y0 for position in positions) - padding
-
-    content_top = max(position.y1 for position in positions)
-
-    title_bottom = content_top + title_gap
-    top = title_bottom + title_height + padding
-
-    border = FancyBboxPatch(
-        (left, bottom),
-        right - left,
-        top - bottom,
-        boxstyle="round,pad=0.004",
-        linewidth=1.2,
-        edgecolor="black",
-        facecolor="none",
-        transform=figure.transFigure,
-        clip_on=False,
-        zorder=10,
-    )
-
-    figure.add_artist(border)
-
-    figure.text(
-        0.5 * (left + right),
-        title_bottom + 0.5 * title_height,
-        title,
-        ha="center",
-        va="center",
-        fontsize=SECTION_FONT_SIZE,
-        fontweight="bold",
-        zorder=11,
-    )
-
-
-# =============================================================================
-# Dimer column
-# =============================================================================
-
-def create_dimer_panel(figure, parent_spec):
-    """
-    Create the first column containing the dimer structures.
-    """
-
-    panel_grid = gridspec.GridSpecFromSubplotSpec(
-        6,
-        3,
-        subplot_spec=parent_spec,
-        height_ratios=[
-            0.16,
-            1.00,
-            0.16,
-            1.00,
-            0.16,
-            2.00,
-        ],
-        hspace=0.14,
-        wspace=0.08,
-    )
-
-    all_axes = []
-    subtitle_axes = []
-
-    # -------------------------------------------------------------------------
-    # III-V semiconductors
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[0, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "III–V molecular analogues",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "III-V molecular analogues"
-
-    for column, (label, system_name) in enumerate(
-        DIMER_GROUPS[group_name]
-    ):
-        axis = figure.add_subplot(
-            panel_grid[1, column]
-        )
-
+    if kind == "dimer":
         structure_file = find_dimer_structure(system_name)
         atoms = read_structure(structure_file)
 
         if atoms is not None:
             atoms = prepare_dimer_for_plotting(atoms)
 
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=DIMER_ROTATION,
-            radii=DIMER_RADII,
-            scale=DIMER_SCALE,
-            show_cell=2,
-        )
+        rotation, radii, scale = DIMER_ROTATION, DIMER_RADII, DIMER_SCALE
 
-        all_axes.append(axis)
-
-        print(f"Dimer {system_name:>6}: {structure_file}")
-
-    # -------------------------------------------------------------------------
-    # Diamond-type covalent solids
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[2, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "Diamond-type molecular analogues",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "Diamond-type molecular analogues"
-
-    for column, (label, system_name) in enumerate(
-        DIMER_GROUPS[group_name]
-    ):
-        axis = figure.add_subplot(
-            panel_grid[3, column]
-        )
-
-        structure_file = find_dimer_structure(system_name)
-        atoms = read_structure(structure_file)
-
-        if atoms is not None:
-            atoms = prepare_dimer_for_plotting(atoms)
-
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=DIMER_ROTATION,
-            radii=DIMER_RADII,
-            scale=DIMER_SCALE,
-            show_cell=2,
-        )
-
-        all_axes.append(axis)
-
-        print(f"Dimer {system_name:>6}: {structure_file}")
-
-    # -------------------------------------------------------------------------
-    # Rock-salt ionic solids
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[4, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "Rock-salt ionic solids",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "Rock-salt ionic solids"
-
-    rock_salt_grid = gridspec.GridSpecFromSubplotSpec(
-        2,
-        3,
-        subplot_spec=panel_grid[5, :],
-        hspace=0.16,
-        wspace=0.08,
-    )
-
-    for index, (label, system_name) in enumerate(
-        DIMER_GROUPS[group_name]
-    ):
-        row = index // 3
-        column = index % 3
-
-        axis = figure.add_subplot(
-            rock_salt_grid[row, column]
-        )
-
-        structure_file = find_dimer_structure(system_name)
-        atoms = read_structure(structure_file)
-
-        if atoms is not None:
-            atoms = prepare_dimer_for_plotting(atoms)
-
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=DIMER_ROTATION,
-            radii=DIMER_RADII,
-            scale=DIMER_SCALE,
-            show_cell=2,
-        )
-
-        all_axes.append(axis)
-
-        print(f"Dimer {system_name:>6}: {structure_file}")
-
-    return all_axes, subtitle_axes
-
-
-# =============================================================================
-# Bulk-solid column
-# =============================================================================
-
-def create_bulk_panel(figure, parent_spec):
-    """
-    Create the second column containing the bulk-solid structures.
-    """
-
-    panel_grid = gridspec.GridSpecFromSubplotSpec(
-        6,
-        3,
-        subplot_spec=parent_spec,
-        height_ratios=[
-            0.16,
-            1.00,
-            0.16,
-            1.00,
-            0.16,
-            2.00,
-        ],
-        hspace=0.14,
-        wspace=0.08,
-    )
-
-    all_axes = []
-    subtitle_axes = []
-
-    # -------------------------------------------------------------------------
-    # III-V semiconductors
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[0, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "III–V semiconductors",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "III-V semiconductors"
-
-    for column, (label, system_name) in enumerate(
-        BULK_GROUPS[group_name]
-    ):
-        axis = figure.add_subplot(
-            panel_grid[1, column]
-        )
-
+    elif kind == "bulk":
         structure_file = find_bulk_structure(system_name)
         atoms = read_structure(structure_file)
 
         if atoms is not None:
             atoms = prepare_periodic_structure(atoms)
 
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=BULK_ROTATION,
-            radii=BULK_RADII,
-            scale=BULK_SCALE,
-            show_cell=2,
-        )
+        rotation, radii, scale = BULK_ROTATION, BULK_RADII, BULK_SCALE
 
-        all_axes.append(axis)
-
-        print(f"Bulk  {system_name:>6}: {structure_file}")
-
-    # -------------------------------------------------------------------------
-    # Diamond-type covalent solids
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[2, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "Diamond-type covalent solids",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "Diamond-type covalent solids"
-
-    for column, (label, system_name) in enumerate(
-        BULK_GROUPS[group_name]
-    ):
-        axis = figure.add_subplot(
-            panel_grid[3, column]
-        )
-
-        structure_file = find_bulk_structure(system_name)
+    else:  # roy
+        structure_file = find_roy_structure(system_name)
         atoms = read_structure(structure_file)
 
         if atoms is not None:
             atoms = prepare_periodic_structure(atoms)
 
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=BULK_ROTATION,
-            radii=BULK_RADII,
-            scale=BULK_SCALE,
-            show_cell=2,
-        )
+        rotation, radii, scale = ROY_ROTATION, ROY_RADII, ROY_SCALE
 
-        all_axes.append(axis)
-
-        print(f"Bulk  {system_name:>6}: {structure_file}")
-
-    # -------------------------------------------------------------------------
-    # Rock-salt ionic solids
-    # -------------------------------------------------------------------------
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[4, :]
+    plot_structure(
+        axis=axis,
+        atoms=atoms,
+        title=title,
+        label=label,
+        rotation=rotation,
+        radii=radii,
+        scale=scale,
     )
 
-    format_subtitle_axis(
-        subtitle_axis,
-        "Rock-salt ionic solids",
-    )
-
-    subtitle_axes.append(subtitle_axis)
-
-    group_name = "Rock-salt ionic solids"
-
-    rock_salt_grid = gridspec.GridSpecFromSubplotSpec(
-        2,
-        3,
-        subplot_spec=panel_grid[5, :],
-        hspace=0.16,
-        wspace=0.08,
-    )
-
-    for index, (label, system_name) in enumerate(
-        BULK_GROUPS[group_name]
-    ):
-        row = index // 3
-        column = index % 3
-
-        axis = figure.add_subplot(
-            rock_salt_grid[row, column]
-        )
-
-        structure_file = find_bulk_structure(system_name)
-        atoms = read_structure(structure_file)
-
-        if atoms is not None:
-            atoms = prepare_periodic_structure(atoms)
-
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=BULK_ROTATION,
-            radii=BULK_RADII,
-            scale=BULK_SCALE,
-            show_cell=2,
-        )
-
-        all_axes.append(axis)
-
-        print(f"Bulk  {system_name:>6}: {structure_file}")
-
-    return all_axes, subtitle_axes
-
-
-# =============================================================================
-# ROY column
-# =============================================================================
-
-def create_roy_panel(figure, parent_spec):
-    """
-    Create the third column containing the seven ROY polymorphs.
-
-    Layout:
-
-        Y       YT04
-        R       OP
-        YN      ON
-           ORP
-    """
-
-    panel_grid = gridspec.GridSpecFromSubplotSpec(
-        5,
-        2,
-        subplot_spec=parent_spec,
-        height_ratios=[
-            0.16,
-            1.00,
-            1.00,
-            1.00,
-            1.00,
-        ],
-        hspace=0.14,
-        wspace=0.08,
-    )
-
-    subtitle_axis = figure.add_subplot(
-        panel_grid[0, :]
-    )
-
-    format_subtitle_axis(
-        subtitle_axis,
-        "ROY polymorphs",
-    )
-
-    subtitle_axes = [subtitle_axis]
-    all_axes = []
-
-    positions = [
-        (1, 0),              # Y
-        (1, 1),              # YT04
-        (2, 0),              # R
-        (2, 1),              # OP
-        (3, 0),              # YN
-        (3, 1),              # ON
-        (4, slice(0, 2)),    # ORP
-    ]
-
-    for (label, polymorph_name), (row, column) in zip(
-        ROY_POLYMORPHS,
-        positions,
-    ):
-        axis = figure.add_subplot(
-            panel_grid[row, column]
-        )
-
-        structure_file = find_roy_structure(polymorph_name)
-        atoms = read_structure(structure_file)
-
-        if atoms is not None:
-            atoms = prepare_periodic_structure(atoms)
-
-        plot_structure(
-            axis=axis,
-            atoms=atoms,
-            label=label,
-            rotation=ROY_ROTATION,
-            radii=ROY_RADII,
-            scale=ROY_SCALE,
-            show_cell=2,
-        )
-
-        all_axes.append(axis)
-
-        print(f"ROY   {polymorph_name:>6}: {structure_file}")
-
-    return all_axes, subtitle_axes
+    print(f"{kind:>6} {system_name:>10}: {structure_file}")
 
 
 # =============================================================================
@@ -1025,70 +481,59 @@ def create_roy_panel(figure, parent_spec):
 
 def main():
     print(f"Running script: {Path(__file__).resolve()}")
-    print(f"Molecular XYZ root: {XYZ_ROOT}")
-    print(f"ROY EXTXYZ root: {EXTXYZ_ROOT}")
     print()
-    figure = plt.figure(
-        figsize=(48, 36),
-        constrained_layout=False,
-    )
 
-    outer_grid = gridspec.GridSpec(
-        1,
-        3,
+    figure = plt.figure(figsize=(20, 12))
+
+    # 2 rows x 4 columns. Column 3 (the ROY panel) spans both rows.
+    grid = gridspec.GridSpec(
+        2,
+        4,
         figure=figure,
-        width_ratios=[
-            1.0,
-            1.0,
-            0.72,
-        ],
-        left=0.02,
-        right=0.98,
-        bottom=0.03,
-        top=0.925,
-        wspace=0.055,
+        width_ratios=[1.0, 1.0, 1.0, 1.15],
+        wspace=0.15,
+        hspace=0.30,
     )
 
-    # First column: dimers.
-    dimer_axes, dimer_subtitle_axes = create_dimer_panel(
-        figure,
-        outer_grid[0, 0],
-    )
+    # Top row: dimers.
+    for column, (title, label, system_name) in enumerate(
+        DIMER_STRUCTURES
+    ):
+        axis = figure.add_subplot(grid[0, column])
 
-    # Second column: bulk solids.
-    bulk_axes, bulk_subtitle_axes = create_bulk_panel(
-        figure,
-        outer_grid[0, 1],
-    )
+        load_and_plot(
+            axis=axis,
+            title=title,
+            label=label,
+            system_name=system_name,
+            kind="dimer",
+        )
 
-    # Third column: ROY polymorphs.
-    roy_axes, roy_subtitle_axes = create_roy_panel(
-        figure,
-        outer_grid[0, 2],
-    )
+    # Bottom row: bulk solids.
+    for column, (title, label, system_name) in enumerate(
+        BULK_STRUCTURES
+    ):
+        axis = figure.add_subplot(grid[1, column])
 
-    # Finalize all axes before adding the panel borders and main titles.
-    figure.canvas.draw()
+        load_and_plot(
+            axis=axis,
+            title=title,
+            label=label,
+            system_name=system_name,
+            kind="bulk",
+        )
 
-    add_panel_border(
-        figure=figure,
-        structure_axes=dimer_axes,
-        subtitle_axes=dimer_subtitle_axes,
-        title="Dimers",
-    )
+    # Right column: ROY polymorph, spanning both rows.
+    roy_title, roy_label, roy_system_name = ROY_STRUCTURE
 
-    add_panel_border(
-        figure=figure,
-        structure_axes=bulk_axes,
-        subtitle_axes=bulk_subtitle_axes,
-        title="Bulk solids",
-    )
+    roy_axis = figure.add_subplot(grid[:, 3])
 
-    add_panel_border(
-        figure=figure,
-        structure_axes=roy_axes,
-        subtitle_axes=roy_subtitle_axes,
-        title="Molecular crystals",
+    load_and_plot(
+        axis=roy_axis,
+        title=roy_title,
+        label=roy_label,
+        system_name=roy_system_name,
+        kind="roy",
     )
 
     figure.savefig(
