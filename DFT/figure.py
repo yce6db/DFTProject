@@ -38,7 +38,7 @@ DPI = 200
 # Top row: one dimer per category.
 DIMER_STRUCTURES = [
     ("III–V dimer", "BH$_3$NH$_3$", "BH3NH3"),
-    ("Diamond-type dimer", "Ethane", "C2H6"),
+    ("Diamond-type dimer", "Disilane", "Si2H6"),
     ("Rock-salt dimer", "NaCl dimer", "NaCl"),
 ]
 
@@ -368,12 +368,12 @@ def show_missing_structure(axis, title, label):
         title,
         fontsize=TITLE_FONT_SIZE,
         fontweight="bold",
-        pad=10,
+        pad=22,
     )
 
     axis.text(
         0.5,
-        -0.05,
+        -0.12,
         label,
         ha="center",
         va="top",
@@ -408,12 +408,12 @@ def plot_structure(axis, atoms, title, label, rotation, radii, scale):
             title,
             fontsize=TITLE_FONT_SIZE,
             fontweight="bold",
-            pad=10,
+            pad=22,
         )
 
         axis.text(
             0.5,
-            -0.05,
+            -0.12,
             label,
             ha="center",
             va="top",
@@ -483,7 +483,7 @@ def main():
     print(f"Running script: {Path(__file__).resolve()}")
     print()
 
-    figure = plt.figure(figsize=(20, 12))
+    figure = plt.figure(figsize=(24, 15))
 
     # 2 rows x 4 columns. Column 3 (the ROY panel) spans both rows.
     grid = gridspec.GridSpec(
@@ -491,8 +491,8 @@ def main():
         4,
         figure=figure,
         width_ratios=[1.0, 1.0, 1.0, 1.15],
-        wspace=0.15,
-        hspace=0.30,
+        wspace=0.35,
+        hspace=0.55,
     )
 
     # Top row: dimers.
@@ -536,6 +536,8 @@ def main():
         kind="roy",
     )
 
+    figure.tight_layout(pad=3.0, w_pad=2.5, h_pad=3.0)
+
     figure.savefig(
         OUTPUT_FILE,
         dpi=DPI,
@@ -551,3 +553,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
