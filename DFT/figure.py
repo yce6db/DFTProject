@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Create a three-column structural figure containing:
 
@@ -42,21 +41,23 @@ from ase.visualize.plot import plot_atoms
 # Configuration
 # =============================================================================
 
-DIMER_DIR = Path(
-    "/mnt/ceph/users/cwoodson/dft_calc/diatomics/dimer_jobs"
-)
+SCRIPT_DIR = Path(__file__).resolve().parent
 
-BULK_DIR = Path(
-    "/mnt/ceph/users/cwoodson/dft_calc/latbulk/eos_jobs"
-)
+# Existing FHI-aims directories and the molecular .xyz files are located
+# beneath /mnt/ceph/users/cwoodson/dft_calc.
+DFT_CALC_DIR = Path("/mnt/ceph/users/cwoodson/dft_calc")
+XYZ_ROOT = DFT_CALC_DIR
 
-ROY_DIR = Path(
-    "/mnt/ceph/users/cwoodson/dft_calc/geometry_relax"
-)
+# The ROY .extxyz files are located in the same DFT directory as this script:
+# /mnt/ceph/users/cwoodson/DFTProject/DFT.
+EXTXYZ_ROOT = SCRIPT_DIR
 
-OUTPUT_FILE = Path("dimers_bulk_and_roy_structures.png")
+DIMER_DIR = DFT_CALC_DIR / "diatomics" / "dimer_jobs"
+BULK_DIR = DFT_CALC_DIR / "latbulk" / "eos_jobs"
 
-DPI = 300
+OUTPUT_FILE = SCRIPT_DIR / "dimers_bulk_and_roy_structures.png"
+
+DPI = 200
 
 
 # =============================================================================
@@ -64,13 +65,13 @@ DPI = 300
 # =============================================================================
 
 DIMER_GROUPS = {
-    "III–V semiconductors": [
-        ("AlP dimer", "AlP"),
-        ("BP dimer", "BP"),
-        ("BN dimer", "BN"),
+    "III-V molecular analogues": [
+        ("AlH$_3$PH$_3$", "AlH3PH3"),
+        ("BH$_3$PH$_3$", "BH3PH3"),
+        ("BH$_3$NH$_3$", "BH3NH3"),
     ],
-    "Diamond-type covalent solids": [
-        ("SiC dimer", "SiC"),
+    "Diamond-type molecular analogues": [
+        ("CH$_3$SiH$_3$", "CH3SiH3"),
         ("Ethane", "C2H6"),
         ("Disilane", "Si2H6"),
     ],
@@ -85,7 +86,7 @@ DIMER_GROUPS = {
 }
 
 BULK_GROUPS = {
-    "III–V semiconductors": [
+    "III-V semiconductors": [
         ("AlP", "AlP"),
         ("BP", "BP"),
         ("BN", "BN"),
@@ -132,9 +133,11 @@ DIMER_SCALE = 0.90
 BULK_SCALE = 0.90
 ROY_SCALE = 0.82
 
-STRUCTURE_TITLE_FONT_SIZE = 9
-GROUP_FONT_SIZE = 11
-SECTION_FONT_SIZE = 15
+# Sized for direct placement on a 48 x 36 inch poster.
+STRUCTURE_TITLE_FONT_SIZE = 24
+GROUP_FONT_SIZE = 30
+SECTION_FONT_SIZE = 40
+MISSING_FONT_SIZE = 20
 
 
 # =============================================================================
@@ -153,11 +156,95 @@ def first_existing_path(candidates):
     return None
 
 
-def find_dimer_structure(system_name):
+def find_structure_by_name(root, structure_name, suffixes):
     """
-    Locate a representative geometry for a dimer or molecule.
+    Find a structure file whose filename contains the requested name.
+
+    Matching is case-insensitive and only files with one of the requested
+    extensions are considered. An exact filename stem is preferred, followed
+    by filenames that begin with the structure name, and then any filename
+    containing the structure name. Shallower paths are preferred when matches
+    have the same filename quality.
     """
 
+    if not root.is_dir():
+        return None
+
+    suffixes = {suffix.lower() for suffix in suffixes}
+    name_lower = structure_name.lower()
+
+    matches = [
+        path
+        for path in root.rglob("*")
+        if (
+            path.is_file()
+            and path.suffix.lower() in suffixes
+            and name_lower in path.stem.lower()
+        )
+    ]
+
+    if not matches:
+        return None
+
+    def match_rank(path):
+        file_stem = path.stem.lower()
+
+        if file_stem == name_lower:
+            name_rank = 0
+        elif file_stem.startswith(name_lower):
+            name_rank = 1
+        else:
+            name_rank = 2
+
+        return (
+            name_rank,
+            len(path.relative_to(root).parts),
+            len(file_stem),
+            str(path).lower(),
+        )
+
+    return min(matches, key=match_rank)
+
+
+XYZ_ONLY_DIMER_NAMES = {
+    "AlH3PH3",
+    "BH3PH3",
+    "BH3NH3",
+    "CH3SiH3",
+    "C2H6",
+    "Si2H6",
+}
+
+
+def find_dimer_structure(system_name):
+    """
+    Locate the requested molecular or ionic-dimer geometry.
+
+    The molecular analogues, ethane, and disilane must come from a matching
+    .xyz file beneath /mnt/ceph/users/cwoodson/DFTProject/DFT. For those six
+    systems, geometry.in is deliberately never used as a fallback.
+
+    The ionic dimers may still fall back to their existing geometry.in files
+    when no matching XYZ/EXTXYZ file is available.
+    """
+
+    xyz_file = find_structure_by_name(
+        root=XYZ_ROOT,
+        structure_name=system_name,
+        suffixes={".xyz"},
+    )
+
+    if xyz_file is not None:
+        return xyz_file
+
+    if system_name in XYZ_ONLY_DIMER_NAMES:
+        print(
+            f"[WARN] No matching .xyz file found for "
+            f"{system_name} beneath {XYZ_ROOT}"
+        )
+        return None
+
+    # Only ionic dimers are allowed to use geometry.in as a fallback.
     system_dir = DIMER_DIR / system_name
 
     candidates = [
@@ -169,7 +256,6 @@ def find_dimer_structure(system_name):
         system_dir / "refinement_100" / "geometry.in",
         DIMER_DIR / f"{system_name}_geometry.in",
         DIMER_DIR / f"{system_name}.in",
-        DIMER_DIR / f"{system_name}.xyz",
     ]
 
     structure_file = first_existing_path(candidates)
@@ -234,51 +320,14 @@ def find_bulk_structure(system_name):
 
 def find_roy_structure(polymorph_name):
     """
-    Locate one ROY polymorph structure.
+    Locate one ROY polymorph from an EXTXYZ file beneath dft_calc.
     """
 
-    polymorph_dir = ROY_DIR / polymorph_name
-
-    candidates = [
-        ROY_DIR / f"{polymorph_name}.cif",
-        ROY_DIR / f"{polymorph_name}.xyz",
-        ROY_DIR / f"{polymorph_name}.in",
-        ROY_DIR / f"{polymorph_name}_geometry.in",
-        polymorph_dir / "geometry.in",
-        polymorph_dir / "geometry.in.next_step",
-        polymorph_dir / "optimized_geometry.in",
-        polymorph_dir / "final_geometry.in",
-        polymorph_dir / "aims.out",
-    ]
-
-    structure_file = first_existing_path(candidates)
-
-    if structure_file is not None:
-        return structure_file
-
-    if polymorph_dir.is_dir():
-        next_step_files = sorted(
-            polymorph_dir.glob("geometry.in.next_step*")
-        )
-
-        if next_step_files:
-            return next_step_files[-1]
-
-        search_patterns = [
-            "*.cif",
-            "geometry.in",
-            "*geometry*.in",
-            "*.xyz",
-            "aims.out",
-        ]
-
-        for pattern in search_patterns:
-            matching_files = sorted(polymorph_dir.glob(pattern))
-
-            if matching_files:
-                return matching_files[-1]
-
-    return None
+    return find_structure_by_name(
+        root=EXTXYZ_ROOT,
+        structure_name=polymorph_name,
+        suffixes={".extxyz"},
+    )
 
 
 # =============================================================================
@@ -398,7 +447,7 @@ def show_missing_structure(axis, label):
         ha="center",
         va="center",
         transform=axis.transAxes,
-        fontsize=8,
+        fontsize=MISSING_FONT_SIZE,
         color="crimson",
     )
 
@@ -576,12 +625,12 @@ def create_dimer_panel(figure, parent_spec):
 
     format_subtitle_axis(
         subtitle_axis,
-        "III–V semiconductors",
+        "III–V molecular analogues",
     )
 
     subtitle_axes.append(subtitle_axis)
 
-    group_name = "III–V semiconductors"
+    group_name = "III-V molecular analogues"
 
     for column, (label, system_name) in enumerate(
         DIMER_GROUPS[group_name]
@@ -620,12 +669,12 @@ def create_dimer_panel(figure, parent_spec):
 
     format_subtitle_axis(
         subtitle_axis,
-        "Diamond-type covalent solids",
+        "Diamond-type molecular analogues",
     )
 
     subtitle_axes.append(subtitle_axis)
 
-    group_name = "Diamond-type covalent solids"
+    group_name = "Diamond-type molecular analogues"
 
     for column, (label, system_name) in enumerate(
         DIMER_GROUPS[group_name]
@@ -755,7 +804,7 @@ def create_bulk_panel(figure, parent_spec):
 
     subtitle_axes.append(subtitle_axis)
 
-    group_name = "III–V semiconductors"
+    group_name = "III-V semiconductors"
 
     for column, (label, system_name) in enumerate(
         BULK_GROUPS[group_name]
@@ -975,8 +1024,12 @@ def create_roy_panel(figure, parent_spec):
 # =============================================================================
 
 def main():
+    print(f"Running script: {Path(__file__).resolve()}")
+    print(f"Molecular XYZ root: {XYZ_ROOT}")
+    print(f"ROY EXTXYZ root: {EXTXYZ_ROOT}")
+    print()
     figure = plt.figure(
-        figsize=(24, 14),
+        figsize=(48, 36),
         constrained_layout=False,
     )
 
