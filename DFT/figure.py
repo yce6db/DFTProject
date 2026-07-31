@@ -50,19 +50,24 @@ BULK_STRUCTURES = [
 ]
 
 # Right column: one ROY polymorph, spanning both rows.
-ROY_STRUCTURE = ("ROY polymorph", "Y", "Y")
+# NOTE: the underlying file is named "Y_fixed.extxyz" in DFT, but the
+# displayed label stays "Y" since that's the polymorph name.
+ROY_STRUCTURE = ("ROY polymorph", "Y", "Y_fixed")
 
 DIMER_ROTATION = "10x,20y,0z"
 BULK_ROTATION = "10x,20y,0z"
-ROY_ROTATION = "15x,20y,0z"
+# Default (no rotation) so the ROY polymorph renders the same way
+# ASE GUI shows it by default (looking straight down the z-axis).
+ROY_ROTATION = "0x,0y,0z"
 
 DIMER_RADII = 0.75
 BULK_RADII = 0.78
-ROY_RADII = 0.42
+# Default ASE covalent radii/scale, matching ASE GUI's default atom sizing.
+ROY_RADII = 0.5
 
 DIMER_SCALE = 0.90
 BULK_SCALE = 0.90
-ROY_SCALE = 0.82
+ROY_SCALE = 1.0
 
 # Sized for direct placement on a 48 x 36 inch poster.
 TITLE_FONT_SIZE = 30
@@ -237,13 +242,35 @@ def find_bulk_structure(system_name):
 def find_roy_structure(polymorph_name):
     """
     Locate one ROY polymorph from an EXTXYZ file beneath dft_calc.
+
+    Matching requires an EXACT (case-insensitive) filename stem so that
+    short, ambiguous names such as "Y" cannot accidentally match files
+    like "YT04.extxyz" or "YN.extxyz".
     """
 
-    return find_structure_by_name(
-        root=EXTXYZ_ROOT,
-        structure_name=polymorph_name,
-        suffixes={".extxyz"},
-    )
+    if not EXTXYZ_ROOT.is_dir():
+        return None
+
+    name_lower = polymorph_name.lower()
+
+    matches = [
+        path
+        for path in EXTXYZ_ROOT.rglob("*.extxyz")
+        if path.stem.lower() == name_lower
+    ]
+
+    if not matches:
+        print(
+            f"[WARN] No exact .extxyz match for polymorph "
+            f"'{polymorph_name}' beneath {EXTXYZ_ROOT}"
+        )
+        return None
+
+    # Prefer the shallowest path if there happen to be multiple exact
+    # matches in different subdirectories.
+    matches.sort(key=lambda path: (len(path.relative_to(EXTXYZ_ROOT).parts), str(path).lower()))
+
+    return matches[0]
 
 
 # =============================================================================
@@ -457,8 +484,12 @@ def load_and_plot(axis, title, label, system_name, kind):
         structure_file = find_roy_structure(system_name)
         atoms = read_structure(structure_file)
 
+        # Do not wrap: ASE GUI displays atoms at their original written
+        # positions, and wrapping can shift molecules relative to the
+        # cell in a way that no longer matches the GUI's default view.
         if atoms is not None:
-            atoms = prepare_periodic_structure(atoms)
+            atoms = atoms.copy()
+            atoms.set_pbc(True)
 
         rotation, radii, scale = ROY_ROTATION, ROY_RADII, ROY_SCALE
 
