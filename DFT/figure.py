@@ -12,6 +12,7 @@ Required packages:
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 from matplotlib import gridspec
 
 from ase.io import read
@@ -53,6 +54,12 @@ BULK_STRUCTURES = [
 # NOTE: the underlying file is named "Y_fixed.extxyz" in DFT, but the
 # displayed label stays "Y" since that's the polymorph name.
 ROY_STRUCTURE = ("ROY polymorph", "Y", "Y_fixed")
+
+# If set, this image (a screenshot saved directly from ASE GUI via
+# File -> Save Image...) is embedded directly for the ROY panel instead
+# of being re-rendered with plot_atoms. This guarantees the panel looks
+# exactly like ASE GUI. Set to None to fall back to plot_atoms rendering.
+ROY_IMAGE_FILE = SCRIPT_DIR / "Y_fixed_gui_screenshot_raw.png"
 
 DIMER_ROTATION = "10x,20y,0z"
 BULK_ROTATION = "10x,20y,0z"
@@ -457,6 +464,44 @@ def plot_structure(axis, atoms, title, label, rotation, radii, scale):
         show_missing_structure(axis, title, label)
 
 
+def plot_saved_image(axis, image_path, title, label):
+    """
+    Embed a pre-rendered image (e.g. an ASE GUI screenshot) directly,
+    instead of re-rendering the structure with plot_atoms.
+    """
+
+    clear_axis(axis)
+
+    if image_path is None or not Path(image_path).is_file():
+        show_missing_structure(axis, title, label)
+        print(f"[WARN] ROY image not found: {image_path}")
+        return
+
+    image = mpimg.imread(image_path)
+
+    axis.imshow(image)
+
+    axis.set_title(
+        title,
+        fontsize=TITLE_FONT_SIZE,
+        fontweight="bold",
+        pad=22,
+    )
+
+    axis.text(
+        0.5,
+        -0.06,
+        label,
+        ha="center",
+        va="top",
+        transform=axis.transAxes,
+        fontsize=LABEL_FONT_SIZE,
+        fontweight="bold",
+    )
+
+    clear_axis(axis)
+
+
 def load_and_plot(axis, title, label, system_name, kind):
     """
     Locate, read, and plot one structure of the requested kind.
@@ -481,17 +526,15 @@ def load_and_plot(axis, title, label, system_name, kind):
         rotation, radii, scale = BULK_ROTATION, BULK_RADII, BULK_SCALE
 
     else:  # roy
-        structure_file = find_roy_structure(system_name)
-        atoms = read_structure(structure_file)
+        plot_saved_image(
+            axis=axis,
+            image_path=ROY_IMAGE_FILE,
+            title=title,
+            label=label,
+        )
 
-        # Do not wrap: ASE GUI displays atoms at their original written
-        # positions, and wrapping can shift molecules relative to the
-        # cell in a way that no longer matches the GUI's default view.
-        if atoms is not None:
-            atoms = atoms.copy()
-            atoms.set_pbc(True)
-
-        rotation, radii, scale = ROY_ROTATION, ROY_RADII, ROY_SCALE
+        print(f"   roy {system_name:>10}: {ROY_IMAGE_FILE}")
+        return
 
     plot_structure(
         axis=axis,
@@ -584,4 +627,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
