@@ -1,9 +1,6 @@
 """
-Create a compact 2x4 grid figure with:
-
-    Row 1: One dimer from each category (III-V, diamond-type, rock-salt)
-    Row 2: One bulk solid from each category (III-V, diamond-type, rock-salt)
-    Right column (both rows): One ROY polymorph
+Create a compact grid figure showing all 12 bulk solids
+(III-V, diamond-type, and rock-salt structures).
 
 Required packages:
     pip install ase matplotlib
@@ -12,7 +9,6 @@ Required packages:
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from matplotlib import gridspec
 
 from ase.io import read
@@ -26,60 +22,39 @@ from ase.visualize.plot import plot_atoms
 SCRIPT_DIR = Path(__file__).resolve().parent
 
 DFT_CALC_DIR = Path("/mnt/ceph/users/cwoodson/dft_calc")
-XYZ_ROOT = DFT_CALC_DIR
-EXTXYZ_ROOT = SCRIPT_DIR
-
-DIMER_DIR = DFT_CALC_DIR / "diatomics" / "dimer_jobs"
 BULK_DIR = DFT_CALC_DIR / "latbulk" / "eos_jobs"
 
 OUTPUT_FILE = SCRIPT_DIR / "representative_structures.png"
 
 DPI = 200
 
-# Top row: one dimer per category.
-DIMER_STRUCTURES = [
-    ("III–V dimer", "BH$_3$NH$_3$", "BH3NH3"),
-    ("Diamond-type dimer", "Disilane", "Si2H6"),
-    ("Rock-salt dimer", "NaCl dimer", "NaCl"),
-]
-
-# Bottom row: one bulk solid per category.
+# All 12 bulk solids: (title, label, system_name).
 BULK_STRUCTURES = [
+    ("III–V solid", "AlP", "AlP"),
     ("III–V solid", "BN", "BN"),
+    ("III–V solid", "BP", "BP"),
+    ("Diamond-type solid", "C", "C"),
     ("Diamond-type solid", "Si", "Si"),
+    ("Diamond-type solid", "SiC", "SiC"),
+    ("Rock-salt solid", "NaF", "NaF"),
     ("Rock-salt solid", "NaCl", "NaCl"),
+    ("Rock-salt solid", "LiCl", "LiCl"),
+    ("Rock-salt solid", "LiF", "LiF"),
+    ("Rock-salt solid", "MgO", "MgO"),
+    ("Rock-salt solid", "MgS", "MgS"),
 ]
 
-# Right column: one ROY polymorph, spanning both rows.
-# NOTE: the underlying file is named "Y_fixed.extxyz" in DFT, but the
-# displayed label stays "Y" since that's the polymorph name.
-ROY_STRUCTURE = ("ROY polymorph", "Y", "Y_fixed")
-
-# If set, this image (a screenshot saved directly from ASE GUI via
-# File -> Save Image...) is embedded directly for the ROY panel instead
-# of being re-rendered with plot_atoms. This guarantees the panel looks
-# exactly like ASE GUI. Set to None to fall back to plot_atoms rendering.
-ROY_IMAGE_FILE = SCRIPT_DIR / "Y_fixed_gui_screenshot_raw.png"
-
-DIMER_ROTATION = "10x,20y,0z"
 BULK_ROTATION = "10x,20y,0z"
-# Default (no rotation) so the ROY polymorph renders the same way
-# ASE GUI shows it by default (looking straight down the z-axis).
-ROY_ROTATION = "0x,0y,0z"
-
-DIMER_RADII = 0.75
 BULK_RADII = 0.78
-# Default ASE covalent radii/scale, matching ASE GUI's default atom sizing.
-ROY_RADII = 0.5
-
-DIMER_SCALE = 0.90
 BULK_SCALE = 0.90
-ROY_SCALE = 1.0
 
-# Sized for direct placement on a 48 x 36 inch poster.
-TITLE_FONT_SIZE = 30
-LABEL_FONT_SIZE = 24
-MISSING_FONT_SIZE = 20
+# Sized for direct placement on a poster/slide.
+TITLE_FONT_SIZE = 22
+LABEL_FONT_SIZE = 18
+MISSING_FONT_SIZE = 16
+
+GRID_ROWS = 3
+GRID_COLS = 4
 
 
 # =============================================================================
@@ -94,121 +69,6 @@ def first_existing_path(candidates):
     for candidate in candidates:
         if candidate.is_file():
             return candidate
-
-    return None
-
-
-def find_structure_by_name(root, structure_name, suffixes):
-    """
-    Find a structure file whose filename contains the requested name.
-    """
-
-    if not root.is_dir():
-        return None
-
-    suffixes = {suffix.lower() for suffix in suffixes}
-    name_lower = structure_name.lower()
-
-    matches = [
-        path
-        for path in root.rglob("*")
-        if (
-            path.is_file()
-            and path.suffix.lower() in suffixes
-            and name_lower in path.stem.lower()
-        )
-    ]
-
-    if not matches:
-        return None
-
-    def match_rank(path):
-        file_stem = path.stem.lower()
-
-        if file_stem == name_lower:
-            name_rank = 0
-        elif file_stem.startswith(name_lower):
-            name_rank = 1
-        else:
-            name_rank = 2
-
-        return (
-            name_rank,
-            len(path.relative_to(root).parts),
-            len(file_stem),
-            str(path).lower(),
-        )
-
-    return min(matches, key=match_rank)
-
-
-XYZ_ONLY_DIMER_NAMES = {
-    "AlH3PH3",
-    "BH3PH3",
-    "BH3NH3",
-    "CH3SiH3",
-    "C2H6",
-    "Si2H6",
-}
-
-
-def find_dimer_structure(system_name):
-    """
-    Locate the requested molecular or ionic-dimer geometry.
-    """
-
-    xyz_file = find_structure_by_name(
-        root=XYZ_ROOT,
-        structure_name=system_name,
-        suffixes={".xyz"},
-    )
-
-    if xyz_file is not None:
-        return xyz_file
-
-    if system_name in XYZ_ONLY_DIMER_NAMES:
-        print(
-            f"[WARN] No matching .xyz file found for "
-            f"{system_name} beneath {XYZ_ROOT}"
-        )
-        return None
-
-    system_dir = DIMER_DIR / system_name
-
-    candidates = [
-        system_dir / "geometry.in",
-        system_dir / "scale_1.000" / "geometry.in",
-        system_dir / "reference" / "geometry.in",
-        system_dir / "equilibrium" / "geometry.in",
-        system_dir / "refined" / "geometry.in",
-        system_dir / "refinement_100" / "geometry.in",
-        DIMER_DIR / f"{system_name}_geometry.in",
-        DIMER_DIR / f"{system_name}.in",
-    ]
-
-    structure_file = first_existing_path(candidates)
-
-    if structure_file is not None:
-        return structure_file
-
-    if system_dir.is_dir():
-        geometry_files = sorted(system_dir.rglob("geometry.in"))
-
-        if geometry_files:
-            preferred_terms = [
-                "scale_1.000",
-                "reference",
-                "equilibrium",
-                "refinement",
-                "refined",
-            ]
-
-            for term in preferred_terms:
-                for geometry_file in geometry_files:
-                    if term in str(geometry_file):
-                        return geometry_file
-
-            return geometry_files[0]
 
     return None
 
@@ -246,40 +106,6 @@ def find_bulk_structure(system_name):
     return None
 
 
-def find_roy_structure(polymorph_name):
-    """
-    Locate one ROY polymorph from an EXTXYZ file beneath dft_calc.
-
-    Matching requires an EXACT (case-insensitive) filename stem so that
-    short, ambiguous names such as "Y" cannot accidentally match files
-    like "YT04.extxyz" or "YN.extxyz".
-    """
-
-    if not EXTXYZ_ROOT.is_dir():
-        return None
-
-    name_lower = polymorph_name.lower()
-
-    matches = [
-        path
-        for path in EXTXYZ_ROOT.rglob("*.extxyz")
-        if path.stem.lower() == name_lower
-    ]
-
-    if not matches:
-        print(
-            f"[WARN] No exact .extxyz match for polymorph "
-            f"'{polymorph_name}' beneath {EXTXYZ_ROOT}"
-        )
-        return None
-
-    # Prefer the shallowest path if there happen to be multiple exact
-    # matches in different subdirectories.
-    matches.sort(key=lambda path: (len(path.relative_to(EXTXYZ_ROOT).parts), str(path).lower()))
-
-    return matches[0]
-
-
 # =============================================================================
 # Structure reading and preparation
 # =============================================================================
@@ -308,41 +134,6 @@ def read_structure(structure_file):
     except Exception as error:
         print(f"[WARN] Could not read {structure_file}: {error}")
         return None
-
-
-def prepare_dimer_for_plotting(atoms, vacuum=7.0):
-    """
-    Place a nonperiodic dimer or molecule inside a cubic plotting cell.
-    """
-
-    atoms = atoms.copy()
-    atoms.set_pbc(False)
-
-    if len(atoms) == 0:
-        return atoms
-
-    positions = atoms.get_positions()
-
-    extent = positions.max(axis=0) - positions.min(axis=0)
-    largest_extent = max(extent)
-
-    cell_length = max(
-        largest_extent + 2.0 * vacuum,
-        12.0,
-    )
-
-    atoms.set_cell(
-        [
-            [cell_length, 0.0, 0.0],
-            [0.0, cell_length, 0.0],
-            [0.0, 0.0, cell_length],
-        ]
-    )
-
-    atoms.center()
-    atoms.set_pbc(False)
-
-    return atoms
 
 
 def prepare_periodic_structure(atoms):
@@ -378,6 +169,8 @@ def clear_axis(axis):
     for spine in axis.spines.values():
         spine.set_visible(False)
 
+    axis.patch.set_alpha(0.0)
+
 
 def show_missing_structure(axis, title, label):
     """
@@ -402,7 +195,7 @@ def show_missing_structure(axis, title, label):
         title,
         fontsize=TITLE_FONT_SIZE,
         fontweight="bold",
-        pad=22,
+        pad=16,
     )
 
     axis.text(
@@ -442,7 +235,7 @@ def plot_structure(axis, atoms, title, label, rotation, radii, scale):
             title,
             fontsize=TITLE_FONT_SIZE,
             fontweight="bold",
-            pad=22,
+            pad=16,
         )
 
         axis.text(
@@ -464,89 +257,28 @@ def plot_structure(axis, atoms, title, label, rotation, radii, scale):
         show_missing_structure(axis, title, label)
 
 
-def plot_saved_image(axis, image_path, title, label):
+def load_and_plot(axis, title, label, system_name):
     """
-    Embed a pre-rendered image (e.g. an ASE GUI screenshot) directly,
-    instead of re-rendering the structure with plot_atoms.
-    """
-
-    clear_axis(axis)
-
-    if image_path is None or not Path(image_path).is_file():
-        show_missing_structure(axis, title, label)
-        print(f"[WARN] ROY image not found: {image_path}")
-        return
-
-    image = mpimg.imread(image_path)
-
-    axis.imshow(image)
-
-    axis.set_title(
-        title,
-        fontsize=TITLE_FONT_SIZE,
-        fontweight="bold",
-        pad=22,
-    )
-
-    axis.text(
-        0.5,
-        -0.06,
-        label,
-        ha="center",
-        va="top",
-        transform=axis.transAxes,
-        fontsize=LABEL_FONT_SIZE,
-        fontweight="bold",
-    )
-
-    clear_axis(axis)
-
-
-def load_and_plot(axis, title, label, system_name, kind):
-    """
-    Locate, read, and plot one structure of the requested kind.
+    Locate, read, and plot one bulk structure.
     """
 
-    if kind == "dimer":
-        structure_file = find_dimer_structure(system_name)
-        atoms = read_structure(structure_file)
+    structure_file = find_bulk_structure(system_name)
+    atoms = read_structure(structure_file)
 
-        if atoms is not None:
-            atoms = prepare_dimer_for_plotting(atoms)
-
-        rotation, radii, scale = DIMER_ROTATION, DIMER_RADII, DIMER_SCALE
-
-    elif kind == "bulk":
-        structure_file = find_bulk_structure(system_name)
-        atoms = read_structure(structure_file)
-
-        if atoms is not None:
-            atoms = prepare_periodic_structure(atoms)
-
-        rotation, radii, scale = BULK_ROTATION, BULK_RADII, BULK_SCALE
-
-    else:  # roy
-        plot_saved_image(
-            axis=axis,
-            image_path=ROY_IMAGE_FILE,
-            title=title,
-            label=label,
-        )
-
-        print(f"   roy {system_name:>10}: {ROY_IMAGE_FILE}")
-        return
+    if atoms is not None:
+        atoms = prepare_periodic_structure(atoms)
 
     plot_structure(
         axis=axis,
         atoms=atoms,
         title=title,
         label=label,
-        rotation=rotation,
-        radii=radii,
-        scale=scale,
+        rotation=BULK_ROTATION,
+        radii=BULK_RADII,
+        scale=BULK_SCALE,
     )
 
-    print(f"{kind:>6} {system_name:>10}: {structure_file}")
+    print(f"bulk {system_name:>10}: {structure_file}")
 
 
 # =============================================================================
@@ -557,66 +289,37 @@ def main():
     print(f"Running script: {Path(__file__).resolve()}")
     print()
 
-    figure = plt.figure(figsize=(24, 15))
+    figure = plt.figure(figsize=(20, 14))
+    figure.patch.set_alpha(0.0)
 
-    # 2 rows x 4 columns. Column 3 (the ROY panel) spans both rows.
     grid = gridspec.GridSpec(
-        2,
-        4,
+        GRID_ROWS,
+        GRID_COLS,
         figure=figure,
-        width_ratios=[1.0, 1.0, 1.0, 1.15],
         wspace=0.35,
-        hspace=0.55,
+        hspace=0.45,
     )
 
-    # Top row: dimers.
-    for column, (title, label, system_name) in enumerate(
-        DIMER_STRUCTURES
-    ):
-        axis = figure.add_subplot(grid[0, column])
+    for index, (title, label, system_name) in enumerate(BULK_STRUCTURES):
+        row = index // GRID_COLS
+        column = index % GRID_COLS
+
+        axis = figure.add_subplot(grid[row, column])
 
         load_and_plot(
             axis=axis,
             title=title,
             label=label,
             system_name=system_name,
-            kind="dimer",
         )
 
-    # Bottom row: bulk solids.
-    for column, (title, label, system_name) in enumerate(
-        BULK_STRUCTURES
-    ):
-        axis = figure.add_subplot(grid[1, column])
-
-        load_and_plot(
-            axis=axis,
-            title=title,
-            label=label,
-            system_name=system_name,
-            kind="bulk",
-        )
-
-    # Right column: ROY polymorph, spanning both rows.
-    roy_title, roy_label, roy_system_name = ROY_STRUCTURE
-
-    roy_axis = figure.add_subplot(grid[:, 3])
-
-    load_and_plot(
-        axis=roy_axis,
-        title=roy_title,
-        label=roy_label,
-        system_name=roy_system_name,
-        kind="roy",
-    )
-
-    figure.tight_layout(pad=3.0, w_pad=2.5, h_pad=3.0)
+    figure.tight_layout(pad=2.5, w_pad=2.0, h_pad=2.5)
 
     figure.savefig(
         OUTPUT_FILE,
         dpi=DPI,
         bbox_inches="tight",
-        facecolor="white",
+        transparent=True,
     )
 
     print()
@@ -627,3 +330,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
